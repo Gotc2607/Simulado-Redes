@@ -1,0 +1,310 @@
+{
+  "simulado": {
+    "titulo": "Simulado de Redes de Computadores - Exercícios e Problemas Adaptados (Capítulos 7 e 8)",
+    "referencia": "Kurose & Ross - Redes de Computadores e a Internet: Uma Abordagem Top-Down (6ª edição)",
+    "total_questoes": 20,
+    "questoes": [
+      {
+        "id": 1,
+        "capitulo": "Capítulo 7 - Redes Multimídia",
+        "referencia_livro": "Cap. 7 - R3",
+        "tipo": "calculo_pratico",
+        "enunciado": "Suponha que um sinal de áudio analógico seja amostrado 16.000 vezes por segundo e cada amostra seja quantizada em um de 1.024 níveis possíveis. Qual é a taxa de bits resultante desse sinal de áudio digital PCM?",
+        "alternativas": {
+          "A": "128 kbps",
+          "B": "160 kbps",
+          "C": "192 kbps",
+          "D": "256 kbps"
+        },
+        "resposta_correta": "B",
+        "explicacao": "Para representar 1.024 níveis distintos são necessários log2(1.024) = 10 bits por amostra. Multiplicando pela taxa de amostragem: 16.000 amostras/s × 10 bits/amostra = 160.000 bits/s = 160 kbps."
+      },
+      {
+        "id": 2,
+        "capitulo": "Capítulo 7 - Redes Multimídia",
+        "referencia_livro": "Cap. 7 - R8",
+        "tipo": "calculo_pratico",
+        "enunciado": "Considere o modelo simples para HTTP de fluxo contínuo (streaming). Suponha que o servidor envie bits a uma taxa constante de 2 Mbits/s e que a reprodução no cliente comece apenas quando 8 milhões de bits tiverem sido recebidos no buffer. Qual é o atraso de buffer inicial (tp)?",
+        "alternativas": {
+          "A": "2 segundos",
+          "B": "4 segundos",
+          "C": "8 segundos",
+          "D": "16 segundos"
+        },
+        "resposta_correta": "B",
+        "explicacao": "O tempo necessário para acumular Q = 8 × 10^6 bits a uma taxa constante x = 2 × 10^6 bits/s é tp = Q / x = 8 / 2 = 4 segundos."
+      },
+      {
+        "id": 3,
+        "capitulo": "Capítulo 7 - Redes Multimídia",
+        "referencia_livro": "Cap. 7 - P4",
+        "tipo": "calculo_pratico",
+        "enunciado": "No modelo de HTTP de fluxo contínuo com buffer infinito, suponha que o servidor envie bits à taxa constante x = 3 Mbps, a taxa de consumo do vídeo seja r = 1 Mbps e a reprodução comece imediatamente. Se o usuário assistir a um vídeo muito longo e encerrá-lo antecipadamente no instante t = 30 segundos (quando o servidor para de enviar), quantos megabits (Mb) foram desperdiçados (enviados, mas não assistidos)?",
+        "alternativas": {
+          "A": "30 Mb",
+          "B": "60 Mb",
+          "C": "90 Mb",
+          "D": "120 Mb"
+        },
+        "resposta_correta": "B",
+        "explicacao": "Até o instante E = 30 s, o servidor enviou x × E = 3 × 30 = 90 Mb, enquanto o usuário consumiu r × E = 1 × 30 = 30 Mb. Logo, foram desperdiçados (x - r) × E = (3 - 1) × 30 = 60 Mb."
+      },
+      {
+        "id": 4,
+        "capitulo": "Capítulo 7 - Redes Multimídia",
+        "referencia_livro": "Cap. 7 - P5",
+        "tipo": "calculo_pratico",
+        "enunciado": "Considere um sistema DASH que oferece N = 5 versões de vídeo (em 5 taxas/qualidades diferentes) e N = 5 versões de áudio (em 5 taxas/idiomas diferentes), permitindo ao cliente escolher qualquer combinação. Quantos arquivos o servidor precisará armazenar se áudio e vídeo forem misturados em um único fluxo por combinação e quantos arquivos precisará armazenar se forem mantidos separados para o cliente sincronizar, respectivamente?",
+        "alternativas": {
+          "A": "10 arquivos misturados; 5 arquivos separados.",
+          "B": "25 arquivos misturados; 10 arquivos separados.",
+          "C": "25 arquivos misturados; 5 arquivos separados.",
+          "D": "10 arquivos misturados; 25 arquivos separados."
+        },
+        "resposta_correta": "B",
+        "explicacao": "Com áudio e vídeo combinados em um único arquivo para cada par, são necessários N × N = N² = 5² = 25 arquivos. Armazenando áudio e vídeo separadamente, bastam N + N = 2N = 10 arquivos."
+      },
+      {
+        "id": 5,
+        "capitulo": "Capítulo 7 - Redes Multimídia",
+        "referencia_livro": "Cap. 7 - P6",
+        "tipo": "calculo_pratico",
+        "enunciado": "Em uma chamada VoIP codificada a 64 kbps, um trecho de áudio é gerado e encapsulado em um datagrama IP a cada 20 ms (160 bytes de carga útil). Considerando o tamanho típico dos cabeçalhos combinados h = 40 bytes (20 bytes IP + 8 bytes UDP + 12 bytes RTP), qual é a taxa de transmissão total, em kbps, dos datagramas IP gerados por um lado dessa chamada?",
+        "alternativas": {
+          "A": "64 kbps",
+          "B": "72 kbps",
+          "C": "80 kbps",
+          "D": "96 kbps"
+        },
+        "resposta_correta": "C",
+        "explicacao": "Cada datagrama tem 160 + 40 = 200 bytes (1.600 bits). Como é enviado 1 datagrama a cada 20 ms (50 pacotes/segundo), a taxa total é 50 × 1.600 = 80.000 bits/s = 80 kbps."
+      },
+      {
+        "id": 6,
+        "capitulo": "Capítulo 7 - Redes Multimídia",
+        "referencia_livro": "Cap. 7 - P13",
+        "tipo": "conceitual",
+        "enunciado": "Considere dois esquemas de FEC para VoIP: o Esquema 1 envia 1 bloco redundante (XOR) para cada 4 blocos originais; o Esquema 2 anexa (piggyback) no pacote atual uma cópia de baixa taxa do bloco anterior com 25% da taxa nominal. Sobre a banda adicional exigida e o desempenho caso o primeiro pacote de cada par (1 a cada 2 pacotes) seja perdido, é correto afirmar que:",
+        "alternativas": {
+          "A": "Ambos exigem 25% de banda adicional; o Esquema 2 terá melhor qualidade de áudio, pois consegue recuperar cada pacote perdido usando o pacote seguinte, enquanto o Esquema 1 falha ao perder mais de 1 pacote por grupo de 5.",
+          "B": "O Esquema 1 exige 20% de banda e o Esquema 2 exige 50%; o Esquema 1 terá melhor qualidade pois o XOR reconstrói todos os pacotes perdidos.",
+          "C": "Ambos exigem 25% de banda adicional; o Esquema 1 terá melhor qualidade porque não depende de codificação de baixa taxa.",
+          "D": "Nenhum dos esquemas consegue recuperar qualquer pacote nesse cenário de perda."
+        },
+        "resposta_correta": "A",
+        "explicacao": "Ambos adicionam 25% de sobrecarga de banda (1/4 = 25%). Com perda alternada (1 a cada 2 pacotes), em cada grupo de 5 pacotes do Esquema 1 perdem-se 2 ou 3 pacotes, inviabilizando a recuperação via XOR. Já no Esquema 2, como as perdas não são consecutivas, cada pacote perdido é recuperado em baixa resolução a partir do próximo pacote."
+      },
+      {
+        "id": 7,
+        "capitulo": "Capítulo 7 - Redes Multimídia",
+        "referencia_livro": "Cap. 7 - P15",
+        "tipo": "conceitual",
+        "enunciado": "Em uma audioconferência usando SIP e RTP entre Alice, Bob e Claire, suponha que Bob (IP A1, porta P1) e Claire (IP A2, porta P2) enviem pacotes RTP para o mesmo IP e a mesma porta UDP T de Alice. Os datagramas de Bob e Claire serão recebidos pelo mesmo socket UDP em Alice? Como o cliente de Alice distingue os pacotes de Bob dos de Claire?",
+        "alternativas": {
+          "A": "Não, pois sockets UDP exigem um socket distinto para cada IP de origem diferente.",
+          "B": "Sim, pois sockets UDP são demultiplexados apenas pelo IP e porta de destino; o cliente distingue os fluxos usando o campo SSRC (Synchronization Source ID) do cabeçalho RTP.",
+          "C": "Sim, mas o cliente só consegue distingui-los se Bob e Claire usarem codecs diferentes no campo Payload Type.",
+          "D": "Não, pois o RTP exige uma porta UDP exclusiva para cada participante da conferência."
+        },
+        "resposta_correta": "B",
+        "explicacao": "Um socket UDP é identificado apenas pelo par (IP destino, porta destino), portanto ambos os fluxos chegam ao mesmo socket. Dentro da sessão RTP, cada fluxo de origem possui um identificador SSRC único no cabeçalho RTP, permitindo distingui-los."
+      },
+      {
+        "id": 8,
+        "capitulo": "Capítulo 7 - Redes Multimídia",
+        "referencia_livro": "Cap. 7 - P16",
+        "tipo": "conceitual",
+        "enunciado": "Com base nas especificações de RTP, SIP e DiffServ, assinale a única afirmação VERDADEIRA:",
+        "alternativas": {
+          "A": "Todas as aplicações que utilizam RTP são obrigadas a usar a porta padrão 87.",
+          "B": "Em uma sessão RTP com áudio e vídeo de um mesmo remetente, ambos os fluxos compartilham obrigatoriamente o mesmo valor de SSRC.",
+          "C": "No RTP, é possível que o remetente mude a codificação de áudio no meio de uma sessão, e no DiffServ o comportamento por salto (PHB) define diferenças de desempenho sem impor um mecanismo específico.",
+          "D": "Quando Alice envia 'm=audio 48753 RTP/AVP 3' em um SIP INVITE, ela indica que enviará áudio GSM para a porta 48753 de Bob."
+        },
+        "resposta_correta": "C",
+        "explicacao": "O RTP permite mudar o codec dinamicamente alterando o campo Payload Type, e o PHB no DiffServ especifica o comportamento observável sem ditar a implementação interna. (A é falsa: não existe porta fixa 87; B é falsa: cada fluxo tem SSRC próprio; D é falsa: Alice indica a porta e o codec nos quais ela deseja RECEBER áudio)."
+      },
+      {
+        "id": 9,
+        "capitulo": "Capítulo 7 - Redes Multimídia",
+        "referencia_livro": "Cap. 7 - P17",
+        "tipo": "calculo_pratico",
+        "enunciado": "Suponha que a política de escalonamento WFQ (Weighted Fair Queuing) seja aplicada a um enlace que suporta três classes com pesos 0,5 (Classe 1), 0,25 (Classe 2) e 0,25 (Classe 3). Se as Classes 1 e 2 possuírem muitos pacotes na fila, mas não houver nenhum pacote da Classe 3 no buffer, qual sequência de atendimento atinge corretamente os pesos do WFQ?",
+        "alternativas": {
+          "A": "1 2 1 2 1 2... (50% para Classe 1 e 50% para Classe 2)",
+          "B": "1 1 2 1 1 2... (2/3 para Classe 1 e 1/3 para Classe 2)",
+          "C": "1 2 (ocioso) 1 2 (ocioso)... (mantendo 25% do enlace reservado para a Classe 3)",
+          "D": "1 1 1 2 1 1 1 2... (75% para Classe 1 e 25% para Classe 2)"
+        },
+        "resposta_correta": "B",
+        "explicacao": "O WFQ é conservador de trabalho: quando a Classe 3 está vazia, a banda é redistribuída proporcionalmente entre as classes ativas. Classe 1 recebe 0,5 / (0,5 + 0,25) = 2/3 e Classe 2 recebe 0,25 / 0,75 = 1/3, correspondendo à sequência 1 1 2 1 1 2..."
+      },
+      {
+        "id": 10,
+        "capitulo": "Capítulo 7 - Redes Multimídia",
+        "referencia_livro": "Cap. 7 - P24",
+        "tipo": "conceitual",
+        "enunciado": "Diz-se que um fluxo de pacotes está em conformidade com um balde de fichas (token bucket) de parâmetros (r, b) se o número de pacotes que chega em qualquer intervalo de duração t for menor ou igual a rt + b. Um fluxo que obedece estritamente a essa especificação alguma vez precisará esperar em um regulador de balde de fichas com os mesmos parâmetros r e b (inicialmente cheio)?",
+        "alternativas": {
+          "A": "Sim, sempre que ocorrer uma rajada de tamanho igual a b.",
+          "B": "Sim, pois o regulador sempre retém cada pacote por pelo menos 1/r segundos.",
+          "C": "Não, o fluxo nunca precisará esperar, pois sempre haverá fichas suficientes disponíveis no balde para admitir imediatamente os pacotes em conformidade.",
+          "D": "Depende exclusivamente do protocolo de transporte (TCP ou UDP) utilizado pelo fluxo."
+        },
+        "resposta_correta": "C",
+        "explicacao": "Se o fluxo nunca envia mais que rt + b pacotes em qualquer intervalo t e o balde começa cheio com b fichas sendo preenchido à taxa r, o número de fichas geradas mais as iniciais nunca será inferior ao número de pacotes chegados; logo, nenhum pacote precisará esperar."
+      },
+      {
+        "id": 11,
+        "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
+        "referencia_livro": "Cap. 8 - R1",
+        "tipo": "conceitual",
+        "enunciado": "Sobre a relação entre confidencialidade de mensagem e integridade de mensagem, assinale a alternativa correta:",
+        "alternativas": {
+          "A": "É impossível ter confidencialidade sem integridade, pois criptografar impede qualquer alteração de bits em trânsito.",
+          "B": "É impossível ter integridade sem confidencialidade, pois todo código de integridade exige que a mensagem seja cifrada.",
+          "C": "É possível ter confidencialidade sem integridade (um atacante pode alterar bits de uma mensagem cifrada sem detecção) e integridade sem confidencialidade (ex: enviar mensagem em texto claro acompanhada de assinatura digital ou MAC).",
+          "D": "Confidencialidade e integridade são sinônimos na segurança de redes."
+        },
+        "resposta_correta": "C",
+        "explicacao": "Confidencialidade (sigilo) e integridade (detecção de adulteração) são propriedades independentes: pode-se cifrar sem autenticar/verificar integridade, e pode-se anexar um MAC ou assinatura digital a uma mensagem enviada em texto claro."
+      },
+      {
+        "id": 12,
+        "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
+        "referencia_livro": "Cap. 8 - R6",
+        "tipo": "calculo_pratico",
+        "enunciado": "Suponha que N = 10 pessoas queiram se comunicar de forma confidencial entre si (cada par isoladamente, sem que os demais do grupo consigam decifrar a conversa). Quantas chaves são necessárias no total no sistema usando criptografia simétrica e quantas chaves (contando públicas e privadas) são necessárias usando criptografia de chave pública, respectivamente?",
+        "alternativas": {
+          "A": "10 chaves na simétrica; 10 chaves na de chave pública.",
+          "B": "45 chaves na simétrica; 20 chaves na de chave pública.",
+          "C": "90 chaves na simétrica; 10 chaves na de chave pública.",
+          "D": "20 chaves na simétrica; 45 chaves na de chave pública."
+        },
+        "resposta_correta": "B",
+        "explicacao": "Na criptografia simétrica, cada par distinto precisa de uma chave compartilhada: N(N-1)/2 = 10 × 9 / 2 = 45 chaves. Na criptografia de chave pública, cada pessoa possui apenas 1 par (chave pública + chave privada), totalizando 2N = 20 chaves."
+      },
+      {
+        "id": 13,
+        "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
+        "referencia_livro": "Cap. 8 - R7",
+        "tipo": "calculo_pratico",
+        "enunciado": "Suponha que n = 10.000, a = 10.023 e b = 10.004. Utilizando a identidade da aritmética modular [(a mod n) · (b mod n)] mod n = (a · b) mod n, qual é o valor exato de (a · b) mod n?",
+        "alternativas": {
+          "A": "27",
+          "B": "92",
+          "C": "104",
+          "D": "920"
+        },
+        "resposta_correta": "B",
+        "explicacao": "Temos a mod 10.000 = 23 e b mod 10.000 = 4. Aplicando a identidade: (23 × 4) mod 10.000 = 92 mod 10.000 = 92."
+      },
+      {
+        "id": 14,
+        "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
+        "referencia_livro": "Cap. 8 - P8",
+        "tipo": "calculo_pratico",
+        "enunciado": "Considere o algoritmo RSA com os números primos p = 5 e q = 11, e expoente público e = 3. Quais são, respectivamente, os valores de n, z, o menor expoente privado positivo d (tal que e·d mod z = 1) e o texto cifrado c correspondente à mensagem m = 8?",
+        "alternativas": {
+          "A": "n = 55, z = 40, d = 27 e c = 17.",
+          "B": "n = 55, z = 40, d = 13 e c = 24.",
+          "C": "n = 55, z = 44, d = 15 e c = 17.",
+          "D": "n = 40, z = 55, d = 27 e c = 32."
+        },
+        "resposta_correta": "A",
+        "explicacao": "n = p × q = 5 × 11 = 55; z = (p-1)(q-1) = 4 × 10 = 40. Para 3d mod 40 = 1, temos d = 27 (pois 3 × 27 = 81 e 81 mod 40 = 1). Cifrando m = 8: c = 8³ mod 55 = 512 mod 55 = 17 (pois 55 × 9 = 495 e 512 - 495 = 17)."
+      },
+      {
+        "id": 15,
+        "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
+        "referencia_livro": "Cap. 8 - P9",
+        "tipo": "calculo_pratico",
+        "enunciado": "No algoritmo de troca de chaves Diffie-Hellman com p = 11 e g = 2, suponha que Alice escolha a chave secreta SA = 5 e Bob escolha SB = 12. Quais são, respectivamente, as chaves públicas TA e TB trocadas pela rede e a chave secreta compartilhada S calculada por ambos?",
+        "alternativas": {
+          "A": "TA = 10, TB = 4 e S = 1.",
+          "B": "TA = 10, TB = 8 e S = 4.",
+          "C": "TA = 5, TB = 1 e S = 10.",
+          "D": "TA = 8, TB = 4 e S = 2."
+        },
+        "resposta_correta": "A",
+        "explicacao": "TA = g^SA mod p = 2^5 mod 11 = 32 mod 11 = 10. TB = g^SB mod p = 2^12 mod 11 = 4096 mod 11 = 4. A chave compartilhada é S = TB^SA mod 11 = 4^5 mod 11 = 1024 mod 11 = 1 (o mesmo que TA^SB mod 11 = 10^12 mod 11 = 1)."
+      },
+      {
+        "id": 16,
+        "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
+        "referencia_livro": "Cap. 8 - R14 e R15",
+        "tipo": "conceitual",
+        "enunciado": "Suponha que Alice queira disponibilizar uma mensagem pública para milhares de pessoas verificarem sua integridade e autenticidade. Além disso, considere como uma Autoridade Certificadora (CA) cria um certificado digital. Assinale a alternativa correta:",
+        "alternativas": {
+          "A": "Para Alice, um MAC é mais apropriado que assinatura digital; e a CA criptografa o certificado inteiro usando sua própria chave pública.",
+          "B": "Para Alice, uma assinatura digital é mais apropriada (pois um MAC exigiria compartilhar chaves secretas com milhares de usuários); e a CA assina o resumo (hash) do certificado com sua chave privada, em vez de cifrar tudo com sua chave pública.",
+          "C": "Para Alice, um MAC é mais apropriado porque garante não-repúdio; e a CA assina o certificado com a chave privada do cliente.",
+          "D": "Ambos os esquemas (MAC e assinatura digital) exigem uma chave secreta compartilhada prévia entre Alice e cada leitor."
+        },
+        "resposta_correta": "B",
+        "explicacao": "Com milhares de destinatários, a assinatura digital é ideal porque todos verificam usando apenas a chave pública de Alice (sem distribuir chaves secretas). Quanto aos certificados (R14), é FALSO que a CA cifra o certificado inteiro com sua chave pública: ela assina o hash do certificado com sua chave PRIVADA."
+      },
+      {
+        "id": 17,
+        "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
+        "referencia_livro": "Cap. 8 - R20 e R23",
+        "tipo": "conceitual",
+        "enunciado": "Durante uma conexão SSL, suponha que Bob inicie uma conexão com Trudy, que finge ser Alice e envia a Bob o certificado legítimo de Alice. Em qual etapa do handshake SSL Bob descobrirá a fraude, e como os números de sequência são tratados nos registros SSL?",
+        "alternativas": {
+          "A": "Bob descobre imediatamente ao receber o certificado; e cada registro SSL carrega um campo explícito de número de sequência no cabeçalho.",
+          "B": "Bob descobre na verificação do MAC das mensagens do handshake (etapa final), pois Trudy não tem a chave privada de Alice para decifrar o pre-master secret e gerar as chaves corretas; além disso, NÃO há campo de número de sequência no cabeçalho do registro SSL.",
+          "C": "Bob nunca descobre a fraude porque o certificado de Alice é válido; e o número de sequência fica no cabeçalho IP.",
+          "D": "Bob descobre ao enviar o ClientHello; e o número de sequência SSL é enviado em texto claro no final de cada registro."
+        },
+        "resposta_correta": "B",
+        "explicacao": "Bob cifra o pre-master secret com a chave pública de Alice (extraída do certificado válido). Sem a chave privada de Alice, Trudy não recupera o segredo e não consegue gerar o MAC válido das mensagens do handshake. Além disso (R20), o número de sequência SSL entra no cálculo do MAC, mas não existe como campo no cabeçalho do registro."
+      },
+      {
+        "id": 18,
+        "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
+        "referencia_livro": "Cap. 8 - R25 e P23",
+        "tipo": "conceitual",
+        "enunciado": "Em uma VPN IPsec no modo túnel com ESP conectando os roteadores R1 (matriz) e R2 (filial), suponha que: (1) o TCP retransmita um segmento perdido entre dois hosts; e (2) Trudy realize um ataque de repetição (replay) enviando a R2 uma cópia duplicada de um datagrama IPsec capturado. O que ocorre nos dois casos?",
+        "alternativas": {
+          "A": "No caso (1), os dois datagramas ESP terão o mesmo número de sequência ESP; no caso (2), R2 aceita o pacote duplicado porque o MAC é válido.",
+          "B": "No caso (1), R1 atribuirá um NOVO número de sequência ESP ao segmento TCP retransmitido; no caso (2), R2 detecta o número de sequência ESP duplicado e descarta o pacote sem encaminhá-lo à filial.",
+          "C": "No caso (1), R1 descarta a retransmissão TCP; no caso (2), R2 cria uma nova SA automaticamente para o pacote duplicado.",
+          "D": "Em ambos os casos, os números de sequência ESP só mudam quando a chave IKE expira."
+        },
+        "resposta_correta": "B",
+        "explicacao": "O IPsec incrementa o número de sequência ESP a cada datagrama enviado naquela SA, independentemente de ser uma retransmissão TCP (R25 é Falso). Já contra ataques de replay (P23), R2 verifica o número de sequência ESP (protegido pelo MAC) e descarta datagramas duplicados."
+      },
+      {
+        "id": 19,
+        "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
+        "referencia_livro": "Cap. 8 - P24",
+        "tipo": "calculo_pratico",
+        "enunciado": "Considere o pseudoprotocolo WEP do livro: chave secreta = 1010, IV = 11 (anexado ao final da chave formando 101011), cujo fluxo de chaves (keystream) começa com 111110101000... A mensagem de 8 bits é m = 10100000 e o ICV de 4 bits é o XOR dos 4 primeiros bits com os 4 últimos bits da mensagem. Sabendo que o IV trafega em aberto e que mensagem + ICV são cifrados via XOR com o keystream, quais são os valores dos três campos (IV, mensagem cifrada, ICV cifrado) enviados no pacote WEP?",
+        "alternativas": {
+          "A": "IV = 11, mensagem cifrada = 01011010, ICV cifrado = 0010.",
+          "B": "IV = 11, mensagem cifrada = 01011010, ICV cifrado = 1010.",
+          "C": "IV = 00, mensagem cifrada = 10100000, ICV cifrado = 0010.",
+          "D": "IV = 11, mensagem cifrada = 11111010, ICV cifrado = 1000."
+        },
+        "resposta_correta": "A",
+        "explicacao": "1) ICV em texto claro = 1010 XOR 0000 = 1010. 2) Dados + ICV = 10100000 1010. 3) XOR com os 12 primeiros bits do keystream (11111010 1000): mensagem cifrada = 10100000 XOR 11111010 = 01011010; ICV cifrado = 1010 XOR 1000 = 0010. O IV = 11 vai em texto claro."
+      },
+      {
+        "id": 20,
+        "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
+        "referencia_livro": "Cap. 8 - R29 e R32",
+        "tipo": "conceitual",
+        "enunciado": "Quais duas estruturas de dados um firewall de filtragem de pacotes com estado (stateful) mantém, e por que um gateway de aplicação precisa operar em conjunto com um filtro de roteador?",
+        "alternativas": {
+          "A": "Mantém uma tabela ARP e uma tabela DNS; o filtro de roteador serve apenas para criptografar os pacotes do gateway.",
+          "B": "Mantém uma Lista de Controle de Acesso (ACL) e uma tabela de conexões (rastreando conexões ativas); o filtro de roteador é necessário para bloquear tráfego daquela aplicação que tente contornar o gateway de aplicação.",
+          "C": "Mantém uma tabela SPD e uma tabela SAD; o filtro de roteador substitui a autenticação de usuários no gateway.",
+          "D": "Mantém apenas filas WFQ e um balde de fichas; o filtro de roteador serve para impedir fragmentação IP."
+        },
+        "resposta_correta": "B",
+        "explicacao": "O firewall stateful combina uma ACL (regras de filtragem) com uma tabela de conexões (estado das sessões TCP/UDP ativas). Já o gateway de aplicação depende do filtro no roteador para garantir que todo o tráfego da aplicação passe obrigatoriamente por ele, bloqueando conexões diretas."
+      }
+    ]
+  }
+}
+
