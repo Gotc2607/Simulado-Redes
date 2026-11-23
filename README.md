@@ -1,6 +1,10 @@
 # Simulado de Redes de Computadores - Capítulos 7 e 8
 
+[![GitHub Pages](https://img.shields.io/badge/Acessar%20Simulado%20Online-GitHub%20Pages-blue?style=for-the-badge&logo=github)](https://gotc2607.github.io/Simulado-Redes/)
+
 Simulado interativo com 20 questões adaptadas dos exercícios do livro **"Redes de Computadores e a Internet: Uma Abordagem Top-Down"** (6ª edição), de Kurose & Ross.
+
+🔗 **Link do Simulado Online**: [https://gotc2607.github.io/Simulado-Redes/](https://gotc2607.github.io/Simulado-Redes/)
 
 ---
 
