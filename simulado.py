@@ -20,6 +20,7 @@ class Cores:
     AZUL = "\033[94m"
     CIANO = "\033[96m"
     CINZA = "\033[90m"
+    MAGENTA = "\033[95m"
 
 def carregar_questoes():
     caminho = Path(__file__).parent / "questoes.json"
@@ -41,8 +42,8 @@ def exibir_cabecalho(titulo, referencia):
 
 def menu_principal():
     print(f"{Cores.NEGRITO}Escolha o modo de estudo:{Cores.RESET}\n")
-    print(f"  {Cores.VERDE}[1]{Cores.RESET} Modo Prática (Feedback e explicação imediata após cada questão)")
-    print(f"  {Cores.AMARELO}[2]{Cores.RESET} Modo Prova Real (Cronometrado, sem gabarito até o final)")
+    print(f"  {Cores.VERDE}[1]{Cores.RESET} Modo Prática (Feedback imediato e opção de ver Teoria/Cálculo)")
+    print(f"  {Cores.AMARELO}[2]{Cores.RESET} Modo Prova Real (Cronometrado, sem consulta nem gabarito até o fim)")
     print(f"  {Cores.AZUL}[3]{Cores.RESET} Filtrar por Capítulo ou Tipo (Prática focada)")
     print(f"  {Cores.CINZA}[4] Sair{Cores.RESET}\n")
     
@@ -71,6 +72,37 @@ def filtrar_questoes(todas):
         return [q for q in todas if q["tipo"] == "conceitual"]
     return todas
 
+def exibir_guia_teoria(q):
+    print(f"\n{Cores.MAGENTA}{'=' * 75}{Cores.RESET}")
+    print(f"{Cores.NEGRITO}{Cores.MAGENTA}📚 GUIA TEÓRICO & TERMOS EXPLICADOS{Cores.RESET}")
+    print(f"{Cores.MAGENTA}{'=' * 75}{Cores.RESET}\n")
+
+    guia = q.get("guia_estudo", {})
+    if not guia:
+        print("Guia teórico não disponível para esta questão.")
+        return
+
+    print(f"{Cores.NEGRITO}🎯 Conceito Geral:{Cores.RESET}")
+    print(f"{Cores.CINZA}{guia.get('conceito_geral', '')}{Cores.RESET}\n")
+
+    print(f"{Cores.NEGRITO}🏷️ Glossário de Termos e Siglas:{Cores.RESET}")
+    for termo in guia.get("termos_chave", []):
+        print(f"  • {Cores.CIANO}{termo['termo']}{Cores.RESET}: {termo['definicao']}")
+
+    calc = guia.get("guia_calculo")
+    if calc:
+        print(f"\n{Cores.AMARELO}{'-' * 75}{Cores.RESET}")
+        print(f"{Cores.NEGRITO}{Cores.AMARELO}🧮 COMO FUNCIONA O CÁLCULO E O QUE ELE REPRESENTA:{Cores.RESET}")
+        print(f"{Cores.AMARELO}{'-' * 75}{Cores.RESET}\n")
+        print(f"{Cores.NEGRITO}💡 O que representa:{Cores.RESET} {calc.get('o_que_representa')}\n")
+        print(f"{Cores.NEGRITO}📐 Fórmula:{Cores.RESET}\n{Cores.CIANO}{calc.get('formula')}{Cores.RESET}\n")
+        print(f"{Cores.NEGRITO}🔢 Passo a Passo da Resolução:{Cores.RESET}")
+        for step in calc.get("passo_a_passo", []):
+            print(f"  {step}")
+
+    print(f"\n{Cores.MAGENTA}{'=' * 75}{Cores.RESET}")
+    input(f"{Cores.CIANO}Pressione ENTER para voltar às alternativas da questão...{Cores.RESET}")
+
 def executar_simulado(questoes, modo_prova=False):
     total = len(questoes)
     acertos = 0
@@ -89,10 +121,22 @@ def executar_simulado(questoes, modo_prova=False):
             print(f"  {Cores.NEGRITO}{letra}){Cores.RESET} {texto}")
 
         while True:
-            resp = input(f"\n{Cores.CIANO}Sua resposta [A/B/C/D] (ou 'S' para pular): {Cores.RESET}").strip().upper()
+            dica_extra = " ou 'T' para Teoria/Cálculo" if not modo_prova else ""
+            prompt_texto = f"\n{Cores.CIANO}Sua resposta [A/B/C/D]{dica_extra} (ou 'S' para pular): {Cores.RESET}"
+            resp = input(prompt_texto).strip().upper()
+
+            if resp == "T" and not modo_prova:
+                exibir_guia_teoria(q)
+                limpar_tela()
+                print(f"{Cores.CINZA}[{progresso}] {tag_tipo} | {q['capitulo']} ({q['referencia_livro']}){Cores.RESET}")
+                print(f"\n{Cores.NEGRITO}{q['id']}. {q['enunciado']}{Cores.RESET}\n")
+                for letra, texto in q["alternativas"].items():
+                    print(f"  {Cores.NEGRITO}{letra}){Cores.RESET} {texto}")
+                continue
+
             if resp in ["A", "B", "C", "D", "S"]:
                 break
-            print(f"{Cores.VERMELHO}Entrada inválida! Digite A, B, C ou D.{Cores.RESET}")
+            print(f"{Cores.VERMELHO}Entrada inválida! Digite A, B, C ou D (ou T para Teoria).{Cores.RESET}")
 
         correta = q["resposta_correta"]
         acertou = (resp == correta)
@@ -117,7 +161,7 @@ def executar_simulado(questoes, modo_prova=False):
             
             print(f"\n{Cores.NEGRITO}💡 Explicação detalhada:{Cores.RESET}")
             print(f"{Cores.CINZA}{q['explicacao']}{Cores.RESET}")
-            input(f"\n{Cores.CIANO}Pressione ENTER para ir para a próxima...{Cores.RESET}")
+            input(f"\n{Cores.CIANO}Pressione ENTER para ir para a próxima questão...{Cores.RESET}")
 
     tempo_total = time.time() - tempo_inicio
     minutos = int(tempo_total // 60)
@@ -185,4 +229,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

@@ -9,15 +9,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-primary: #0f172a;
+      --bg-primary: #0b1120;
       --bg-secondary: #1e293b;
-      --bg-card: #1e293b;
-      --bg-card-hover: #334155;
+      --bg-card: #151f32;
+      --bg-card-hover: #1e293b;
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
       --primary: #38bdf8;
       --primary-hover: #0284c7;
       --accent-purple: #a855f7;
+      --accent-indigo: #6366f1;
       --success: #22c55e;
       --success-bg: rgba(34, 197, 94, 0.15);
       --error: #ef4444;
@@ -43,9 +44,9 @@
     }
 
     header {
-      background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+      background: linear-gradient(180deg, #1e293b 0%, #0b1120 100%);
       border-bottom: 1px solid var(--border);
-      padding: 1.5rem 1rem;
+      padding: 1.25rem 1rem;
       position: sticky;
       top: 0;
       z-index: 50;
@@ -53,7 +54,7 @@
     }
 
     .container {
-      max-width: 900px;
+      max-width: 950px;
       margin: 0 auto;
       width: 100%;
       padding: 0 1rem;
@@ -123,7 +124,7 @@
       display: flex;
       gap: 0.5rem;
       overflow-x: auto;
-      padding: 1rem 0 0.5rem 0;
+      padding: 0.9rem 0 0.4rem 0;
     }
 
     .filter-btn {
@@ -151,7 +152,7 @@
       height: 6px;
       background: var(--bg-secondary);
       border-radius: 3px;
-      margin: 1rem 0;
+      margin: 0.85rem 0 0 0;
       overflow: hidden;
     }
 
@@ -167,17 +168,17 @@
       display: flex;
       flex-wrap: wrap;
       gap: 0.4rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
     }
 
     .nav-dot {
-      width: 32px;
-      height: 32px;
-      border-radius: 6px;
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       font-weight: 600;
       background: var(--bg-secondary);
       border: 1px solid var(--border);
@@ -188,8 +189,9 @@
 
     .nav-dot.current {
       border-color: var(--primary);
-      box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.3);
+      box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.35);
       color: #fff;
+      background: rgba(56, 189, 248, 0.15);
     }
 
     .nav-dot.answered {
@@ -213,10 +215,19 @@
     .question-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 14px;
+      border-radius: 16px;
       padding: 1.75rem;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
       margin-bottom: 1.5rem;
+    }
+
+    .q-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
     }
 
     .q-meta {
@@ -224,7 +235,6 @@
       align-items: center;
       gap: 0.5rem;
       flex-wrap: wrap;
-      margin-bottom: 1rem;
     }
 
     .badge {
@@ -249,19 +259,165 @@
     }
 
     .badge-ref {
-      background: rgba(148, 163, 184, 0.15);
+      background: rgba(148, 163, 184, 0.12);
       color: var(--text-muted);
       border: 1px solid var(--border);
     }
 
+    /* Botão de Teoria e Conceito */
+    .btn-theory-toggle {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(168, 85, 247, 0.2));
+      border: 1px solid rgba(168, 85, 247, 0.4);
+      color: #e0e7ff;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.45rem 0.9rem;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: all 0.2s;
+    }
+
+    .btn-theory-toggle:hover {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.35), rgba(168, 85, 247, 0.35));
+      border-color: #a855f7;
+      transform: translateY(-1px);
+    }
+
+    .btn-theory-toggle.open {
+      background: #a855f7;
+      color: #fff;
+      border-color: #a855f7;
+    }
+
     .q-enunciado {
-      font-size: 1.15rem;
-      line-height: 1.6;
+      font-size: 1.12rem;
+      line-height: 1.65;
       font-weight: 500;
       color: #fff;
       margin-bottom: 1.5rem;
     }
 
+    /* Painel do Guia de Estudo e Termos */
+    .theory-panel {
+      display: none;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(168, 85, 247, 0.35);
+      border-radius: 12px;
+      padding: 1.35rem;
+      margin-bottom: 1.5rem;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .theory-panel.show {
+      display: block;
+    }
+
+    .theory-panel h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #e0e7ff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .theory-overview {
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: #cbd5e1;
+      margin-bottom: 1.25rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .terms-section h4, .calc-section h4 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--primary);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .terms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .term-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.85rem;
+    }
+
+    .term-name {
+      font-weight: 700;
+      color: #fff;
+      font-size: 0.88rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .term-def {
+      font-size: 0.83rem;
+      line-height: 1.5;
+      color: #94a3b8;
+    }
+
+    /* Caixa de Cálculo no Guia */
+    .calc-box {
+      background: rgba(245, 158, 11, 0.07);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      border-radius: 10px;
+      padding: 1.15rem;
+      margin-top: 0.75rem;
+    }
+
+    .calc-meaning {
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: #fde68a;
+      margin-bottom: 0.85rem;
+    }
+
+    .calc-formula-card {
+      background: #0f172a;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.88rem;
+      color: #fbbf24;
+      white-space: pre-wrap;
+      margin-bottom: 0.85rem;
+    }
+
+    .calc-steps-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .calc-step-item {
+      font-size: 0.84rem;
+      line-height: 1.5;
+      color: #e2e8f0;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      border-left: 3px solid var(--badge-calc);
+    }
+
+    /* Alternativas */
     .alternativas-list {
       display: flex;
       flex-direction: column;
@@ -269,7 +425,7 @@
     }
 
     .alt-item {
-      background: rgba(255, 255, 255, 0.03);
+      background: rgba(255, 255, 255, 0.02);
       border: 1px solid var(--border);
       border-radius: 10px;
       padding: 1rem 1.25rem;
@@ -301,7 +457,7 @@
     }
 
     .alt-text {
-      font-size: 0.98rem;
+      font-size: 0.97rem;
       line-height: 1.5;
       color: #e2e8f0;
       flex-grow: 1;
@@ -553,13 +709,41 @@
 
       <!-- Question Card -->
       <div class="question-card" id="question-card">
-        <div class="q-meta">
-          <span class="badge badge-ref" id="q-ref">Cap. 7 - R3</span>
-          <span class="badge badge-calc" id="q-type">Cálculo</span>
-          <span class="badge badge-ref" id="q-cap">Capítulo 7</span>
+        <div class="q-header-row">
+          <div class="q-meta">
+            <span class="badge badge-ref" id="q-ref">Cap. 7 - R3</span>
+            <span class="badge badge-calc" id="q-type">Cálculo</span>
+            <span class="badge badge-ref" id="q-cap">Capítulo 7</span>
+          </div>
+          <button class="btn-theory-toggle" id="btn-theory-toggle" onclick="toggleTheoryPanel()">
+            <span id="theory-btn-icon">📚</span>
+            <span id="theory-btn-text">Ver Teoria, Termos & Cálculo</span>
+          </button>
         </div>
 
         <div class="q-enunciado" id="q-enunciado">Carregando questão...</div>
+
+        <!-- Painel Expansível de Teoria e Conceitos -->
+        <div class="theory-panel" id="theory-panel">
+          <h3><span>📚</span> Guia Teórico & Conceitos da Questão</h3>
+          <div class="theory-overview" id="theory-overview"></div>
+
+          <div class="terms-section">
+            <h4>🏷️ Glossário de Termos e Siglas</h4>
+            <div class="terms-grid" id="terms-grid"></div>
+          </div>
+
+          <div class="calc-section" id="calc-section" style="display: none;">
+            <h4>🧮 Como Funciona o Cálculo e o que ele Representa</h4>
+            <div class="calc-box">
+              <div class="calc-meaning" id="calc-meaning"></div>
+              <div style="font-size: 0.78rem; text-transform: uppercase; color: #f59e0b; font-weight: 700; margin-bottom: 0.35rem;">Fórmula:</div>
+              <div class="calc-formula-card" id="calc-formula"></div>
+              <div style="font-size: 0.78rem; text-transform: uppercase; color: #cbd5e1; font-weight: 700; margin-bottom: 0.35rem;">Passo a Passo da Resolução:</div>
+              <ul class="calc-steps-list" id="calc-steps"></ul>
+            </div>
+          </div>
+        </div>
 
         <div class="alternativas-list" id="alternativas-list"></div>
 
@@ -619,316 +803,845 @@
     </div>
   </footer>
 
+  <script src="questoes.json" id="data-script" type="application/json"></script>
   <script>
-    const DADOS_SIMULADO = [
-      {
-        "id": 1,
-        "capitulo": "Capítulo 7 - Redes Multimídia",
-        "referencia_livro": "Cap. 7 - R3",
-        "tipo": "calculo_pratico",
-        "enunciado": "Suponha que um sinal de áudio analógico seja amostrado 16.000 vezes por segundo e cada amostra seja quantizada em um de 1.024 níveis possíveis. Qual é a taxa de bits resultante desse sinal de áudio digital PCM?",
-        "alternativas": {
-          "A": "128 kbps",
-          "B": "160 kbps",
-          "C": "192 kbps",
-          "D": "256 kbps"
+    let DADOS_SIMULADO = [
+  {
+    "id": 1,
+    "capitulo": "Capítulo 7 - Redes Multimídia",
+    "referencia_livro": "Cap. 7 - R3",
+    "tipo": "calculo_pratico",
+    "enunciado": "Suponha que um sinal de áudio analógico seja amostrado 16.000 vezes por segundo e cada amostra seja quantizada em um de 1.024 níveis possíveis. Qual é a taxa de bits resultante desse sinal de áudio digital PCM?",
+    "alternativas": {
+      "A": "128 kbps",
+      "B": "160 kbps",
+      "C": "192 kbps",
+      "D": "256 kbps"
+    },
+    "resposta_correta": "B",
+    "explicacao": "Para representar 1.024 níveis distintos são necessários log2(1.024) = 10 bits por amostra. Multiplicando pela taxa de amostragem: 16.000 amostras/s × 10 bits/amostra = 160.000 bits/s = 160 kbps.",
+    "guia_estudo": {
+      "conceito_geral": "Digitalização de sinais analógicos de áudio através de modulação por código de pulsos (PCM), conceito fundamental para entender largura de banda em aplicações multimídia e codecs de voz.",
+      "termos_chave": [
+        {
+          "termo": "Sinal Analógico vs. Digital",
+          "definicao": "O sinal analógico é uma onda contínua no tempo e na amplitude (como o som captado por um microfone). Para transmiti-lo em redes de computadores, ele precisa ser convertido em um fluxo de bits discretos (digital)."
         },
-        "resposta_correta": "B",
-        "explicacao": "Para representar 1.024 níveis distintos são necessários log2(1.024) = 10 bits por amostra. Multiplicando pela taxa de amostragem: 16.000 amostras/s × 10 bits/amostra = 160.000 bits/s = 160 kbps."
-      },
-      {
-        "id": 2,
-        "capitulo": "Capítulo 7 - Redes Multimídia",
-        "referencia_livro": "Cap. 7 - R8",
-        "tipo": "calculo_pratico",
-        "enunciado": "Considere o modelo simples para HTTP de fluxo contínuo (streaming). Suponha que o servidor envie bits a uma taxa constante de 2 Mbits/s e que a reprodução no cliente comece apenas quando 8 milhões de bits tiverem sido recebidos no buffer. Qual é o atraso de buffer inicial (tp)?",
-        "alternativas": {
-          "A": "2 segundos",
-          "B": "4 segundos",
-          "C": "8 segundos",
-          "D": "16 segundos"
+        {
+          "termo": "Amostragem (Sampling)",
+          "definicao": "Processo de medir o valor do sinal analógico em intervalos regulares de tempo (ex: 16.000 vezes por segundo = 16 kHz). Pelo Teorema de Nyquist, a taxa de amostragem deve ser de pelo menos o dobro da frequência máxima audível para evitar perda de fidelidade."
         },
-        "resposta_correta": "B",
-        "explicacao": "O tempo necessário para acumular Q = 8 × 10^6 bits a uma taxa constante x = 2 × 10^6 bits/s é tp = Q / x = 8 / 2 = 4 segundos."
-      },
-      {
-        "id": 3,
-        "capitulo": "Capítulo 7 - Redes Multimídia",
-        "referencia_livro": "Cap. 7 - P4",
-        "tipo": "calculo_pratico",
-        "enunciado": "No modelo de HTTP de fluxo contínuo com buffer infinito, suponha que o servidor envie bits à taxa constante x = 3 Mbps, a taxa de consumo do vídeo seja r = 1 Mbps e a reprodução comece imediatamente. Se o usuário assistir a um vídeo muito longo e encerrá-lo antecipadamente no instante t = 30 segundos (quando o servidor para de enviar), quantos megabits (Mb) foram desperdiçados (enviados, mas não assistidos)?",
-        "alternativas": {
-          "A": "30 Mb",
-          "B": "60 Mb",
-          "C": "90 Mb",
-          "D": "120 Mb"
+        {
+          "termo": "Quantização (Quantization)",
+          "definicao": "Aproximação do valor contínuo da amplitude de cada amostra a um valor discreto predeterminado pertencente a um conjunto finito de níveis (neste caso, 1.024 níveis)."
         },
-        "resposta_correta": "B",
-        "explicacao": "Até o instante E = 30 s, o servidor enviou x × E = 3 × 30 = 90 Mb, enquanto o usuário consumiu r × E = 1 × 30 = 30 Mb. Logo, foram desperdiçados (x - r) × E = (3 - 1) × 30 = 60 Mb."
-      },
-      {
-        "id": 4,
-        "capitulo": "Capítulo 7 - Redes Multimídia",
-        "referencia_livro": "Cap. 7 - P5",
-        "tipo": "calculo_pratico",
-        "enunciado": "Considere um sistema DASH que oferece N = 5 versões de vídeo (em 5 taxas/qualidades diferentes) e N = 5 versões de áudio (em 5 taxas/idiomas diferentes), permitindo ao cliente escolher qualquer combinação. Quantos arquivos o servidor precisará armazenar se áudio e vídeo forem misturados em um único fluxo por combinação e quantos arquivos precisará armazenar se forem mantidos separados para o cliente sincronizar, respectivamente?",
-        "alternativas": {
-          "A": "10 arquivos misturados; 5 arquivos separados.",
-          "B": "25 arquivos misturados; 10 arquivos separados.",
-          "C": "25 arquivos misturados; 5 arquivos separados.",
-          "D": "10 arquivos misturados; 25 arquivos separados."
+        {
+          "termo": "PCM (Pulse Code Modulation)",
+          "definicao": "Técnica padrão de representação digital de áudio não comprimido na qual a amplitude de cada amostra quantizada é codificada em binário."
         },
-        "resposta_correta": "B",
-        "explicacao": "Com áudio e vídeo combinados em um único arquivo para cada par, são necessários N × N = N² = 5² = 25 arquivos. Armazenando áudio e vídeo separadamente, bastam N + N = 2N = 10 arquivos."
-      },
-      {
-        "id": 5,
-        "capitulo": "Capítulo 7 - Redes Multimídia",
-        "referencia_livro": "Cap. 7 - P6",
-        "tipo": "calculo_pratico",
-        "enunciado": "Em uma chamada VoIP codificada a 64 kbps, um trecho de áudio é gerado e encapsulado em um datagrama IP a cada 20 ms (160 bytes de carga útil). Considerando o tamanho típico dos cabeçalhos combinados h = 40 bytes (20 bytes IP + 8 bytes UDP + 12 bytes RTP), qual é a taxa de transmissão total, em kbps, dos datagramas IP gerados por um lado dessa chamada?",
-        "alternativas": {
-          "A": "64 kbps",
-          "B": "72 kbps",
-          "C": "80 kbps",
-          "D": "96 kbps"
-        },
-        "resposta_correta": "C",
-        "explicacao": "Cada datagrama tem 160 + 40 = 200 bytes (1.600 bits). Como é enviado 1 datagrama a cada 20 ms (50 pacotes/segundo), a taxa total é 50 × 1.600 = 80.000 bits/s = 80 kbps."
-      },
-      {
-        "id": 6,
-        "capitulo": "Capítulo 7 - Redes Multimídia",
-        "referencia_livro": "Cap. 7 - P13",
-        "tipo": "conceitual",
-        "enunciado": "Considere dois esquemas de FEC para VoIP: o Esquema 1 envia 1 bloco redundante (XOR) para cada 4 blocos originais; o Esquema 2 anexa (piggyback) no pacote atual uma cópia de baixa taxa do bloco anterior com 25% da taxa nominal. Sobre a banda adicional exigida e o desempenho caso o primeiro pacote de cada par (1 a cada 2 pacotes) seja perdido, é correto afirmar que:",
-        "alternativas": {
-          "A": "Ambos exigem 25% de banda adicional; o Esquema 2 terá melhor qualidade de áudio, pois consegue recuperar cada pacote perdido usando o pacote seguinte, enquanto o Esquema 1 falha ao perder mais de 1 pacote por grupo de 5.",
-          "B": "O Esquema 1 exige 20% de banda e o Esquema 2 exige 50%; o Esquema 1 terá melhor qualidade pois o XOR reconstrói todos os pacotes perdidos.",
-          "C": "Ambos exigem 25% de banda adicional; o Esquema 1 terá melhor qualidade porque não depende de codificação de baixa taxa.",
-          "D": "Nenhum dos esquemas consegue recuperar qualquer pacote nesse cenário de perda."
-        },
-        "resposta_correta": "A",
-        "explicacao": "Ambos adicionam 25% de sobrecarga de banda (1/4 = 25%). Com perda alternada (1 a cada 2 pacotes), em cada grupo de 5 pacotes do Esquema 1 perdem-se 2 ou 3 pacotes, inviabilizando a recuperação via XOR. Já no Esquema 2, como as perdas não são consecutivas, cada pacote perdido é recuperado em baixa resolução a partir do próximo pacote."
-      },
-      {
-        "id": 7,
-        "capitulo": "Capítulo 7 - Redes Multimídia",
-        "referencia_livro": "Cap. 7 - P15",
-        "tipo": "conceitual",
-        "enunciado": "Em uma audioconferência usando SIP e RTP entre Alice, Bob e Claire, suponha que Bob (IP A1, porta P1) e Claire (IP A2, porta P2) enviem pacotes RTP para o mesmo IP e a mesma porta UDP T de Alice. Os datagramas de Bob e Claire serão recebidos pelo mesmo socket UDP em Alice? Como o cliente de Alice distingue os pacotes de Bob dos de Claire?",
-        "alternativas": {
-          "A": "Não, pois sockets UDP exigem um socket distinto para cada IP de origem diferente.",
-          "B": "Sim, pois sockets UDP são demultiplexados apenas pelo IP e porta de destino; o cliente distingue os fluxos usando o campo SSRC (Synchronization Source ID) do cabeçalho RTP.",
-          "C": "Sim, mas o cliente só consegue distingui-los se Bob e Claire usarem codecs diferentes no campo Payload Type.",
-          "D": "Não, pois o RTP exige uma porta UDP exclusiva para cada participante da conferência."
-        },
-        "resposta_correta": "B",
-        "explicacao": "Um socket UDP é identificado apenas pelo par (IP destino, porta destino), portanto ambos os fluxos chegam ao mesmo socket. Dentro da sessão RTP, cada fluxo de origem possui um identificador SSRC único no cabeçalho RTP, permitindo distingui-los."
-      },
-      {
-        "id": 8,
-        "capitulo": "Capítulo 7 - Redes Multimídia",
-        "referencia_livro": "Cap. 7 - P16",
-        "tipo": "conceitual",
-        "enunciado": "Com base nas especificações de RTP, SIP e DiffServ, assinale a única afirmação VERDADEIRA:",
-        "alternativas": {
-          "A": "Todas as aplicações que utilizam RTP são obrigadas a usar a porta padrão 87.",
-          "B": "Em uma sessão RTP com áudio e vídeo de um mesmo remetente, ambos os fluxos compartilham obrigatoriamente o mesmo valor de SSRC.",
-          "C": "No RTP, é possível que o remetente mude a codificação de áudio no meio de uma sessão, e no DiffServ o comportamento por salto (PHB) define diferenças de desempenho sem impor um mecanismo específico.",
-          "D": "Quando Alice envia 'm=audio 48753 RTP/AVP 3' em um SIP INVITE, ela indica que enviará áudio GSM para a porta 48753 de Bob."
-        },
-        "resposta_correta": "C",
-        "explicacao": "O RTP permite mudar o codec dinamicamente alterando o campo Payload Type, e o PHB no DiffServ especifica o comportamento observável sem ditar a implementação interna. (A é falsa: não existe porta fixa 87; B é falsa: cada fluxo tem SSRC próprio; D é falsa: Alice indica a porta e o codec nos quais ela deseja RECEBER áudio)."
-      },
-      {
-        "id": 9,
-        "capitulo": "Capítulo 7 - Redes Multimídia",
-        "referencia_livro": "Cap. 7 - P17",
-        "tipo": "calculo_pratico",
-        "enunciado": "Suponha que a política de escalonamento WFQ (Weighted Fair Queuing) seja aplicada a um enlace que suporta três classes com pesos 0,5 (Classe 1), 0,25 (Classe 2) e 0,25 (Classe 3). Se as Classes 1 e 2 possuírem muitos pacotes na fila, mas não houver nenhum pacote da Classe 3 no buffer, qual sequência de atendimento atinge corretamente os pesos do WFQ?",
-        "alternativas": {
-          "A": "1 2 1 2 1 2... (50% para Classe 1 e 50% para Classe 2)",
-          "B": "1 1 2 1 1 2... (2/3 para Classe 1 e 1/3 para Classe 2)",
-          "C": "1 2 (ocioso) 1 2 (ocioso)... (mantendo 25% do enlace reservado para a Classe 3)",
-          "D": "1 1 1 2 1 1 1 2... (75% para Classe 1 e 25% para Classe 2)"
-        },
-        "resposta_correta": "B",
-        "explicacao": "O WFQ é conservador de trabalho: quando a Classe 3 está vazia, a banda é redistribuída proporcionalmente entre as classes ativas. Classe 1 recebe 0,5 / (0,5 + 0,25) = 2/3 e Classe 2 recebe 0,25 / 0,75 = 1/3, correspondendo à sequência 1 1 2 1 1 2..."
-      },
-      {
-        "id": 10,
-        "capitulo": "Capítulo 7 - Redes Multimídia",
-        "referencia_livro": "Cap. 7 - P24",
-        "tipo": "conceitual",
-        "enunciado": "Diz-se que um fluxo de pacotes está em conformidade com um balde de fichas (token bucket) de parâmetros (r, b) se o número de pacotes que chega em qualquer intervalo de duração t for menor ou igual a rt + b. Um fluxo que obedece estritamente a essa especificação alguma vez precisará esperar em um regulador de balde de fichas com os mesmos parâmetros r e b (inicialmente cheio)?",
-        "alternativas": {
-          "A": "Sim, sempre que ocorrer uma rajada de tamanho igual a b.",
-          "B": "Sim, pois o regulador sempre retém cada pacote por pelo menos 1/r segundos.",
-          "C": "Não, o fluxo nunca precisará esperar, pois sempre haverá fichas suficientes disponíveis no balde para admitir imediatamente os pacotes em conformidade.",
-          "D": "Depende exclusivamente do protocolo de transporte (TCP ou UDP) utilizado pelo fluxo."
-        },
-        "resposta_correta": "C",
-        "explicacao": "Se o fluxo nunca envia mais que rt + b pacotes em qualquer intervalo t e o balde começa cheio com b fichas sendo preenchido à taxa r, o número de fichas geradas mais as iniciais nunca será inferior ao número de pacotes chegados; logo, nenhum pacote precisará esperar."
-      },
-      {
-        "id": 11,
-        "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
-        "referencia_livro": "Cap. 8 - R1",
-        "tipo": "conceitual",
-        "enunciado": "Sobre a relação entre confidencialidade de mensagem e integridade de mensagem, assinale a alternativa correta:",
-        "alternativas": {
-          "A": "É impossível ter confidencialidade sem integridade, pois criptografar impede qualquer alteração de bits em trânsito.",
-          "B": "É impossível ter integridade sem confidencialidade, pois todo código de integridade exige que a mensagem seja cifrada.",
-          "C": "É possível ter confidencialidade sem integridade (um atacante pode alterar bits de uma mensagem cifrada sem detecção) e integridade sem confidencialidade (ex: enviar mensagem em texto claro acompanhada de assinatura digital ou MAC).",
-          "D": "Confidencialidade e integridade são sinônimos na segurança de redes."
-        },
-        "resposta_correta": "C",
-        "explicacao": "Confidencialidade (sigilo) e integridade (detecção de adulteração) são propriedades independentes: pode-se cifrar sem autenticar/verificar integridade, e pode-se anexar um MAC ou assinatura digital a uma mensagem enviada em texto claro."
-      },
-      {
-        "id": 12,
-        "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
-        "referencia_livro": "Cap. 8 - R6",
-        "tipo": "calculo_pratico",
-        "enunciado": "Suponha que N = 10 pessoas queiram se comunicar de forma confidencial entre si (cada par isoladamente, sem que os demais do grupo consigam decifrar a conversa). Quantas chaves são necessárias no total no sistema usando criptografia simétrica e quantas chaves (contando públicas e privadas) são necessárias usando criptografia de chave pública, respectivamente?",
-        "alternativas": {
-          "A": "10 chaves na simétrica; 10 chaves na de chave pública.",
-          "B": "45 chaves na simétrica; 20 chaves na de chave pública.",
-          "C": "90 chaves na simétrica; 10 chaves na de chave pública.",
-          "D": "20 chaves na simétrica; 45 chaves na de chave pública."
-        },
-        "resposta_correta": "B",
-        "explicacao": "Na criptografia simétrica, cada par distinto precisa de uma chave compartilhada: N(N-1)/2 = 10 × 9 / 2 = 45 chaves. Na criptografia de chave pública, cada pessoa possui apenas 1 par (chave pública + chave privada), totalizando 2N = 20 chaves."
-      },
-      {
-        "id": 13,
-        "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
-        "referencia_livro": "Cap. 8 - R7",
-        "tipo": "calculo_pratico",
-        "enunciado": "Suponha que n = 10.000, a = 10.023 e b = 10.004. Utilizando a identidade da aritmética modular [(a mod n) · (b mod n)] mod n = (a · b) mod n, qual é o valor exato de (a · b) mod n?",
-        "alternativas": {
-          "A": "27",
-          "B": "92",
-          "C": "104",
-          "D": "920"
-        },
-        "resposta_correta": "B",
-        "explicacao": "Temos a mod 10.000 = 23 e b mod 10.000 = 4. Aplicando a identidade: (23 × 4) mod 10.000 = 92 mod 10.000 = 92."
-      },
-      {
-        "id": 14,
-        "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
-        "referencia_livro": "Cap. 8 - P8",
-        "tipo": "calculo_pratico",
-        "enunciado": "Considere o algoritmo RSA com os números primos p = 5 e q = 11, e expoente público e = 3. Quais são, respectivamente, os valores de n, z, o menor expoente privado positivo d (tal que e·d mod z = 1) e o texto cifrado c correspondente à mensagem m = 8?",
-        "alternativas": {
-          "A": "n = 55, z = 40, d = 27 e c = 17.",
-          "B": "n = 55, z = 40, d = 13 e c = 24.",
-          "C": "n = 55, z = 44, d = 15 e c = 17.",
-          "D": "n = 40, z = 55, d = 27 e c = 32."
-        },
-        "resposta_correta": "A",
-        "explicacao": "n = p × q = 5 × 11 = 55; z = (p-1)(q-1) = 4 × 10 = 40. Para 3d mod 40 = 1, temos d = 27 (pois 3 × 27 = 81 e 81 mod 40 = 1). Cifrando m = 8: c = 8³ mod 55 = 512 mod 55 = 17 (pois 55 × 9 = 495 e 512 - 495 = 17)."
-      },
-      {
-        "id": 15,
-        "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
-        "referencia_livro": "Cap. 8 - P9",
-        "tipo": "calculo_pratico",
-        "enunciado": "No algoritmo de troca de chaves Diffie-Hellman com p = 11 e g = 2, suponha que Alice escolha a chave secreta SA = 5 e Bob escolha SB = 12. Quais são, respectivamente, as chaves públicas TA e TB trocadas pela rede e a chave secreta compartilhada S calculada por ambos?",
-        "alternativas": {
-          "A": "TA = 10, TB = 4 e S = 1.",
-          "B": "TA = 10, TB = 8 e S = 4.",
-          "C": "TA = 5, TB = 1 e S = 10.",
-          "D": "TA = 8, TB = 4 e S = 2."
-        },
-        "resposta_correta": "A",
-        "explicacao": "TA = g^SA mod p = 2^5 mod 11 = 32 mod 11 = 10. TB = g^SB mod p = 2^12 mod 11 = 4096 mod 11 = 4. A chave compartilhada é S = TB^SA mod 11 = 4^5 mod 11 = 1024 mod 11 = 1 (o mesmo que TA^SB mod 11 = 10^12 mod 11 = 1)."
-      },
-      {
-        "id": 16,
-        "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
-        "referencia_livro": "Cap. 8 - R14 e R15",
-        "tipo": "conceitual",
-        "enunciado": "Suponha que Alice queira disponibilizar uma mensagem pública para milhares de pessoas verificarem sua integridade e autenticidade. Além disso, considere como uma Autoridade Certificadora (CA) cria um certificado digital. Assinale a alternativa correta:",
-        "alternativas": {
-          "A": "Para Alice, um MAC é mais apropriado que assinatura digital; e a CA criptografa o certificado inteiro usando sua própria chave pública.",
-          "B": "Para Alice, uma assinatura digital é mais apropriada (pois um MAC exigiria compartilhar chaves secretas com milhares de usuários); e a CA assina o resumo (hash) do certificado com sua chave privada, em vez de cifrar tudo com sua chave pública.",
-          "C": "Para Alice, um MAC é mais apropriado porque garante não-repúdio; e a CA assina o certificado com a chave privada do cliente.",
-          "D": "Ambos os esquemas (MAC e assinatura digital) exigem uma chave secreta compartilhada prévia entre Alice e cada leitor."
-        },
-        "resposta_correta": "B",
-        "explicacao": "Com milhares de destinatários, a assinatura digital é ideal porque todos verificam usando apenas a chave pública de Alice (sem distribuir chaves secretas). Quanto aos certificados (R14), é FALSO que a CA cifra o certificado inteiro com sua chave pública: ela assina o hash do certificado com sua chave PRIVADA."
-      },
-      {
-        "id": 17,
-        "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
-        "referencia_livro": "Cap. 8 - R20 e R23",
-        "tipo": "conceitual",
-        "enunciado": "Durante uma conexão SSL, suponha que Bob inicie uma conexão com Trudy, que finge ser Alice e envia a Bob o certificado legítimo de Alice. Em qual etapa do handshake SSL Bob descobrirá a fraude, e como os números de sequência são tratados nos registros SSL?",
-        "alternativas": {
-          "A": "Bob descobre imediatamente ao receber o certificado; e cada registro SSL carrega um campo explícito de número de sequência no cabeçalho.",
-          "B": "Bob descobre na verificação do MAC das mensagens do handshake (etapa final), pois Trudy não tem a chave privada de Alice para decifrar o pre-master secret e gerar as chaves corretas; além disso, NÃO há campo de número de sequência no cabeçalho do registro SSL.",
-          "C": "Bob nunca descobre a fraude porque o certificado de Alice é válido; e o número de sequência fica no cabeçalho IP.",
-          "D": "Bob descobre ao enviar o ClientHello; e o número de sequência SSL é enviado em texto claro no final de cada registro."
-        },
-        "resposta_correta": "B",
-        "explicacao": "Bob cifra o pre-master secret com a chave pública de Alice (extraída do certificado válido). Sem a chave privada de Alice, Trudy não recupera o segredo e não consegue gerar o MAC válido das mensagens do handshake. Além disso (R20), o número de sequência SSL entra no cálculo do MAC, mas não existe como campo no cabeçalho do registro."
-      },
-      {
-        "id": 18,
-        "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
-        "referencia_livro": "Cap. 8 - R25 e P23",
-        "tipo": "conceitual",
-        "enunciado": "Em uma VPN IPsec no modo túnel com ESP conectando os roteadores R1 (matriz) e R2 (filial), suponha que: (1) o TCP retransmita um segmento perdido entre dois hosts; e (2) Trudy realize um ataque de repetição (replay) enviando a R2 uma cópia duplicada de um datagrama IPsec capturado. O que ocorre nos dois casos?",
-        "alternativas": {
-          "A": "No caso (1), os dois datagramas ESP terão o mesmo número de sequência ESP; no caso (2), R2 aceita o pacote duplicado porque o MAC é válido.",
-          "B": "No caso (1), R1 atribuirá um NOVO número de sequência ESP ao segmento TCP retransmitido; no caso (2), R2 detecta o número de sequência ESP duplicado e descarta o pacote sem encaminhá-lo à filial.",
-          "C": "No caso (1), R1 descarta a retransmissão TCP; no caso (2), R2 cria uma nova SA automaticamente para o pacote duplicado.",
-          "D": "Em ambos os casos, os números de sequência ESP só mudam quando a chave IKE expira."
-        },
-        "resposta_correta": "B",
-        "explicacao": "O IPsec incrementa o número de sequência ESP a cada datagrama enviado naquela SA, independentemente de ser uma retransmissão TCP (R25 é Falso). Já contra ataques de replay (P23), R2 verifica o número de sequência ESP (protegido pelo MAC) e descarta datagramas duplicados."
-      },
-      {
-        "id": 19,
-        "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
-        "referencia_livro": "Cap. 8 - P24",
-        "tipo": "calculo_pratico",
-        "enunciado": "Considere o pseudoprotocolo WEP do livro: chave secreta = 1010, IV = 11 (anexado ao final da chave formando 101011), cujo fluxo de chaves (keystream) começa com 111110101000... A mensagem de 8 bits é m = 10100000 e o ICV de 4 bits é o XOR dos 4 primeiros bits com os 4 últimos bits da mensagem. Sabendo que o IV trafega em aberto e que mensagem + ICV são cifrados via XOR com o keystream, quais são os valores dos três campos (IV, mensagem cifrada, ICV cifrado) enviados no pacote WEP?",
-        "alternativas": {
-          "A": "IV = 11, mensagem cifrada = 01011010, ICV cifrado = 0010.",
-          "B": "IV = 11, mensagem cifrada = 01011010, ICV cifrado = 1010.",
-          "C": "IV = 00, mensagem cifrada = 10100000, ICV cifrado = 0010.",
-          "D": "IV = 11, mensagem cifrada = 11111010, ICV cifrado = 1000."
-        },
-        "resposta_correta": "A",
-        "explicacao": "1) ICV em texto claro = 1010 XOR 0000 = 1010. 2) Dados + ICV = 10100000 1010. 3) XOR com os 12 primeiros bits do keystream (11111010 1000): mensagem cifrada = 10100000 XOR 11111010 = 01011010; ICV cifrado = 1010 XOR 1000 = 0010. O IV = 11 vai em texto claro."
-      },
-      {
-        "id": 20,
-        "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
-        "referencia_livro": "Cap. 8 - R29 e R32",
-        "tipo": "conceitual",
-        "enunciado": "Quais duas estruturas de dados um firewall de filtragem de pacotes com estado (stateful) mantém, e por que um gateway de aplicação precisa operar em conjunto com um filtro de roteador?",
-        "alternativas": {
-          "A": "Mantém uma tabela ARP e uma tabela DNS; o filtro de roteador serve apenas para criptografar os pacotes do gateway.",
-          "B": "Mantém uma Lista de Controle de Acesso (ACL) e uma tabela de conexões (rastreando conexões ativas); o filtro de roteador é necessário para bloquear tráfego daquela aplicação que tente contornar o gateway de aplicação.",
-          "C": "Mantém uma tabela SPD e uma tabela SAD; o filtro de roteador substitui a autenticação de usuários no gateway.",
-          "D": "Mantém apenas filas WFQ e um balde de fichas; o filtro de roteador serve para impedir fragmentação IP."
-        },
-        "resposta_correta": "B",
-        "explicacao": "O firewall stateful combina uma ACL (regras de filtragem) com uma tabela de conexões (estado das sessões TCP/UDP ativas). Já o gateway de aplicação depende do filtro no roteador para garantir que todo o tráfego da aplicação passe obrigatoriamente por ele, bloqueando conexões diretas."
+        {
+          "termo": "Taxa de Bits (Bitrate)",
+          "definicao": "A quantidade de bits que o sinal digitalizado gera por segundo de áudio (medida em bps, kbps ou Mbps). Determina diretamente a largura de banda de rede necessária para transmiti-lo."
+        }
+      ],
+      "guia_calculo": {
+        "o_que_representa": "Representa o consumo de largura de banda que um canal de comunicação deve oferecer para transmitir esse fluxo de áudio contínuo em tempo real sem atrasos ou distorção.",
+        "formula": "Bits por Amostra = log2(Níveis de Quantização)\nTaxa de Bits (bps) = Taxa de Amostragem (amostras/s) × Bits por Amostra (bits/amostra)",
+        "passo_a_passo": [
+          "Passo 1: Determinar quantos bits binários são necessários para numerar 1.024 níveis distintos. Como 2^10 = 1.024, temos log2(1.024) = 10 bits por amostra.",
+          "Passo 2: Multiplicar a taxa de amostragem pelo número de bits de cada amostra: 16.000 amostras/segundo × 10 bits/amostra = 160.000 bits por segundo (bps).",
+          "Passo 3: Converter de bps para kbps (dividindo por 1.000 no padrão de telecomunicações do Kurose): 160.000 bps / 1.000 = 160 kbps."
+        ]
       }
-    ];
-
-    let currentQuestions = [...DADOS_SIMULADO];
+    }
+  },
+  {
+    "id": 2,
+    "capitulo": "Capítulo 7 - Redes Multimídia",
+    "referencia_livro": "Cap. 7 - R8",
+    "tipo": "calculo_pratico",
+    "enunciado": "Considere o modelo simples para HTTP de fluxo contínuo (streaming). Suponha que o servidor envie bits a uma taxa constante de 2 Mbits/s e que a reprodução no cliente comece apenas quando 8 milhões de bits tiverem sido recebidos no buffer. Qual é o atraso de buffer inicial (tp)?",
+    "alternativas": {
+      "A": "2 segundos",
+      "B": "4 segundos",
+      "C": "8 segundos",
+      "D": "16 segundos"
+    },
+    "resposta_correta": "B",
+    "explicacao": "O tempo necessário para acumular Q = 8 × 10^6 bits a uma taxa constante x = 2 × 10^6 bits/s é tp = Q / x = 8 / 2 = 4 segundos.",
+    "guia_estudo": {
+      "conceito_geral": "Mecanismo de amortecimento (buffer de reprodução do lado do cliente) em streaming de vídeo sobre HTTP para absorver oscilações de atraso da rede (jitter) e evitar congelamento da imagem (freezing/stall).",
+      "termos_chave": [
+        {
+          "termo": "HTTP de Fluxo Contínuo (HTTP Streaming)",
+          "definicao": "Transmissão de áudio ou vídeo onde o cliente faz requisições HTTP GET convencionais e começa a exibir o conteúdo antes do download completo do arquivo."
+        },
+        {
+          "termo": "Buffer de Reprodução (Playout Buffer)",
+          "definicao": "Área de memória no cliente que armazena temporariamente os frames de vídeo recebidos antes de exibi-los na tela, servindo como uma represa amortecedora contra flutuações da rede."
+        },
+        {
+          "termo": "Atraso de Buffer Inicial (tp - playout delay)",
+          "definicao": "Tempo que o usuário precisa esperar desde o momento em que clica em 'Play' até o instante em que o vídeo efetivamente começa a rodar, enquanto o buffer inicial é abastecido."
+        },
+        {
+          "termo": "Taxa de Envio do Servidor (x)",
+          "definicao": "Velocidade na qual os bits trafegam do servidor até o cliente através do protocolo de transporte (TCP/HTTP)."
+        }
+      ],
+      "guia_calculo": {
+        "o_que_representa": "Representa a latência percebida pelo usuário (tempo de carregamento na tela) necessária para garantir uma margem de segurança contra futuras pausas por falta de dados no buffer (congelamento).",
+        "formula": "tp = Q / x\nOnde:\n• tp = atraso de início da reprodução (segundos)\n• Q = quantidade de bits requerida no buffer inicial (bits)\n• x = taxa média de recebimento/envio de bits (bits/segundo)",
+        "passo_a_passo": [
+          "Passo 1: Identificar a meta de preenchimento do buffer: Q = 8 milhões de bits = 8 × 10^6 bits.",
+          "Passo 2: Identificar a taxa de transmissão: x = 2 Mbits/s = 2 × 10^6 bits/segundo.",
+          "Passo 3: Aplicar a relação tempo = quantidade / taxa: tp = (8 × 10^6) / (2 × 10^6) = 4 segundos."
+        ]
+      }
+    }
+  },
+  {
+    "id": 3,
+    "capitulo": "Capítulo 7 - Redes Multimídia",
+    "referencia_livro": "Cap. 7 - P4",
+    "tipo": "calculo_pratico",
+    "enunciado": "No modelo de HTTP de fluxo contínuo com buffer infinito, suponha que o servidor envie bits à taxa constante x = 3 Mbps, a taxa de consumo do vídeo seja r = 1 Mbps e a reprodução comece imediatamente. Se o usuário assistir a um vídeo muito longo e encerrá-lo antecipadamente no instante t = 30 segundos (quando o servidor para de enviar), quantos megabits (Mb) foram desperdiçados (enviados, mas não assistidos)?",
+    "alternativas": {
+      "A": "30 Mb",
+      "B": "60 Mb",
+      "C": "90 Mb",
+      "D": "120 Mb"
+    },
+    "resposta_correta": "B",
+    "explicacao": "Até o instante E = 30 s, o servidor enviou x × E = 3 × 30 = 90 Mb, enquanto o usuário consumiu r × E = 1 × 30 = 30 Mb. Logo, foram desperdiçados (x - r) × E = (3 - 1) × 30 = 60 Mb.",
+    "guia_estudo": {
+      "conceito_geral": "Análise da eficiência de tráfego de streaming e desperdício de banda em servidores e redes de distribuição de conteúdo (CDNs) decorrente de encerramento prematuro da reprodução pelo usuário.",
+      "termos_chave": [
+        {
+          "termo": "Taxa de Consumo (r)",
+          "definicao": "Taxa de codificação do vídeo, isto é, a velocidade com que o reprodutor drena bits do buffer para decodificar e exibir os quadros na tela (ex: 1 Mbps)."
+        },
+        {
+          "termo": "Taxa de Envio (x)",
+          "definicao": "Velocidade na qual o servidor descarrega dados na conexão TCP. Quando x > r, o buffer cresce continuamente à taxa (x - r)."
+        },
+        {
+          "termo": "Encerramento Antecipado (Early Termination)",
+          "definicao": "Comportamento comum do usuário de desistir de um vídeo nos primeiros segundos/minutos. Todos os dados já enviados que excedem o ponto onde o usuário parou representam banda consumida inutilmente."
+        },
+        {
+          "termo": "Buffer Infinito",
+          "definicao": "Modelo teórico onde o cliente não limita o tamanho da janela TCP de recepção, aceitando que o servidor envie bits o mais rápido possível sem estrangulamento de fluxo."
+        }
+      ],
+      "guia_calculo": {
+        "o_que_representa": "Mede o custo financeiro e de congestionamento desnecessário na infraestrutura de rede, motivando provedores como YouTube e Netflix a limitarem a pré-carga de buffer em pequenos blocos (chunks).",
+        "formula": "Bits Desperdiçados = (x - r) × E\nOu: Total Enviado (x × E) - Total Consumido (r × E)",
+        "passo_a_passo": [
+          "Passo 1: Calcular o total de dados transmitidos pelo servidor até t = 30 s: 3 Mbps × 30 s = 90 Mb.",
+          "Passo 2: Calcular o total de dados efetivamente reproduzidos e assistidos pelo usuário: 1 Mbps × 30 s = 30 Mb.",
+          "Passo 3: Subtrair o consumido do transmitido: 90 Mb - 30 Mb = 60 Mb desperdiçados no buffer."
+        ]
+      }
+    }
+  },
+  {
+    "id": 4,
+    "capitulo": "Capítulo 7 - Redes Multimídia",
+    "referencia_livro": "Cap. 7 - P5",
+    "tipo": "calculo_pratico",
+    "enunciado": "Considere um sistema DASH que oferece N = 5 versões de vídeo (em 5 taxas/qualidades diferentes) e N = 5 versões de áudio (em 5 taxas/idiomas diferentes), permitindo ao cliente escolher qualquer combinação. Quantos arquivos o servidor precisará armazenar se áudio e vídeo forem misturados em um único fluxo por combinação e quantos arquivos precisará armazenar se forem mantidos separados para o cliente sincronizar, respectivamente?",
+    "alternativas": {
+      "A": "10 arquivos misturados; 5 arquivos separados.",
+      "B": "25 arquivos misturados; 10 arquivos separados.",
+      "C": "25 arquivos misturados; 5 arquivos separados.",
+      "D": "10 arquivos misturados; 25 arquivos separados."
+    },
+    "resposta_correta": "B",
+    "explicacao": "Com áudio e vídeo combinados em um único arquivo para cada par, são necessários N × N = N² = 5² = 25 arquivos. Armazenando áudio e vídeo separadamente, bastam N + N = 2N = 10 arquivos.",
+    "guia_estudo": {
+      "conceito_geral": "Arquitetura e armazenamento em sistemas DASH (Dynamic Adaptive Streaming over HTTP), demonstrando a vantagem de separar faixas de mídia (desmultiplexadas) em servidores de vídeo.",
+      "termos_chave": [
+        {
+          "termo": "DASH (Dynamic Adaptive Streaming over HTTP)",
+          "definicao": "Padrão de streaming onde o vídeo é codificado em múltiplas qualidades e fatiado em pequenos blocos. O cliente solicita dinamicamente o bloco com a melhor qualidade suportada pelo enlace atual."
+        },
+        {
+          "termo": "Manifesto (MPD - Media Presentation Description)",
+          "definicao": "Arquivo XML que o cliente DASH baixa inicialmente com a lista de URLs e taxas de bits de todas as versões de vídeo, áudio e legendas disponíveis."
+        },
+        {
+          "termo": "Fluxos Misturados (Multiplexed / Muxed)",
+          "definicao": "Cada arquivo de mídia contém tanto a trilha de vídeo quanto a de áudio interligadas. Obriga a criar uma combinação para cada par possível (produto cartesiano)."
+        },
+        {
+          "termo": "Fluxos Separados (Demuxed / Non-multiplexed)",
+          "definicao": "O vídeo e o áudio são armazenados em arquivos independentes. O cliente baixa em paralelo o chunk de vídeo e o chunk de áudio e os sincroniza localmente na reprodução."
+        }
+      ],
+      "guia_calculo": {
+        "o_que_representa": "Compara o impacto em espaço de armazenamento no servidor / CDN: a abordagem combinada sofre explosão combinatória O(N²), enquanto a abordagem separada tem escala linear O(N).",
+        "formula": "Arquivos Misturados = N_video × N_audio\nArquivos Separados = N_video + N_audio",
+        "passo_a_passo": [
+          "Passo 1: Para fluxos misturados, cada qualidade de vídeo deve ter uma versão pré-combinada com cada idioma/taxa de áudio: 5 vídeos × 5 áudios = 25 arquivos distintos.",
+          "Passo 2: Para fluxos separados, o servidor apenas guarda os 5 arquivos de vídeo e os 5 arquivos de áudio: 5 + 5 = 10 arquivos.",
+          "Passo 3: A resposta ordenada é 25 arquivos misturados e 10 arquivos separados."
+        ]
+      }
+    }
+  },
+  {
+    "id": 5,
+    "capitulo": "Capítulo 7 - Redes Multimídia",
+    "referencia_livro": "Cap. 7 - P6",
+    "tipo": "calculo_pratico",
+    "enunciado": "Em uma chamada VoIP codificada a 64 kbps, um trecho de áudio é gerado e encapsulado em um datagrama IP a cada 20 ms (160 bytes de carga útil). Considerando o tamanho típico dos cabeçalhos combinados h = 40 bytes (20 bytes IP + 8 bytes UDP + 12 bytes RTP), qual é a taxa de transmissão total, em kbps, dos datagramas IP gerados por um lado dessa chamada?",
+    "alternativas": {
+      "A": "64 kbps",
+      "B": "72 kbps",
+      "C": "80 kbps",
+      "D": "96 kbps"
+    },
+    "resposta_correta": "C",
+    "explicacao": "Cada datagrama tem 160 + 40 = 200 bytes (1.600 bits). Como é enviado 1 datagrama a cada 20 ms (50 pacotes/segundo), a taxa total é 50 × 1.600 = 80.000 bits/s = 80 kbps.",
+    "guia_estudo": {
+      "conceito_geral": "Sobrecarga de protocolos de enlace e transporte em tempo real (overhead de empacotamento). Em transmissões de pacotes pequenos e frequentes como voz, os cabeçalhos consomem uma fração substancial da largura de banda.",
+      "termos_chave": [
+        {
+          "termo": "VoIP (Voice over IP)",
+          "definicao": "Transmissão digitalizada de pacotes de voz em tempo real através da Internet usando IP, UDP e RTP em vez da rede telefônica comutada tradicional (PSTN)."
+        },
+        {
+          "termo": "Payload (Carga Útil)",
+          "definicao": "Os dados reais da aplicação — neste caso, 20 ms de fala digitalizada codificada pelo codec G.711 a 64 kbps (20 ms × 64.000 bps / 8 = 160 bytes)."
+        },
+        {
+          "termo": "Cabeçalho RTP (12 bytes)",
+          "definicao": "Camada de aplicação: carrega número de sequência, carimbo de data/hora (timestamp) para amortecimento de jitter e identificador SSRC da fonte."
+        },
+        {
+          "termo": "Cabeçalho UDP (8 bytes) e IP (20 bytes)",
+          "definicao": "Camadas de transporte e rede: portas de origem/destino e endereços IP. Juntos, RTP + UDP + IP totalizam 40 bytes de overhead."
+        }
+      ],
+      "guia_calculo": {
+        "o_que_representa": "Demonstra que a taxa real transmitida na rede (80 kbps) é 25% maior que a taxa nominal do codec (64 kbps) devido ao custo de empacotamento constante de 40 bytes por pacote.",
+        "formula": "Frequência de envio = 1 / Período = 1 / 0,020 s = 50 pacotes/s\nTamanho do Pacote = Payload + Cabeçalhos = 160 + 40 = 200 bytes\nTaxa Total = Frequência × Tamanho do Pacote × 8 bits",
+        "passo_a_passo": [
+          "Passo 1: Somar payload e cabeçalho por datagrama: 160 bytes de áudio + 40 bytes de cabeçalhos = 200 bytes por pacote.",
+          "Passo 2: Converter para bits: 200 bytes × 8 bits/byte = 1.600 bits por pacote.",
+          "Passo 3: Descobrir quantos pacotes são gerados por segundo: 1 segundo / 20 ms = 1.000 ms / 20 ms = 50 pacotes por segundo.",
+          "Passo 4: Multiplicar: 50 pacotes/s × 1.600 bits/pacote = 80.000 bits/s = 80 kbps."
+        ]
+      }
+    }
+  },
+  {
+    "id": 6,
+    "capitulo": "Capítulo 7 - Redes Multimídia",
+    "referencia_livro": "Cap. 7 - P13",
+    "tipo": "conceitual",
+    "enunciado": "Considere dois esquemas de FEC para VoIP: o Esquema 1 envia 1 bloco redundante (XOR) para cada 4 blocos originais; o Esquema 2 anexa (piggyback) no pacote atual uma cópia de baixa taxa do bloco anterior com 25% da taxa nominal. Sobre a banda adicional exigida e o desempenho caso o primeiro pacote de cada par (1 a cada 2 pacotes) seja perdido, é correto afirmar que:",
+    "alternativas": {
+      "A": "Ambos exigem 25% de banda adicional; o Esquema 2 terá melhor qualidade de áudio, pois consegue recuperar cada pacote perdido usando o pacote seguinte, enquanto o Esquema 1 falha ao perder mais de 1 pacote por grupo de 5.",
+      "B": "O Esquema 1 exige 20% de banda e o Esquema 2 exige 50%; o Esquema 1 terá melhor qualidade pois o XOR reconstrói todos os pacotes perdidos.",
+      "C": "Ambos exigem 25% de banda adicional; o Esquema 1 terá melhor qualidade porque não depende de codificação de baixa taxa.",
+      "D": "Nenhum dos esquemas consegue recuperar qualquer pacote nesse cenário de perda."
+    },
+    "resposta_correta": "A",
+    "explicacao": "Ambos adicionam 25% de sobrecarga de banda (1/4 = 25%). Com perda alternada (1 a cada 2 pacotes), em cada grupo de 5 pacotes do Esquema 1 perdem-se 2 ou 3 pacotes, inviabilizando a recuperação via XOR. Já no Esquema 2, como as perdas não são consecutivas, cada pacote perdido é recuperado em baixa resolução a partir do próximo pacote.",
+    "guia_estudo": {
+      "conceito_geral": "Mecanismos de Correção Antecipada de Erros (FEC - Forward Error Correction) para mídia contínua interativa, onde o uso de retransmissões (ARQ/TCP) é inviável devido à estrita restrição de atraso (latência interativa < 150-400 ms).",
+      "termos_chave": [
+        {
+          "termo": "FEC (Forward Error Correction)",
+          "definicao": "Técnica onde o transmissor envia dados redundantes junto com a mensagem original para que o receptor possa reconstruir pacotes perdidos sem precisar pedir retransmissão."
+        },
+        {
+          "termo": "FEC por Bloco com XOR (Paridade)",
+          "definicao": "A cada K blocos de dados, gera-se um bloco extra aplicando a operação lógica XOR entre eles (K+1 pacotes). Se exatamente 1 bloco do grupo se perder, ele é perfeitamente reconstruído; se 2 ou mais se perderem, o bloco de paridade é inútil."
+        },
+        {
+          "termo": "FEC com Áudio Redundante em Baixa Taxa (Piggybacking)",
+          "definicao": "O pacote n carrega o áudio original em alta taxa do instante n e uma cópia muito compactada (baixa taxa) do pacote n-1. Se o pacote n-1 for perdido, o pacote n reconstrói o áudio ausente com fidelidade aceitável."
+        },
+        {
+          "termo": "Padrão de Perda Alternada (1 a cada 2 pacotes)",
+          "definicao": "Cenário de perda de 50% dos pacotes (ex: perdem-se os pacotes 1, 3, 5). No grupo de 5 pacotes do FEC XOR, ocorrem 2 ou 3 perdas, excedendo a tolerância máxima de 1 erro."
+        }
+      ]
+    }
+  },
+  {
+    "id": 7,
+    "capitulo": "Capítulo 7 - Redes Multimídia",
+    "referencia_livro": "Cap. 7 - P15",
+    "tipo": "conceitual",
+    "enunciado": "Em uma audioconferência usando SIP e RTP entre Alice, Bob e Claire, suponha que Bob (IP A1, porta P1) e Claire (IP A2, porta P2) enviem pacotes RTP para o mesmo IP e a mesma porta UDP T de Alice. Os datagramas de Bob e Claire serão recebidos pelo mesmo socket UDP em Alice? Como o cliente de Alice distingue os pacotes de Bob dos de Claire?",
+    "alternativas": {
+      "A": "Não, pois sockets UDP exigem um socket distinto para cada IP de origem diferente.",
+      "B": "Sim, pois sockets UDP são demultiplexados apenas pelo IP e porta de destino; o cliente distingue os fluxos usando o campo SSRC (Synchronization Source ID) do cabeçalho RTP.",
+      "C": "Sim, mas o cliente só consegue distingui-los se Bob e Claire usarem codecs diferentes no campo Payload Type.",
+      "D": "Não, pois o RTP exige uma porta UDP exclusiva para cada participante da conferência."
+    },
+    "resposta_correta": "B",
+    "explicacao": "Um socket UDP é identificado apenas pelo par (IP destino, porta destino), portanto ambos os fluxos chegam ao mesmo socket. Dentro da sessão RTP, cada fluxo de origem possui um identificador SSRC único no cabeçalho RTP, permitindo distingui-los.",
+    "guia_estudo": {
+      "conceito_geral": "Interação entre a camada de transporte (demultiplexação de sockets UDP sem conexão) e a camada de aplicação/multimídia (RTP) em conferências multipartidárias.",
+      "termos_chave": [
+        {
+          "termo": "Socket UDP (Demultiplexação sem conexão)",
+          "definicao": "Um socket UDP na máquina de destino é identificado apenas pela tupla de 2 elementos: (IP de Destino, Porta de Destino). Pacotes vindos de IPs ou portas de origem diferentes com o mesmo destino entram pelo mesmo socket."
+        },
+        {
+          "termo": "SSRC (Synchronization Source Identifier)",
+          "definicao": "Campo de 32 bits no cabeçalho RTP escolhido aleatoriamente na inicialização do fluxo para identificar de maneira exclusiva a fonte do fluxo de mídia dentro da sessão RTP."
+        },
+        {
+          "termo": "SIP (Session Initiation Protocol)",
+          "definicao": "Protocolo de sinalização da camada de aplicação usado para criar, modificar e encerrar sessões multimídia (estabelece quem vai falar com quem e em quais portas)."
+        },
+        {
+          "termo": "RTP (Real-Time Transport Protocol)",
+          "definicao": "Protocolo que roda sobre UDP fornecendo suporte para empacotamento de áudio/vídeo com timestamps, números de sequência e identificação de fonte."
+        }
+      ]
+    }
+  },
+  {
+    "id": 8,
+    "capitulo": "Capítulo 7 - Redes Multimídia",
+    "referencia_livro": "Cap. 7 - P16",
+    "tipo": "conceitual",
+    "enunciado": "Com base nas especificações de RTP, SIP e DiffServ, assinale a única afirmação VERDADEIRA:",
+    "alternativas": {
+      "A": "Todas as aplicações que utilizam RTP são obrigadas a usar a porta padrão 87.",
+      "B": "Em uma sessão RTP com áudio e vídeo de um mesmo remetente, ambos os fluxos compartilham obrigatoriamente o mesmo valor de SSRC.",
+      "C": "No RTP, é possível que o remetente mude a codificação de áudio no meio de uma sessão, e no DiffServ o comportamento por salto (PHB) define diferenças de desempenho sem impor um mecanismo específico.",
+      "D": "Quando Alice envia 'm=audio 48753 RTP/AVP 3' em um SIP INVITE, ela indica que enviará áudio GSM para a porta 48753 de Bob."
+    },
+    "resposta_correta": "C",
+    "explicacao": "O RTP permite mudar o codec dinamicamente alterando o campo Payload Type, e o PHB no DiffServ especifica o comportamento observável sem ditar a implementação interna. (A é falsa: não existe porta fixa 87; B é falsa: cada fluxo tem SSRC próprio; D é falsa: Alice indica a porta e o codec nos quais ela deseja RECEBER áudio).",
+    "guia_estudo": {
+      "conceito_geral": "Especificações fundamentais dos protocolos RTP, SIP/SDP e da arquitetura de Qualidade de Serviço DiffServ (Serviços Diferenciados).",
+      "termos_chave": [
+        {
+          "termo": "Payload Type (Tipo de Carga Útil no RTP)",
+          "definicao": "Campo de 7 bits no cabeçalho RTP que identifica o algoritmo de codificação (ex: 0 para PCM mu-law, 3 para GSM, 26 para JPEG). Permite que o remetente troque de codec em tempo real se o enlace degradar."
+        },
+        {
+          "termo": "SSRC em Áudio e Vídeo",
+          "definicao": "No RTP, fluxos de mídias diferentes (mesmo vindo da mesma pessoa) possuem identificadores SSRC distintos e utilizam sessões/portas RTP diferentes."
+        },
+        {
+          "termo": "DiffServ (Differentiated Services) & PHB",
+          "definicao": "Arquitetura escalável de QoS. O PHB (Per-Hop Behavior) define o tratamento observável que um roteador deve dar a uma classe de pacotes (ex: encaminhamento expedito vs encaminhamento assegurado), sem amarrar a uma tecnologia proprietária de fila."
+        },
+        {
+          "termo": "Linha 'm=' no SDP do SIP",
+          "definicao": "A linha de mídia especifica a porta em que o anunciante está escutando para RECEBER a mídia e os formatos aceitos, não a porta para onde ele enviará."
+        }
+      ]
+    }
+  },
+  {
+    "id": 9,
+    "capitulo": "Capítulo 7 - Redes Multimídia",
+    "referencia_livro": "Cap. 7 - P17",
+    "tipo": "calculo_pratico",
+    "enunciado": "Suponha que a política de escalonamento WFQ (Weighted Fair Queuing) seja aplicada a um enlace que suporta três classes com pesos 0,5 (Classe 1), 0,25 (Classe 2) e 0,25 (Classe 3). Se as Classes 1 e 2 possuírem muitos pacotes na fila, mas não houver nenhum pacote da Classe 3 no buffer, qual sequência de atendimento atinge corretamente os pesos do WFQ?",
+    "alternativas": {
+      "A": "1 2 1 2 1 2... (50% para Classe 1 e 50% para Classe 2)",
+      "B": "1 1 2 1 1 2... (2/3 para Classe 1 e 1/3 para Classe 2)",
+      "C": "1 2 (ocioso) 1 2 (ocioso)... (mantendo 25% do enlace reservado para a Classe 3)",
+      "D": "1 1 1 2 1 1 1 2... (75% para Classe 1 e 25% para Classe 2)"
+    },
+    "resposta_correta": "B",
+    "explicacao": "O WFQ é conservador de trabalho: quando a Classe 3 está vazia, a banda é redistribuída proporcionalmente entre as classes ativas. Classe 1 recebe 0,5 / (0,5 + 0,25) = 2/3 e Classe 2 recebe 0,25 / 0,75 = 1/3, correspondendo à sequência 1 1 2 1 1 2...",
+    "guia_estudo": {
+      "conceito_geral": "Mecanismo de escalonamento de pacotes WFQ (Weighted Fair Queuing - Enfileiramento Justo Ponderado) em roteadores com Qualidade de Serviço (QoS) e a propriedade de ser 'conservador de trabalho' (work-conserving).",
+      "termos_chave": [
+        {
+          "termo": "WFQ (Weighted Fair Queuing)",
+          "definicao": "Algoritmo de escalonamento onde cada classe de serviço possui uma fila separada e recebe uma fração garantida da largura de banda do enlace proporcional ao seu peso atribuído."
+        },
+        {
+          "termo": "Conservador de Trabalho (Work-Conserving)",
+          "definicao": "Propriedade que impede que o enlace fique ocioso se houver qualquer pacote aguardando na fila. Se uma classe não tiver pacotes, sua fração de banda é redistribuída proporcionalmente entre as classes ativas."
+        },
+        {
+          "termo": "Pesos Normalizados",
+          "definicao": "O cálculo da fração de banda de cada classe ativa é reajustado dividindo o seu peso individual pela soma dos pesos apenas das classes que possuem pacotes no momento."
+        }
+      ],
+      "guia_calculo": {
+        "o_que_representa": "Representa como roteadores modernos garantem vazão mínima para tráfegos prioritários (voz, vídeo corporativo) sem desperdiçar capacidade de transmissão quando as filas ociosas não estão em uso.",
+        "formula": "Fração da Classe i = w_i / (Soma dos pesos das classes ativas)",
+        "passo_a_passo": [
+          "Passo 1: Identificar as classes ativas: apenas Classe 1 (peso 0,5) e Classe 2 (peso 0,25). A Classe 3 está vazia.",
+          "Passo 2: Calcular a soma dos pesos ativos: 0,5 + 0,25 = 0,75.",
+          "Passo 3: Calcular a fração de cada uma:\n• Classe 1: 0,5 / 0,75 = 2/3 da capacidade do enlace (aprox. 66,7%)\n• Classe 2: 0,25 / 0,75 = 1/3 da capacidade do enlace (aprox. 33,3%)",
+          "Passo 4: Representar a razão 2:1 em ciclo de atendimento discreto de pacotes: para cada 2 pacotes da Classe 1, atende-se 1 pacote da Classe 2 → padrão '1 1 2 1 1 2...'."
+        ]
+      }
+    }
+  },
+  {
+    "id": 10,
+    "capitulo": "Capítulo 7 - Redes Multimídia",
+    "referencia_livro": "Cap. 7 - P24",
+    "tipo": "conceitual",
+    "enunciado": "Diz-se que um fluxo de pacotes está em conformidade com um balde de fichas (token bucket) de parâmetros (r, b) se o número de pacotes que chega em qualquer intervalo de duração t for menor ou igual a rt + b. Um fluxo que obedece estritamente a essa especificação alguma vez precisará esperar em um regulador de balde de fichas com os mesmos parâmetros r e b (inicialmente cheio)?",
+    "alternativas": {
+      "A": "Sim, sempre que ocorrer uma rajada de tamanho igual a b.",
+      "B": "Sim, pois o regulador sempre retém cada pacote por pelo menos 1/r segundos.",
+      "C": "Não, o fluxo nunca precisará esperar, pois sempre haverá fichas suficientes disponíveis no balde para admitir imediatamente os pacotes em conformidade.",
+      "D": "Depende exclusivamente do protocolo de transporte (TCP ou UDP) utilizado pelo fluxo."
+    },
+    "resposta_correta": "C",
+    "explicacao": "Se o fluxo nunca envia mais que rt + b pacotes em qualquer intervalo t e o balde começa cheio com b fichas sendo preenchido à taxa r, o número de fichas geradas mais as iniciais nunca será inferior ao número de pacotes chegados; logo, nenhum pacote precisará esperar.",
+    "guia_estudo": {
+      "conceito_geral": "Policiamento e modelagem de tráfego (traffic policing and shaping) utilizando o algoritmo Token Bucket (Balde de Fichas) para limitar taxa média e tamanho máximo de rajada.",
+      "termos_chave": [
+        {
+          "termo": "Balde de Fichas (Token Bucket)",
+          "definicao": "Mecanismo regulador onde fichas virtuais são depositadas em um balde de capacidade máxima 'b' a uma taxa constante de 'r' fichas por segundo. Para que um pacote passe, uma ficha deve ser retirada do balde."
+        },
+        {
+          "termo": "Taxa Média Permitida (r)",
+          "definicao": "Limita a taxa sustentada de longo prazo do fluxo a no máximo 'r' unidades por segundo."
+        },
+        {
+          "termo": "Capacidade do Balde (b) / Tamanho da Rajada",
+          "definicao": "Permite que o tráfego envie rajadas pontuais de dados acima da taxa média, limitado a no máximo 'b' pacotes simultâneos acumulados."
+        },
+        {
+          "termo": "Conformidade (Conformance rt + b)",
+          "definicao": "Condição matemática formal: o volume de dados em qualquer intervalo de tamanho t não ultrapassa r·t + b. Se o gerador cumpre essa regra e o regulador tem exatamente esses limites, as fichas no balde nunca chegam a zero durante a chegada de um pacote."
+        }
+      ]
+    }
+  },
+  {
+    "id": 11,
+    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
+    "referencia_livro": "Cap. 8 - R1",
+    "tipo": "conceitual",
+    "enunciado": "Sobre a relação entre confidencialidade de mensagem e integridade de mensagem, assinale a alternativa correta:",
+    "alternativas": {
+      "A": "É impossível ter confidencialidade sem integridade, pois criptografar impede qualquer alteração de bits em trânsito.",
+      "B": "É impossível ter integridade sem confidencialidade, pois todo código de integridade exige que a mensagem seja cifrada.",
+      "C": "É possível ter confidencialidade sem integridade (um atacante pode alterar bits de uma mensagem cifrada sem detecção) e integridade sem confidencialidade (ex: enviar mensagem em texto claro acompanhada de assinatura digital ou MAC).",
+      "D": "Confidencialidade e integridade são sinônimos na segurança de redes."
+    },
+    "resposta_correta": "C",
+    "explicacao": "Confidencialidade (sigilo) e integridade (detecção de adulteração) são propriedades independentes: pode-se cifrar sem autenticar/verificar integridade, e pode-se anexar um MAC ou assinatura digital a uma mensagem enviada em texto claro.",
+    "guia_estudo": {
+      "conceito_geral": "Os pilares fundamentais da segurança da informação em redes: confidencialidade, integridade e autenticação, demonstrando que são objetivos ortogonais e independentes.",
+      "termos_chave": [
+        {
+          "termo": "Confidencialidade (Sigilo)",
+          "definicao": "Garantia de que apenas o remetente e o destinatário legítimos conseguem compreender o conteúdo da mensagem transmitida. Obtida mediante algoritmos de criptografia (cifração)."
+        },
+        {
+          "termo": "Integridade de Mensagem",
+          "definicao": "Garantia de que a mensagem recebida pelo destinatário não foi alterada, forjada ou truncada por um atacante (man-in-the-middle) durante o trânsito na rede."
+        },
+        {
+          "termo": "Ataques de Bit-Flipping (Cifrado sem integridade)",
+          "definicao": "Em cifras de fluxo ou modos CBC sem autenticação, um invasor pode alterar bits específicos do texto cifrado. O destinatário decifra um conteúdo modificado sem perceber que foi adulterado."
+        },
+        {
+          "termo": "Texto Claro Autenticado (Integridade sem sigilo)",
+          "definicao": "Cenários como comunicados oficiais, downloads de softwares livres com hash SHA-256 ou certificados digitais: o conteúdo é público (sem sigilo), mas possui integridade e autenticidade estritas."
+        }
+      ]
+    }
+  },
+  {
+    "id": 12,
+    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
+    "referencia_livro": "Cap. 8 - R6",
+    "tipo": "calculo_pratico",
+    "enunciado": "Suponha que N = 10 pessoas queiram se comunicar de forma confidencial entre si (cada par isoladamente, sem que os demais do grupo consigam decifrar a conversa). Quantas chaves são necessárias no total no sistema usando criptografia simétrica e quantas chaves (contando públicas e privadas) são necessárias usando criptografia de chave pública, respectivamente?",
+    "alternativas": {
+      "A": "10 chaves na simétrica; 10 chaves na de chave pública.",
+      "B": "45 chaves na simétrica; 20 chaves na de chave pública.",
+      "C": "90 chaves na simétrica; 10 chaves na de chave pública.",
+      "D": "20 chaves na simétrica; 45 chaves na de chave pública."
+    },
+    "resposta_correta": "B",
+    "explicacao": "Na criptografia simétrica, cada par distinto precisa de uma chave compartilhada: N(N-1)/2 = 10 × 9 / 2 = 45 chaves. Na criptografia de chave pública, cada pessoa possui apenas 1 par (chave pública + chave privada), totalizando 2N = 20 chaves.",
+    "guia_estudo": {
+      "conceito_geral": "Escalabilidade e problema de distribuição de chaves em criptografia simétrica versus criptografia de chave pública (assimétrica) em grupos de N usuários.",
+      "termos_chave": [
+        {
+          "termo": "Criptografia Simétrica (Chave Secreta)",
+          "definicao": "Utiliza a mesma chave secreta para cifrar e decifrar. Para que duas pessoas conversem com sigilo frente aos demais, precisam de uma chave exclusiva compartilhada apenas entre elas."
+        },
+        {
+          "termo": "Criptografia Assimétrica (Chave Pública)",
+          "definicao": "Cada participante possui um par matemático de chaves: uma Chave Pública (divulgada abertamente a todos) e uma Chave Privada (mantida em segredo absoluto pelo dono)."
+        },
+        {
+          "termo": "Problema de Distribuição de Chaves",
+          "definicao": "O crescimento quadrático O(N²) de chaves simétricas torna inviável redes abertas como a Internet sem uma autoridade central ou sistemas de chave pública O(N)."
+        }
+      ],
+      "guia_calculo": {
+        "o_que_representa": "Representa por que a invenção da criptografia de chave pública (Diffie-Hellman, RSA) revolucionou a Internet, transformando uma escala impraticável de chaves em uma gestão linear viável.",
+        "formula": "Chaves Simétricas: C(N, 2) = N × (N - 1) / 2\nChaves Assimétricas: 2 × N (pois cada nó possui exatamente 1 par de chaves)",
+        "passo_a_passo": [
+          "Passo 1: Para a criptografia simétrica com N = 10, calcula-se o número de combinações de 10 tomados 2 a 2: (10 × 9) / 2 = 45 chaves secretas compartilhadas.",
+          "Passo 2: Para a criptografia de chave pública com N = 10, cada uma das 10 pessoas precisa de apenas 1 chave pública e 1 chave privada: 10 × 2 = 20 chaves no total.",
+          "Passo 3: A resposta é 45 na simétrica e 20 na de chave pública."
+        ]
+      }
+    }
+  },
+  {
+    "id": 13,
+    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
+    "referencia_livro": "Cap. 8 - R7",
+    "tipo": "calculo_pratico",
+    "enunciado": "Suponha que n = 10.000, a = 10.023 e b = 10.004. Utilizando a identidade da aritmética modular [(a mod n) · (b mod n)] mod n = (a · b) mod n, qual é o valor exato de (a · b) mod n?",
+    "alternativas": {
+      "A": "27",
+      "B": "92",
+      "C": "104",
+      "D": "920"
+    },
+    "resposta_correta": "B",
+    "explicacao": "Temos a mod 10.000 = 23 e b mod 10.000 = 4. Aplicando a identidade: (23 × 4) mod 10.000 = 92 mod 10.000 = 92.",
+    "guia_estudo": {
+      "conceito_geral": "Propriedades da Aritmética Modular, base matemática sobre a qual funcionam os principais criptossistemas modernos (RSA, Diffie-Hellman, Curvas Elípticas).",
+      "termos_chave": [
+        {
+          "termo": "Operador Módulo (mod n)",
+          "definicao": "Operação que retorna o resto inteiro da divisão de um número pelo divisor 'n'. Exemplo: 17 mod 5 = 2, pois 17 = 3 × 5 + 2."
+        },
+        {
+          "termo": "Identidade Multiplicativa Modular",
+          "definicao": "A propriedade [(a mod n) · (b mod n)] mod n = (a · b) mod n garante que podemos reduzir os fatores antes de efetuar a multiplicação, evitando estouro de precisão (overflow) com números gigantescos."
+        },
+        {
+          "termo": "Aritmética do Relógio",
+          "definicao": "Analogia comum para o módulo: os números 'dão a volta' ao atingirem o valor 'n', operando dentro de um conjunto fechado de restos {0, 1, ..., n-1}."
+        }
+      ],
+      "guia_calculo": {
+        "o_que_representa": "Mostra como computadores realizam cálculos criptográficos com números de 2048 ou 4096 bits com eficiência extrema sem precisar calcular produtos com trilhões de dígitos.",
+        "formula": "(a · b) mod n = [(a mod n) · (b mod n)] mod n",
+        "passo_a_passo": [
+          "Passo 1: Calcular o resto da divisão de 'a' por 10.000: 10.023 mod 10.000 = 23.",
+          "Passo 2: Calcular o resto da divisão de 'b' por 10.000: 10.004 mod 10.000 = 4.",
+          "Passo 3: Multiplicar os restos reduzidos: 23 × 4 = 92.",
+          "Passo 4: Aplicar o módulo final: 92 mod 10.000 = 92."
+        ]
+      }
+    }
+  },
+  {
+    "id": 14,
+    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
+    "referencia_livro": "Cap. 8 - P8",
+    "tipo": "calculo_pratico",
+    "enunciado": "Considere o algoritmo RSA com os números primos p = 5 e q = 11, e expoente público e = 3. Quais são, respectivamente, os valores de n, z, o menor expoente privado positivo d (tal que e·d mod z = 1) e o texto cifrado c correspondente à mensagem m = 8?",
+    "alternativas": {
+      "A": "n = 55, z = 40, d = 27 e c = 17.",
+      "B": "n = 55, z = 40, d = 13 e c = 24.",
+      "C": "n = 55, z = 44, d = 15 e c = 17.",
+      "D": "n = 40, z = 55, d = 27 e c = 32."
+    },
+    "resposta_correta": "A",
+    "explicacao": "n = p × q = 5 × 11 = 55; z = (p-1)(q-1) = 4 × 10 = 40. Para 3d mod 40 = 1, temos d = 27 (pois 3 × 27 = 81 e 81 mod 40 = 1). Cifrando m = 8: c = 8³ mod 55 = 512 mod 55 = 17 (pois 55 × 9 = 495 e 512 - 495 = 17).",
+    "guia_estudo": {
+      "conceito_geral": "Passo a passo completo do algoritmo RSA (Rivest-Shamir-Adleman), o algoritmo de chave pública mais amplamente adotado na história da computação.",
+      "termos_chave": [
+        {
+          "termo": "Módulo RSA (n = p · q)",
+          "definicao": "Produto de dois números primos grandes escolhidos secretamente. O módulo 'n' é público e define o tamanho da chave e o domínio dos cálculos."
+        },
+        {
+          "termo": "Função Totiente de Euler z = (p - 1)(q - 1)",
+          "definicao": "Quantidade de inteiros menores que 'n' coprimos com 'n'. Mantida em segredo; saber 'z' equivale a conseguir quebrar o RSA."
+        },
+        {
+          "termo": "Expoente Público (e) e Privado (d)",
+          "definicao": "A chave pública é o par (n, e) e a chave privada é (n, d). O expoente privado 'd' é o inverso multiplicativo modular de 'e' módulo z: (e · d) mod z = 1."
+        },
+        {
+          "termo": "Cifração RSA (c = m^e mod n)",
+          "definicao": "Eleva-se a mensagem numérica 'm' ao expoente público 'e' e toma-se o resto módulo 'n'. Para decifrar, o dono calcula m = c^d mod n."
+        }
+      ],
+      "guia_calculo": {
+        "o_que_representa": "Representa o ciclo de vida criptográfico do RSA: derivação matemática das chaves a partir de primos e a cifração unidirecional facilitada por aritmética modular.",
+        "formula": "1) n = p × q\n2) z = (p - 1) × (q - 1)\n3) (e × d) mod z = 1  (inverso modular)\n4) c = (m^e) mod n",
+        "passo_a_passo": [
+          "Passo 1: Calcular n = 5 × 11 = 55.",
+          "Passo 2: Calcular z = (5 - 1) × (11 - 1) = 4 × 10 = 40.",
+          "Passo 3: Encontrar 'd' tal que (3 × d) mod 40 = 1. Testando múltiplos: 3 × 27 = 81. Como 81 / 40 deixa resto 1 (81 = 2 × 40 + 1), temos d = 27.",
+          "Passo 4: Cifrar a mensagem m = 8: c = 8^3 mod 55 = 512 mod 55. Dividindo 512 por 55 temos quociente 9 (9 × 55 = 495) e resto 512 - 495 = 17.",
+          "Passo 5: Resultado: n = 55, z = 40, d = 27, c = 17."
+        ]
+      }
+    }
+  },
+  {
+    "id": 15,
+    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
+    "referencia_livro": "Cap. 8 - P9",
+    "tipo": "calculo_pratico",
+    "enunciado": "No algoritmo de troca de chaves Diffie-Hellman com p = 11 e g = 2, suponha que Alice escolha a chave secreta SA = 5 e Bob escolha SB = 12. Quais são, respectivamente, as chaves públicas TA e TB trocadas pela rede e a chave secreta compartilhada S calculada por ambos?",
+    "alternativas": {
+      "A": "TA = 10, TB = 4 e S = 1.",
+      "B": "TA = 10, TB = 8 e S = 4.",
+      "C": "TA = 5, TB = 1 e S = 10.",
+      "D": "TA = 8, TB = 4 e S = 2."
+    },
+    "resposta_correta": "A",
+    "explicacao": "TA = g^SA mod p = 2^5 mod 11 = 32 mod 11 = 10. TB = g^SB mod p = 2^12 mod 11 = 4096 mod 11 = 4. A chave compartilhada é S = TB^SA mod 11 = 4^5 mod 11 = 1024 mod 11 = 1 (o mesmo que TA^SB mod 11 = 10^12 mod 11 = 1).",
+    "guia_estudo": {
+      "conceito_geral": "Protocolo de Acordo de Chaves Diffie-Hellman (DHKE), que permite que duas partes concordem com uma chave secreta através de um canal totalmente público e inseguro.",
+      "termos_chave": [
+        {
+          "termo": "Parâmetros Globais Públicos (p, g)",
+          "definicao": "Um número primo grande 'p' e um gerador 'g' da base. São conhecidos publicamente por qualquer um na rede (inclusive bisbilhoteiros)."
+        },
+        {
+          "termo": "Segredos Privados (SA, SB)",
+          "definicao": "Valores numéricos escolhidos aleatoriamente por Alice e Bob que NUNCA trafegam pela rede nem são revelados um ao outro."
+        },
+        {
+          "termo": "Valores Públicos Transmitidos (TA, TB)",
+          "definicao": "Alice calcula TA = g^SA mod p e envia a Bob. Bob calcula TB = g^SB mod p e envia a Alice."
+        },
+        {
+          "termo": "Problema do Logaritmo Discreto",
+          "definicao": "A segurança do DH decorre da assimetria computacional: calcular g^x mod p é trivial, mas deduzir 'x' a partir de g^x mod p é computacionalmente intratável para números grandes."
+        }
+      ],
+      "guia_calculo": {
+        "o_que_representa": "Representa como o HTTPS/TLS estabelece a chave de sessão simétrica no início de uma conexão segura de forma dinâmica (Perfect Forward Secrecy).",
+        "formula": "TA = (g^SA) mod p\nTB = (g^SB) mod p\nChave Secreta Compartilhada S = (TB^SA) mod p = (TA^SB) mod p = g^(SA·SB) mod p",
+        "passo_a_passo": [
+          "Passo 1: Alice calcula sua chave pública TA: 2^5 mod 11 = 32 mod 11 = 10 (pois 32 = 2 × 11 + 10).",
+          "Passo 2: Bob calcula sua chave pública TB: 2^12 mod 11. Como 2^5 = 32 ≡ 10 ≡ -1 mod 11, temos 2^10 = (2^5)^2 ≡ (-1)^2 = 1. Logo 2^12 = 2^10 × 2^2 ≡ 1 × 4 = 4 mod 11.",
+          "Passo 3: Alice recebe TB = 4 e calcula S: 4^5 mod 11 = 1.024 mod 11. Dividindo 1.024 por 11: 1.024 = 93 × 11 + 1 → S = 1.",
+          "Passo 4: Verificação por Bob: Bob recebe TA = 10 e calcula S: 10^12 mod 11. Como 10 ≡ -1 mod 11, temos (-1)^12 = 1 mod 11 → S = 1. Ambos chegam exatamente ao mesmo segredo!"
+        ]
+      }
+    }
+  },
+  {
+    "id": 16,
+    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
+    "referencia_livro": "Cap. 8 - R14 e R15",
+    "tipo": "conceitual",
+    "enunciado": "Suponha que Alice queira disponibilizar uma mensagem pública para milhares de pessoas verificarem sua integridade e autenticidade. Além disso, considere como uma Autoridade Certificadora (CA) cria um certificado digital. Assinale a alternativa correta:",
+    "alternativas": {
+      "A": "Para Alice, um MAC é mais apropriado que assinatura digital; e a CA criptografa o certificado inteiro usando sua própria chave pública.",
+      "B": "Para Alice, uma assinatura digital é mais apropriada (pois um MAC exigiria compartilhar chaves secretas com milhares de usuários); e a CA assina o resumo (hash) do certificado com sua chave privada, em vez de cifrar tudo com sua chave pública.",
+      "C": "Para Alice, um MAC é mais apropriado porque garante não-repúdio; e a CA assina o certificado com a chave privada do cliente.",
+      "D": "Ambos os esquemas (MAC e assinatura digital) exigem uma chave secreta compartilhada prévia entre Alice e cada leitor."
+    },
+    "resposta_correta": "B",
+    "explicacao": "Com milhares de destinatários, a assinatura digital é ideal porque todos verificam usando apenas a chave pública de Alice (sem distribuir chaves secretas). Quanto aos certificados (R14), é FALSO que a CA cifra o certificado inteiro com sua chave pública: ela assina o hash do certificado com sua chave PRIVADA.",
+    "guia_estudo": {
+      "conceito_geral": "Assinaturas Digitais versus Códigos de Autenticação de Mensagem (MAC) e a arquitetura de Infraestrutura de Chaves Públicas (PKI) com Autoridades Certificadoras (CA).",
+      "termos_chave": [
+        {
+          "termo": "MAC (Message Authentication Code)",
+          "definicao": "Técnica simétrica baseada em chave secreta compartilhada. Quem possui a chave pode verificar e também pode forjar mensagens, inviabilizando o não-repúdio e a distribuição pública massiva."
+        },
+        {
+          "termo": "Assinatura Digital",
+          "definicao": "Técnica assimétrica: o emissor cifra o hash da mensagem com sua CHAVE PRIVADA. Qualquer pessoa no mundo pode conferir a assinatura decifrando-a com a CHAVE PÚBLICA do emissor."
+        },
+        {
+          "termo": "Não-Repúdio",
+          "definicao": "Propriedade que impede o autor de negar a autoria da mensagem, já que apenas ele possui a chave privada que gerou aquela assinatura."
+        },
+        {
+          "termo": "Autoridade Certificadora (CA)",
+          "definicao": "Entidade confiável que atesta que uma chave pública pertence legitimamente a determinado domínio ou pessoa. A CA gera um certificado contendo os dados do titular e a chave pública dele, e assina esse conjunto com a CHAVE PRIVADA da própria CA."
+        }
+      ]
+    }
+  },
+  {
+    "id": 17,
+    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
+    "referencia_livro": "Cap. 8 - R20 e R23",
+    "tipo": "conceitual",
+    "enunciado": "Durante uma conexão SSL, suponha que Bob inicie uma conexão com Trudy, que finge ser Alice e envia a Bob o certificado legítimo de Alice. Em qual etapa do handshake SSL Bob descobrirá a fraude, e como os números de sequência são tratados nos registros SSL?",
+    "alternativas": {
+      "A": "Bob descobre imediatamente ao receber o certificado; e cada registro SSL carrega um campo explícito de número de sequência no cabeçalho.",
+      "B": "Bob descobre na verificação do MAC das mensagens do handshake (etapa final), pois Trudy não tem a chave privada de Alice para decifrar o pre-master secret e gerar as chaves corretas; além disso, NÃO há campo de número de sequência no cabeçalho do registro SSL.",
+      "C": "Bob nunca descobre a fraude porque o certificado de Alice é válido; e o número de sequência fica no cabeçalho IP.",
+      "D": "Bob descobre ao enviar o ClientHello; e o número de sequência SSL é enviado em texto claro no final de cada registro."
+    },
+    "resposta_correta": "B",
+    "explicacao": "Bob cifra o pre-master secret com a chave pública de Alice (extraída do certificado válido). Sem a chave privada de Alice, Trudy não recupera o segredo e não consegue gerar o MAC válido das mensagens do handshake. Além disso (R20), o número de sequência SSL entra no cálculo do MAC, mas não existe como campo no cabeçalho do registro.",
+    "guia_estudo": {
+      "conceito_geral": "O aperto de mão (handshake) do protocolo SSL/TLS, autenticação de servidores com certificados de terceiros e integridade de registros com contadores de sequência implícitos.",
+      "termos_chave": [
+        {
+          "termo": "Pre-Master Secret (PMS)",
+          "definicao": "Valor aleatório gerado pelo cliente e enviado ao servidor cifrado com a chave pública contida no certificado. Somente quem possui a chave privada correspondente consegue decifrá-lo."
+        },
+        {
+          "termo": "Master Secret e Chaves de Sessão",
+          "definicao": "Ambas as pontas combinam o PMS com números pseudoaleatórios trocados no handshake para derivar as 4 chaves de sessão: cifração e MAC para cada sentido."
+        },
+        {
+          "termo": "Mensagem 'Finished' / Verificação Final",
+          "definicao": "Última etapa do handshake: cada lado envia um MAC de todas as mensagens trocadas anteriormente. Se o atacante não decifrou o PMS, seu MAC será incorreto e a conexão é abortada na hora."
+        },
+        {
+          "termo": "Número de Sequência Implícito no SSL",
+          "definicao": "Para economizar largura de banda e impedir ataques de reordenação ou repetição de registros, o SSL mantém um contador interno de 64 bits que entra no cálculo do MAC, mas NÃO é transmitido fisicamente no cabeçalho do pacote."
+        }
+      ]
+    }
+  },
+  {
+    "id": 18,
+    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
+    "referencia_livro": "Cap. 8 - R25 e P23",
+    "tipo": "conceitual",
+    "enunciado": "Em uma VPN IPsec no modo túnel com ESP conectando os roteadores R1 (matriz) e R2 (filial), suponha que: (1) o TCP retransmita um segmento perdido entre dois hosts; e (2) Trudy realize um ataque de repetição (replay) enviando a R2 uma cópia duplicada de um datagrama IPsec capturado. O que ocorre nos dois casos?",
+    "alternativas": {
+      "A": "No caso (1), os dois datagramas ESP terão o mesmo número de sequência ESP; no caso (2), R2 aceita o pacote duplicado porque o MAC é válido.",
+      "B": "No caso (1), R1 atribuirá um NOVO número de sequência ESP ao segmento TCP retransmitido; no caso (2), R2 detecta o número de sequência ESP duplicado e descarta o pacote sem encaminhá-lo à filial.",
+      "C": "No caso (1), R1 descarta a retransmissão TCP; no caso (2), R2 cria uma nova SA automaticamente para o pacote duplicado.",
+      "D": "Em ambos os casos, os números de sequência ESP só mudam quando a chave IKE expira."
+    },
+    "resposta_correta": "B",
+    "explicacao": "O IPsec incrementa o número de sequência ESP a cada datagrama enviado naquela SA, independentemente de ser uma retransmissão TCP (R25 é Falso). Já contra ataques de replay (P23), R2 verifica o número de sequência ESP (protegido pelo MAC) e descarta datagramas duplicados.",
+    "guia_estudo": {
+      "conceito_geral": "Operação do protocolo IPsec no Modo Túnel com ESP (Encapsulating Security Payload), independência entre camadas de rede/transporte e proteção contra ataques de repetição (anti-replay).",
+      "termos_chave": [
+        {
+          "termo": "IPsec Modo Túnel",
+          "definicao": "O datagrama IP original inteiro (cabeçalho + carga) é encapsulado dentro de um novo pacote IP com cabeçalhos ESP. Usado tipicamente entre roteadores de borda para criar VPNs site-to-site."
+        },
+        {
+          "termo": "ESP (Encapsulating Security Payload)",
+          "definicao": "Protocolo do IPsec que provê simultaneamente confidencialidade (cifração), autenticação de origem dos dados e integridade com proteção contra repetição."
+        },
+        {
+          "termo": "Número de Sequência ESP",
+          "definicao": "Campo de 32 bits no cabeçalho ESP incrementado a cada novo pacote despachado pela Associação de Segurança (SA). O roteador IPsec não examina nem depende dos números de sequência TCP dos hosts internos."
+        },
+        {
+          "termo": "Janela Anti-Replay",
+          "definicao": "O receptor mantém um mapa de bits dos números de sequência recentes válidos já recebidos. Se um pacote com número de sequência antigo ou repetido chegar (mesmo com integridade válida), ele é imediatamente descartado."
+        }
+      ]
+    }
+  },
+  {
+    "id": 19,
+    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
+    "referencia_livro": "Cap. 8 - P24",
+    "tipo": "calculo_pratico",
+    "enunciado": "Considere o pseudoprotocolo WEP do livro: chave secreta = 1010, IV = 11 (anexado ao final da chave formando 101011), cujo fluxo de chaves (keystream) começa com 111110101000... A mensagem de 8 bits é m = 10100000 e o ICV de 4 bits é o XOR dos 4 primeiros bits com os 4 últimos bits da mensagem. Sabendo que o IV trafega em aberto e que mensagem + ICV são cifrados via XOR com o keystream, quais são os valores dos três campos (IV, mensagem cifrada, ICV cifrado) enviados no pacote WEP?",
+    "alternativas": {
+      "A": "IV = 11, mensagem cifrada = 01011010, ICV cifrado = 0010.",
+      "B": "IV = 11, mensagem cifrada = 01011010, ICV cifrado = 1010.",
+      "C": "IV = 00, mensagem cifrada = 10100000, ICV cifrado = 0010.",
+      "D": "IV = 11, mensagem cifrada = 11111010, ICV cifrado = 1000."
+    },
+    "resposta_correta": "A",
+    "explicacao": "1) ICV em texto claro = 1010 XOR 0000 = 1010. 2) Dados + ICV = 10100000 1010. 3) XOR com os 12 primeiros bits do keystream (11111010 1000): mensagem cifrada = 10100000 XOR 11111010 = 01011010; ICV cifrado = 1010 XOR 1000 = 0010. O IV = 11 vai em texto claro.",
+    "guia_estudo": {
+      "conceito_geral": "Estrutura do pacote do protocolo WEP (Wired Equivalent Privacy) em redes Wi-Fi 802.11, ilustrando o uso de cifras de fluxo baseadas em XOR (RC4) e verificação de integridade via ICV.",
+      "termos_chave": [
+        {
+          "termo": "IV (Vetor de Inicialização / Initialization Vector)",
+          "definicao": "Valor de 24 bits transmitido em texto claro no início de cada quadro 802.11. Seu objetivo era garantir que quadros consecutivos usassem fluxos de chaves (keystreams) diferentes concatenando-se à chave compartilhada."
+        },
+        {
+          "termo": "Keystream (Fluxo de Chaves)",
+          "definicao": "Sequência pseudoaleatória contínua de bits gerada por uma cifra de fluxo (como o RC4) alimentada pela semente (Chave Secreta || IV)."
+        },
+        {
+          "termo": "ICV (Integrity Check Value)",
+          "definicao": "Código de redundância cíclica (CRC-32 na vida real, simplificado para XOR no livro) calculado sobre a mensagem em texto claro para detectar erros acidentais ou adulteração."
+        },
+        {
+          "termo": "Cifra de Fluxo com XOR (⊕)",
+          "definicao": "A cifração é realizada aplicando XOR bit a bit entre os dados em claro e os bits do keystream. Se a = b, a ⊕ b = 0; se a ≠ b, a ⊕ b = 1."
+        }
+      ],
+      "guia_calculo": {
+        "o_que_representa": "Representa o processo de montagem e cifração do pacote WEP antes de ser emitido pelo rádio Wi-Fi. Evidencia também as falhas históricas do WEP (IV curto que se repete e ICV linear não seguro).",
+        "formula": "1) ICV = Bits_Iniciais ⊕ Bits_Finais\n2) Bloco a cifrar = Mensagem || ICV (12 bits)\n3) Cifrado = (Mensagem || ICV) ⊕ Keystream[0..11]\n4) Pacote enviado = IV (em claro) || Mensagem Cifrada || ICV Cifrado",
+        "passo_a_passo": [
+          "Passo 1: Calcular o ICV da mensagem m = 10100000. Primeiros 4 bits = 1010; últimos 4 bits = 0000. Fazendo o XOR: 1010 ⊕ 0000 = 1010.",
+          "Passo 2: Concatenar a mensagem com o ICV: 10100000 || 1010 (total de 12 bits).",
+          "Passo 3: Aplicar XOR com os 12 primeiros bits do keystream (11111010 1000):\n• Mensagem Cifrada = 10100000 ⊕ 11111010 = 01011010\n• ICV Cifrado = 1010 ⊕ 1000 = 0010",
+          "Passo 4: O IV é sempre transmitido em texto claro: IV = 11. Resultado final: IV = 11, Mensagem Cifrada = 01011010, ICV Cifrado = 0010."
+        ]
+      }
+    }
+  },
+  {
+    "id": 20,
+    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
+    "referencia_livro": "Cap. 8 - R29 e R32",
+    "tipo": "conceitual",
+    "enunciado": "Quais duas estruturas de dados um firewall de filtragem de pacotes com estado (stateful) mantém, e por que um gateway de aplicação precisa operar em conjunto com um filtro de roteador?",
+    "alternativas": {
+      "A": "Mantém uma tabela ARP e uma tabela DNS; o filtro de roteador serve apenas para criptografar os pacotes do gateway.",
+      "B": "Mantém uma Lista de Controle de Acesso (ACL) e uma tabela de conexões (rastreando conexões ativas); o filtro de roteador é necessário para bloquear tráfego daquela aplicação que tente contornar o gateway de aplicação.",
+      "C": "Mantém uma tabela SPD e uma tabela SAD; o filtro de roteador substitui a autenticação de usuários no gateway.",
+      "D": "Mantém apenas filas WFQ e um balde de fichas; o filtro de roteador serve para impedir fragmentação IP."
+    },
+    "resposta_correta": "B",
+    "explicacao": "O firewall stateful combina uma ACL (regras de filtragem) com uma tabela de conexões (estado das sessões TCP/UDP ativas). Já o gateway de aplicação depende do filtro no roteador para garantir que todo o tráfego da aplicação passe obrigatoriamente por ele, bloqueando conexões diretas.",
+    "guia_estudo": {
+      "conceito_geral": "Mecanismos de defesa de perímetro de rede: Firewalls com inspeção de estado (Stateful Packet Filters) e Gateways de Aplicação (Application Proxies).",
+      "termos_chave": [
+        {
+          "termo": "Firewall com Estado (Stateful Firewall)",
+          "definicao": "Firewall inteligente que não analisa pacotes isoladamente. Ele rastreia o ciclo de vida completo de conexões TCP (SYN, SYN-ACK, ACK, FIN) e fluxos UDP, admitindo pacotes de retorno apenas se pertencerem a uma conexão previamente autorizada."
+        },
+        {
+          "termo": "Tabela de Conexões (Connection State Table)",
+          "definicao": "Tabela em memória que armazena pares de IPs, portas e números de sequência das conexões abertas no momento. Expira entradas inativas por timeout."
+        },
+        {
+          "termo": "Lista de Controle de Acesso (ACL - Access Control List)",
+          "definicao": "Conjunto de regras estáticas ordenadas (origem, destino, porta, ação PERMIT/DENY) avaliadas no início de novas conexões."
+        },
+        {
+          "termo": "Gateway de Aplicação (Application Proxy)",
+          "definicao": "Servidor intermediário que encerra e analisa requisições no nível de aplicação (ex: proxy Telnet, HTTP, FTP) exigindo autenticação do usuário e inspeção profunda de comandos."
+        },
+        {
+          "termo": "Papel do Filtro de Roteador com Gateway",
+          "definicao": "Sem o filtro no roteador barrando tráfego direto entre a rede interna e externa, usuários e invasores poderiam simplesmente ignorar o gateway e se conectar diretamente aos servidores finais."
+        }
+      ]
+    }
+  }
+];
+    let currentQuestions = [];
     let currentIndex = 0;
-    let userAnswers = {}; // { questionId: { selected: 'B', correct: true } }
-    let currentMode = 'study'; // 'study' | 'exam'
+    let userAnswers = {};
+    let currentMode = 'study';
     let timerInterval = null;
     let timerSeconds = 0;
+    let isTheoryOpen = false;
+
+    // Carregar JSON com fallback para fetch ou embutido
+    function carregarDados() {
+      currentQuestions = [...DADOS_SIMULADO];
+      init();
+    }
 
     function init() {
       renderNav();
@@ -1016,9 +1729,40 @@
       });
     }
 
+    function toggleTheoryPanel() {
+      isTheoryOpen = !isTheoryOpen;
+      const panel = document.getElementById('theory-panel');
+      const btn = document.getElementById('btn-theory-toggle');
+      const text = document.getElementById('theory-btn-text');
+      const icon = document.getElementById('theory-btn-icon');
+
+      if (isTheoryOpen) {
+        panel.classList.add('show');
+        btn.classList.add('open');
+        text.textContent = 'Ocultar Teoria & Guia';
+        icon.textContent = '✕';
+      } else {
+        panel.classList.remove('show');
+        btn.classList.remove('open');
+        text.textContent = 'Ver Teoria, Termos & Cálculo';
+        icon.textContent = '📚';
+      }
+    }
+
     function showQuestion(idx) {
       if (idx < 0 || idx >= currentQuestions.length) return;
       currentIndex = idx;
+
+      // Resetar ou manter o painel de teoria conforme preferência
+      const panel = document.getElementById('theory-panel');
+      const btn = document.getElementById('btn-theory-toggle');
+      if (isTheoryOpen) {
+        panel.classList.add('show');
+        btn.classList.add('open');
+      } else {
+        panel.classList.remove('show');
+        btn.classList.remove('open');
+      }
 
       document.querySelectorAll('.nav-dot').forEach((d, i) => {
         d.classList.toggle('current', i === idx);
@@ -1040,6 +1784,46 @@
 
       document.getElementById('q-enunciado').textContent = `${q.id}. ${q.enunciado}`;
 
+      // Preenchimento do Guia Teórico & Termos
+      if (q.guia_estudo) {
+        document.getElementById('theory-overview').textContent = q.guia_estudo.conceito_geral || '';
+        
+        // Termos
+        const termsGrid = document.getElementById('terms-grid');
+        termsGrid.innerHTML = '';
+        if (q.guia_estudo.termos_chave) {
+          q.guia_estudo.termos_chave.forEach(t => {
+            const card = document.createElement('div');
+            card.className = 'term-card';
+            card.innerHTML = `
+              <div class="term-name">📌 ${t.termo}</div>
+              <div class="term-def">${t.definicao}</div>
+            `;
+            termsGrid.appendChild(card);
+          });
+        }
+
+        // Cálculo (se existir)
+        const calcSection = document.getElementById('calc-section');
+        if (q.guia_estudo.guia_calculo) {
+          calcSection.style.display = 'block';
+          document.getElementById('calc-meaning').innerHTML = `<strong>💡 O que representa:</strong> ${q.guia_estudo.guia_calculo.o_que_representa}`;
+          document.getElementById('calc-formula').textContent = q.guia_estudo.guia_calculo.formula;
+          
+          const stepsList = document.getElementById('calc-steps');
+          stepsList.innerHTML = '';
+          q.guia_estudo.guia_calculo.passo_a_passo.forEach(step => {
+            const li = document.createElement('li');
+            li.className = 'calc-step-item';
+            li.textContent = step;
+            stepsList.appendChild(li);
+          });
+        } else {
+          calcSection.style.display = 'none';
+        }
+      }
+
+      // Alternativas
       const altList = document.getElementById('alternativas-list');
       altList.innerHTML = '';
 
@@ -1172,7 +1956,6 @@
       document.getElementById('final-cap7').textContent = `${cap7Correct}/${cap7Total} (${cap7Total > 0 ? Math.round(cap7Correct/cap7Total*100) : 0}%)`;
       document.getElementById('final-cap8').textContent = `${cap8Correct}/${cap8Total} (${cap8Total > 0 ? Math.round(cap8Correct/cap8Total*100) : 0}%)`;
 
-      // Atualiza os pontinhos para mostrar acertos/erros no modo exame
       currentQuestions.forEach((q, idx) => {
         const dot = document.getElementById(`nav-dot-${idx}`);
         const ans = userAnswers[q.id];
@@ -1200,9 +1983,8 @@
       showQuestion(0);
     }
 
-    // Inicialização
-    init();
+    // Inicialização da aplicação
+    carregarDados();
   </script>
 </body>
 </html>
-
