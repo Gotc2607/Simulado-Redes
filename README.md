@@ -42,6 +42,7 @@ Basta abrir o arquivo [index.html](file:///home/giovani-coelho/Documentos/Simula
 - **Modo Estudo**: feedback instantâneo e explicação passo a passo ao selecionar a alternativa.
 - **Modo Prova**: cronômetro ativo, gabarito e relatório de pontuação por capítulo no final.
 - **Filtros rápidos**: pratique apenas cálculos, apenas questões teóricas, ou filtre por capítulo.
+- **Glossário Interativo (`📖 Glossário`)**: seção dedicada com **43 termos e siglas** (20 de Redes Multimídia e 23 de Segurança em Redes) com busca em tempo real, explicando **o que é**, **o que faz** e um **exemplo prático de uso** (base estruturada também disponível em [glossario.json](file:///home/giovani-coelho/Documentos/Simulado-Redes/glossario.json)).
 
 Para rodar com um servidor local rápido (opcional):
 ```bash

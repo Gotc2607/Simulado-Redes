@@ -938,6 +938,246 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* ========================================================
+       SEÇÃO DE GLOSSÁRIO INTERATIVO
+       ======================================================== */
+    .mode-pill.glossary-pill {
+      border-color: rgba(168, 85, 247, 0.5);
+      color: #e9d5ff;
+      background: rgba(168, 85, 247, 0.12);
+    }
+
+    .mode-pill.glossary-pill.active {
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      color: #fff;
+      border-color: #a855f7;
+    }
+
+    .glossary-section {
+      display: none;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .glossary-section.show {
+      display: block;
+    }
+
+    .glossary-header-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    }
+
+    .glossary-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .glossary-top-row h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .glossary-subtitle {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .glossary-search-row {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .glossary-search-input {
+      flex: 1;
+      min-width: 220px;
+      background: #0b1120;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.7rem 1rem;
+      color: #fff;
+      font-size: 0.92rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .glossary-search-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+    }
+
+    .glossary-search-input::placeholder {
+      color: #64748b;
+    }
+
+    .glossary-filters {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .glossary-count {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 0.75rem;
+    }
+
+    .glossary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 1rem;
+    }
+
+    .glossary-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .glossary-card:hover {
+      border-color: #475569;
+      transform: translateY(-2px);
+    }
+
+    .glossary-card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .glossary-sigla {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--primary);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .glossary-fullname {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+      line-height: 1.35;
+    }
+
+    .badge-tema-multi {
+      background: rgba(56, 189, 248, 0.14);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      white-space: nowrap;
+    }
+
+    .badge-tema-sec {
+      background: rgba(168, 85, 247, 0.14);
+      color: #c084fc;
+      border: 1px solid rgba(168, 85, 247, 0.3);
+      white-space: nowrap;
+    }
+
+    .glossary-block {
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: #cbd5e1;
+    }
+
+    .glossary-block-label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.2rem;
+    }
+
+    .label-oque { color: #38bdf8; }
+    .label-faz { color: #a78bfa; }
+
+    .glossary-example {
+      background: rgba(34, 197, 94, 0.08);
+      border: 1px solid rgba(34, 197, 94, 0.22);
+      border-left: 3px solid var(--success);
+      border-radius: 8px;
+      padding: 0.75rem 0.85rem;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #dcfce7;
+      margin-top: auto;
+    }
+
+    .glossary-example strong {
+      color: #4ade80;
+      display: block;
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.2rem;
+    }
+
+    .glossary-empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 2.5rem 1rem;
+      background: var(--bg-card);
+      border: 1px dashed var(--border);
+      border-radius: 14px;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 768px) {
+      .glossary-header-card {
+        padding: 1.1rem 0.95rem;
+      }
+
+      .glossary-top-row h2 {
+        font-size: 1.12rem;
+      }
+
+      .glossary-top-row .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .glossary-grid {
+        grid-template-columns: 1fr;
+        gap: 0.85rem;
+      }
+
+      .glossary-card {
+        padding: 1rem 0.9rem;
+      }
+
+      .glossary-sigla {
+        font-size: 1.05rem;
+      }
+
+      .glossary-block, .glossary-example {
+        font-size: 0.84rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -952,11 +1192,12 @@
         <div class="controls-top">
           <button class="mode-pill active" id="btn-mode-study" onclick="setMode('study')">Modo Estudo</button>
           <button class="mode-pill" id="btn-mode-exam" onclick="setMode('exam')">Modo Prova</button>
+          <button class="mode-pill glossary-pill" id="btn-mode-glossary" onclick="toggleGlossaryView()">📖 Glossário</button>
           <div class="timer-badge" id="timer">⏱️ 00:00</div>
         </div>
       </div>
 
-      <div class="filter-bar">
+      <div class="filter-bar" id="quiz-filter-bar">
         <button class="filter-btn active" onclick="applyFilter('all', this)">Todas as Questões (40)</button>
         <button class="filter-btn" onclick="applyFilter('cap7', this)">Cap. 7 - Multimídia (20)</button>
         <button class="filter-btn" onclick="applyFilter('cap8', this)">Cap. 8 - Segurança (20)</button>
@@ -964,7 +1205,7 @@
         <button class="filter-btn" onclick="applyFilter('conc', this)">📖 Conceituais (29)</button>
       </div>
 
-      <div class="progress-bar-container">
+      <div class="progress-bar-container" id="quiz-progress-bar">
         <div class="progress-bar-fill" id="progress-bar"></div>
       </div>
     </div>
@@ -1062,6 +1303,36 @@
           <button class="btn btn-secondary" onclick="reviewExam()">📝 Revisar Respostas</button>
         </div>
       </div>
+
+      <!-- Seção de Glossário Interativo -->
+      <section class="glossary-section" id="glossary-section">
+        <div class="glossary-header-card">
+          <div class="glossary-top-row">
+            <h2>📖 Glossário de Redes Multimídia e Segurança</h2>
+            <button class="btn btn-primary" onclick="closeGlossaryView()">← Voltar ao Simulado</button>
+          </div>
+          <p class="glossary-subtitle">
+            Consulte os principais termos, protocolos e siglas dos Capítulos 7 e 8 do Kurose & Ross com explicação clara de <strong>o que é</strong>, <strong>o que faz</strong> e um <strong>exemplo prático de uso</strong>.
+          </p>
+          <div class="glossary-search-row">
+            <input
+              type="text"
+              id="glossary-search"
+              class="glossary-search-input"
+              placeholder="🔎 Buscar termo ou sigla (ex: RTP, VoIP, RSA, IPsec, jitter, firewall...)"
+              oninput="renderGlossary()"
+            >
+          </div>
+          <div class="glossary-filters">
+            <button class="filter-btn active" onclick="setGlossaryTheme('all', this)">Todos os Termos (43)</button>
+            <button class="filter-btn" onclick="setGlossaryTheme('multimidia', this)">🌐 Redes Multimídia — Cap. 7 (20)</button>
+            <button class="filter-btn" onclick="setGlossaryTheme('seguranca', this)">🔒 Segurança em Redes — Cap. 8 (23)</button>
+          </div>
+          <div class="glossary-count" id="glossary-count">Exibindo 43 de 43 termos</div>
+        </div>
+
+        <div class="glossary-grid" id="glossary-grid"></div>
+      </section>
 
     </div>
   </main>
@@ -2636,6 +2907,7 @@
 
     function setMode(mode) {
       currentMode = mode;
+      if (isGlossaryOpen) closeGlossaryView();
       document.getElementById('btn-mode-study').classList.toggle('active', mode === 'study');
       document.getElementById('btn-mode-exam').classList.toggle('active', mode === 'exam');
       
@@ -2966,6 +3238,449 @@
       renderNav();
       if (currentMode === 'exam') startTimer();
       showQuestion(0);
+    }
+
+    const DADOS_GLOSSARIO = [
+  {
+    "sigla": "PCM",
+    "nome_completo": "Pulse Code Modulation (Modulação por Código de Pulsos)",
+    "tema": "multimidia",
+    "o_que_e": "É a técnica padrão para converter um sinal de áudio analógico (contínuo, como a voz humana) em um sinal digital (sequência de 0s e 1s) sem compressão.",
+    "o_que_faz": "Realiza duas etapas: amostragem (mede a onda sonora milhares de vezes por segundo) e quantização (arredonda cada medição para um dos níveis possíveis e a representa em bits).",
+    "exemplo_uso": "Na telefonia digital tradicional (codec G.711), a voz é amostrada 8.000 vezes por segundo com 256 níveis (8 bits por amostra), gerando uma taxa de 64 kbps."
+  },
+  {
+    "sigla": "Streaming (HTTP vs. UDP)",
+    "nome_completo": "Transmissão de Fluxo Contínuo",
+    "tema": "multimidia",
+    "o_que_e": "É a forma de transmitir áudio ou vídeo pela rede permitindo que o usuário comece a assistir/ouvir antes de baixar o arquivo inteiro.",
+    "o_que_faz": "Envia a mídia em blocos contínuos. No HTTP Streaming (sobre TCP), atravessa firewalls/NATs facilmente e usa servidores Web comuns; no UDP Streaming, envia na taxa fixa do vídeo, mas pode ser bloqueado por firewalls.",
+    "exemplo_uso": "Quando você dá play em um vídeo no YouTube ou Netflix, o navegador faz requisições HTTP GET sobre TCP e começa a exibir os primeiros segundos enquanto o resto continua sendo baixado."
+  },
+  {
+    "sigla": "Playout Buffer",
+    "nome_completo": "Buffer de Reprodução (Memória Amortecedora)",
+    "tema": "multimidia",
+    "o_que_e": "É uma área temporária de memória no dispositivo do usuário (cliente) que armazena alguns segundos de vídeo ou milissegundos de áudio antes de reproduzi-los.",
+    "o_que_faz": "Absorve oscilações de velocidade e atraso da rede (jitter), evitando que o vídeo congele (freezing) ou que a voz fique picotada durante a reprodução.",
+    "exemplo_uso": "Ao clicar em um filme, a rodinha de carregamento gira por 3 a 4 segundos (atraso inicial tp) para acumular bits no buffer; depois disso, o filme roda liso mesmo se o Wi-Fi oscilar por 1 segundo."
+  },
+  {
+    "sigla": "DASH",
+    "nome_completo": "Dynamic Adaptive Streaming over HTTP",
+    "tema": "multimidia",
+    "o_que_e": "É o padrão moderno de streaming adaptativo de vídeo sobre HTTP, em que o vídeo é dividido em pequenos trechos (chunks) codificados em várias qualidades diferentes.",
+    "o_que_faz": "Permite que o player do cliente meça a velocidade da sua internet em tempo real e peça o próximo trecho em maior qualidade (4K/1080p) quando a conexão está rápida, ou menor qualidade (480p) quando está lenta, sem travar.",
+    "exemplo_uso": "Você está assistindo a uma série no celular em Full HD no Wi-Fi, sai de casa para o 4G com sinal fraco e o vídeo reduz automaticamente a resolução por alguns segundos em vez de congelar."
+  },
+  {
+    "sigla": "MPD",
+    "nome_completo": "Media Presentation Description (Arquivo de Manifesto)",
+    "tema": "multimidia",
+    "o_que_e": "É um arquivo de índice (geralmente em XML) usado no sistema DASH.",
+    "o_que_faz": "Lista todas as versões disponíveis de um vídeo (resoluções, taxas de bits), faixas de áudio/idiomas e as URLs exatas de cada pedaço (chunk) no servidor.",
+    "exemplo_uso": "Antes de baixar o primeiro segundo de um filme no DASH, o aplicativo baixa o arquivo MPD para descobrir que existem versões em 480p, 720p e 1080p e áudios em português e inglês."
+  },
+  {
+    "sigla": "CDN",
+    "nome_completo": "Content Distribution Network (Rede de Distribuição de Conteúdo)",
+    "tema": "multimidia",
+    "o_que_e": "É uma rede global de servidores espalhados geograficamente que guardam cópias (réplicas) de vídeos, imagens e sites perto dos usuários.",
+    "o_que_faz": "Usa redirecionamento via DNS para conectar o usuário ao servidor mais próximo (estratégias 'Entrar profundamente' nos ISPs ou 'Trazer para dentro de casa' em IXPs), reduzindo latência e evitando sobrecarga no servidor original.",
+    "exemplo_uso": "Quando alguém no Brasil assiste a um vídeo da Netflix, o vídeo não vem dos EUA: ele é entregue por um servidor CDN localizado dentro do próprio provedor de internet (ISP) da cidade."
+  },
+  {
+    "sigla": "VoIP",
+    "nome_completo": "Voice over IP (Voz sobre IP)",
+    "tema": "multimidia",
+    "o_que_e": "É a tecnologia que permite realizar chamadas telefônicas e de voz em tempo real pela Internet (redes IP) em vez da rede telefônica fixa tradicional.",
+    "o_que_faz": "Digitaliza a voz, divide em pequenos pedaços (ex.: a cada 20 ms), encapsula em pacotes RTP/UDP/IP e transmite em tempo real com tolerância a pequenas perdas, mas exigindo baixa latência (< 150 ms ideal).",
+    "exemplo_uso": "Fazer uma ligação de voz pelo WhatsApp, Discord, Skype ou Microsoft Teams usando Wi-Fi ou 4G/5G."
+  },
+  {
+    "sigla": "Jitter",
+    "nome_completo": "Variação de Atraso Fim a Fim",
+    "tema": "multimidia",
+    "o_que_e": "É a diferença irregular no tempo que pacotes consecutivos levam para atravessar a rede até o destino.",
+    "o_que_faz": "Embora um pacote saia a cada 20 ms do microfone, filas variáveis nos roteadores fazem com que eles cheguem em intervalos irregulares (ex.: 15 ms, 45 ms, 18 ms). É combatido com timestamps e buffer de reprodução (playout adaptativo).",
+    "exemplo_uso": "Em uma reunião online, se a rede tem muito jitter e o buffer é pequeno demais, a voz do colega soa robotizada ou com sílabas cortadas."
+  },
+  {
+    "sigla": "FEC",
+    "nome_completo": "Forward Error Correction (Correção Antecipada de Erros)",
+    "tema": "multimidia",
+    "o_que_e": "É um conjunto de técnicas para recuperar pacotes perdidos em áudio/vídeo em tempo real sem precisar pedir retransmissão ao remetente.",
+    "o_que_faz": "Adiciona dados redundantes ao fluxo (como 1 pacote XOR para cada N pacotes originais, ou anexar uma cópia em baixa qualidade do pacote anterior via piggybacking), consumindo banda extra em troca de resiliência a perdas.",
+    "exemplo_uso": "Em uma ligação VoIP com piggybacking, o pacote 2 leva o áudio normal do trecho 2 e uma cópia compactada do trecho 1. Se o pacote 1 se perder na rede, o receptor toca a cópia compactada que veio no pacote 2."
+  },
+  {
+    "sigla": "Intercalação (Interleaving)",
+    "nome_completo": "Reordenação de Unidades de Mídia",
+    "tema": "multimidia",
+    "o_que_e": "É uma técnica alternativa à FEC para reduzir o impacto perceptível da perda de pacotes em áudio.",
+    "o_que_faz": "Divide o áudio em unidades menores (ex.: 5 ms) e mistura sua ordem antes de montar os pacotes, de modo que trechos vizinhos viajem em pacotes diferentes. Não aumenta a largura de banda, mas aumenta a latência.",
+    "exemplo_uso": "Se um pacote de 20 ms se perde sem intercalação, há um silêncio longo de 20 ms. Com intercalação, ocorrem apenas 4 microfalhas de 5 ms espalhadas, quase imperceptíveis ao ouvido."
+  },
+  {
+    "sigla": "RTP",
+    "nome_completo": "Real-Time Transport Protocol (Protocolo de Transporte em Tempo Real)",
+    "tema": "multimidia",
+    "o_que_e": "É o protocolo padrão da Internet que transporta pacotes de áudio e vídeo em tempo real (normalmente rodando sobre UDP).",
+    "o_que_faz": "Adiciona um cabeçalho de 12 bytes com número de sequência (detecta perdas), timestamp (remove jitter), Payload Type (indica o codec usado, permitindo trocá-lo no meio da chamada) e SSRC (identifica quem está falando).",
+    "exemplo_uso": "Em uma videochamada no Zoom ou Google Meet, os dados da sua câmera e do seu microfone são empacotados em pacotes RTP para chegar sincronizados ao outro lado."
+  },
+  {
+    "sigla": "SSRC",
+    "nome_completo": "Synchronization Source Identifier (Identificador da Fonte de Sincronização)",
+    "tema": "multimidia",
+    "o_que_e": "É um número aleatório de 32 bits presente no cabeçalho de todo pacote RTP.",
+    "o_que_faz": "Identifica de forma única a origem de um fluxo específico de mídia dentro de uma sessão RTP, permitindo diferenciar vários participantes que enviam pacotes para o mesmo socket UDP.",
+    "exemplo_uso": "Em uma audioconferência com Alice, Bob e Claire, os pacotes de voz de Bob e Claire chegam na mesma porta UDP de Alice; o programa de Alice olha o campo SSRC para saber quais pacotes são de Bob e quais são de Claire."
+  },
+  {
+    "sigla": "RTCP",
+    "nome_completo": "Real-Time Control Protocol (Protocolo de Controle em Tempo Real)",
+    "tema": "multimidia",
+    "o_que_e": "É o protocolo companheiro do RTP, focado exclusivamente em controle e monitoramento da qualidade da sessão (não carrega áudio nem vídeo).",
+    "o_que_faz": "Envia relatórios periódicos de remetente e receptor (taxa de perda de pacotes, jitter e sincronização de relógio entre áudio e vídeo), limitando seu consumo a cerca de 5% da banda total da chamada.",
+    "exemplo_uso": "O receptor envia um relatório RTCP avisando que está perdendo 15% dos pacotes; o remetente lê esse relatório e reduz automaticamente a qualidade do vídeo para aliviar o congestionamento."
+  },
+  {
+    "sigla": "SIP",
+    "nome_completo": "Session Initiation Protocol (Protocolo de Iniciação de Sessão)",
+    "tema": "multimidia",
+    "o_que_e": "É um protocolo de sinalização da camada de aplicação (com mensagens em texto parecidas com HTTP) usado para estabelecer, modificar e encerrar chamadas multimídia.",
+    "o_que_faz": "Localiza usuários mesmo quando mudam de IP (usando Registrador SIP e Proxy SIP), faz o 'toque' da chamada (INVITE -> 200 OK -> ACK) e encerra a ligação (BYE). O áudio real trafega fora do SIP, via RTP.",
+    "exemplo_uso": "Um telefone IP corporativo envia uma mensagem SIP INVITE para ligar para sip:maria@empresa.com; assim que Maria atende (200 OK), a voz começa a fluir diretamente via RTP entre os dois aparelhos."
+  },
+  {
+    "sigla": "SDP",
+    "nome_completo": "Session Description Protocol (Protocolo de Descrição de Sessão)",
+    "tema": "multimidia",
+    "o_que_e": "É o formato de descrição carregado no corpo das mensagens SIP para anunciar parâmetros técnicos da mídia.",
+    "o_que_faz": "Informa o endereço IP, a porta UDP em que o remetente deseja RECEBER a mídia e quais codecs de áudio/vídeo ele suporta (ex.: linha 'm=audio 48753 RTP/AVP 3').",
+    "exemplo_uso": "No SIP INVITE, Alice inclui um bloco SDP dizendo: 'Quero receber áudio GSM na minha porta UDP 48753'. Bob lê o SDP e passa a enviar os pacotes RTP para essa porta."
+  },
+  {
+    "sigla": "QoS",
+    "nome_completo": "Quality of Service (Qualidade de Serviço)",
+    "tema": "multimidia",
+    "o_que_e": "É o conjunto de mecanismos em roteadores e redes para dar tratamento diferenciado ou garantias de desempenho (latência, jitter, banda mínima) a certos tipos de tráfego.",
+    "o_que_faz": "Evita que tráfegos pesados e elásticos (como downloads grandes) prejudiquem aplicações sensíveis ao tempo (como VoIP e telemedicina), usando marcação, policiamento e escalonamento de filas.",
+    "exemplo_uso": "Um roteador corporativo configurado com QoS garante que ligações de voz dos funcionários sempre tenham prioridade na fila sobre downloads de atualizações de software."
+  },
+  {
+    "sigla": "WFQ",
+    "nome_completo": "Weighted Fair Queuing (Enfileiramento Justo Ponderado)",
+    "tema": "multimidia",
+    "o_que_e": "É um algoritmo de escalonamento de pacotes em roteadores que divide a largura de banda de um enlace entre múltiplas classes de serviço conforme pesos definidos.",
+    "o_que_faz": "Garante uma fração mínima de banda para cada classe ativa evitando inanição (starvation). Por ser conservador de trabalho, se uma classe estiver sem pacotes, redistribui sua banda proporcionalmente às classes ativas.",
+    "exemplo_uso": "Se a Classe 1 tem peso 0,5, a Classe 2 tem 0,25 e a Classe 3 (peso 0,25) está vazia, o WFQ entrega 2/3 do enlace para a Classe 1 e 1/3 para a Classe 2 (sequência 1, 1, 2, 1, 1, 2...)."
+  },
+  {
+    "sigla": "Token Bucket",
+    "nome_completo": "Balde de Fichas (Policiamento de Tráfego)",
+    "tema": "multimidia",
+    "o_que_e": "É um mecanismo regulador de tráfego definido por dois parâmetros: taxa média de geração de fichas (r) e capacidade máxima do balde/rajada (b).",
+    "o_que_faz": "Limita a taxa média de longo prazo de um fluxo a 'r' pacotes/s, mas permite rajadas curtas de até 'b' pacotes acumulados. Um pacote só é liberado se houver uma ficha disponível no balde.",
+    "exemplo_uso": "Um provedor de internet usa um balde de fichas na borda da rede para garantir que um cliente corporativo não exceda o plano contratado de 100 Mbps de média, tolerando apenas pequenos picos momentâneos."
+  },
+  {
+    "sigla": "DiffServ / DSCP / PHB",
+    "nome_completo": "Differentiated Services (Serviços Diferenciados)",
+    "tema": "multimidia",
+    "o_que_e": "É uma arquitetura escalável de QoS que separa funções complexas na borda da rede e encaminhamento simples no núcleo.",
+    "o_que_faz": "Roteadores de borda classificam, policiam e marcam 6 bits no cabeçalho IP (campo DSCP). Roteadores do núcleo apenas olham o DSCP e aplicam o comportamento por salto (PHB) correspondente, sem guardar estado de cada fluxo.",
+    "exemplo_uso": "Pacotes de voz recebem marcação DSCP de 'Encaminhamento Expedito (EF)' na borda da operadora para passar sempre na frente nas filas dos roteadores do backbone."
+  },
+  {
+    "sigla": "IntServ e RSVP",
+    "nome_completo": "Integrated Services e Resource Reservation Protocol",
+    "tema": "multimidia",
+    "o_que_e": "É uma arquitetura de QoS orientada a fluxos individuais que busca garantias rígidas de banda e atraso ponta a ponta.",
+    "o_que_faz": "Usa o protocolo de sinalização RSVP para reservar recursos em cada roteador do caminho e aplica controle de admissão (call admission), rejeitando novas chamadas se o enlace estiver cheio. Não escalou para a Internet pública.",
+    "exemplo_uso": "Antes de iniciar uma videoconferência crítica em uma rede privada dedicada, o RSVP pergunta a todos os roteadores do trajeto se há 2 Mbps livres; se um roteador não tiver, a chamada é recusada para não degradar as existentes."
+  },
+  {
+    "sigla": "Tríade de Segurança",
+    "nome_completo": "Confidencialidade, Integridade e Autenticação",
+    "tema": "seguranca",
+    "o_que_e": "São as propriedades fundamentais que uma comunicação segura em redes de computadores busca garantir diante de um invasor (Trudy).",
+    "o_que_faz": "Confidencialidade garante sigilo (ninguém lê); Integridade garante que os dados não foram alterados em trânsito; Autenticação confirma a identidade real de quem está do outro lado. São propriedades independentes entre si.",
+    "exemplo_uso": "Ao acessar o aplicativo do seu banco via HTTPS, a confidencialidade oculta sua senha, a integridade impede que alterem o valor do Pix em trânsito e a autenticação prova que você está falando com o banco verdadeiro."
+  },
+  {
+    "sigla": "Criptografia Simétrica",
+    "nome_completo": "Criptografia de Chave Secreta Compartilhada (AES / DES)",
+    "tema": "seguranca",
+    "o_que_e": "É o tipo de criptografia em que remetente e destinatário utilizam exatamente a mesma chave secreta tanto para cifrar quanto para decifrar a mensagem.",
+    "o_que_faz": "É extremamente rápida e ideal para cifrar grandes volumes de dados (como vídeos, arquivos ou tráfego HTTPS/VPN). Sua limitação é o problema de distribuição de chaves: para N pessoas, exige N(N-1)/2 chaves.",
+    "exemplo_uso": "Depois que seu navegador negocia uma chave de sessão com um site, todo o tráfego da página é cifrado rapidamente usando o algoritmo simétrico AES-256."
+  },
+  {
+    "sigla": "CBC e IV",
+    "nome_completo": "Cipher Block Chaining e Vetor de Inicialização",
+    "tema": "seguranca",
+    "o_que_e": "CBC é um modo de operação seguro para cifras de bloco (como AES), e IV é um bloco aleatório inicial enviado em texto claro a cada mensagem.",
+    "o_que_faz": "Aplica XOR entre cada bloco de texto claro e o bloco cifrado anterior (usando o IV no primeiro bloco). Isso garante que mensagens idênticas gerem textos cifrados totalmente diferentes, evitando vazamento de padrões.",
+    "exemplo_uso": "Se você enviar duas vezes a mensagem 'Aprovado' com a mesma chave AES usando CBC e um novo IV aleatório a cada envio, um invasor verá dois blocos cifrados completamente diferentes e não saberá que a mensagem se repetiu."
+  },
+  {
+    "sigla": "Criptografia Assimétrica",
+    "nome_completo": "Criptografia de Chave Pública",
+    "tema": "seguranca",
+    "o_que_e": "É um sistema criptográfico onde cada usuário possui um par matematicamente ligado de chaves: uma Chave Pública (divulgada a todos) e uma Chave Privada (mantida em segredo absoluto).",
+    "o_que_faz": "O que é cifrado com a chave pública só pode ser decifrado com a chave privada correspondente (confidencialidade), e o que é cifrado com a chave privada pode ser verificado por todos com a chave pública (assinatura digital). Escala linearmente: 2N chaves para N pessoas.",
+    "exemplo_uso": "Você cifra uma chave secreta usando a chave pública do servidor do banco para que somente o banco (dono da chave privada) consiga decifrá-la."
+  },
+  {
+    "sigla": "RSA",
+    "nome_completo": "Algoritmo Rivest-Shamir-Adleman",
+    "tema": "seguranca",
+    "o_que_e": "É o algoritmo de criptografia de chave pública mais famoso do mundo, baseado na dificuldade computacional de fatorar o produto de dois números primos muito grandes.",
+    "o_que_faz": "Escolhe dois primos p e q, calcula n = p·q e z = (p-1)(q-1), escolhe o expoente público e, encontra o expoente privado d tal que (e·d) mod z = 1, e cifra mensagens fazendo c = m^e mod n.",
+    "exemplo_uso": "Amplamente utilizado em certificados digitais X.509, assinaturas de documentos eletrônicos, SSH e na troca segura de segredos em conexões TLS/HTTPS."
+  },
+  {
+    "sigla": "Diffie-Hellman (DHKE)",
+    "nome_completo": "Troca de Chaves Diffie-Hellman",
+    "tema": "seguranca",
+    "o_que_e": "É um protocolo matemático que permite que duas pessoas criem uma mesma chave secreta compartilhada conversando apenas por um canal público e inseguro.",
+    "o_que_faz": "A partir de parâmetros públicos (primo p e base g), cada lado escolhe um segredo privado (SA, SB), troca valores públicos (g^SA mod p e g^SB mod p) e ambos calculam o mesmo segredo S = g^(SA·SB) mod p.",
+    "exemplo_uso": "Usado no início de conexões HTTPS (TLS 1.3) e VPNs IPsec (IKE) para gerar chaves de sessão temporárias sem nunca transmitir a chave pela rede."
+  },
+  {
+    "sigla": "Aritmética Modular",
+    "nome_completo": "Operação Módulo (mod n)",
+    "tema": "seguranca",
+    "o_que_e": "É o sistema matemático que trabalha com o resto da divisão inteira por um número n (como as horas de um relógio que voltam ao zero após 12).",
+    "o_que_faz": "Permite simplificar multiplicações e potências gigantescas usando identidades como [(a mod n)·(b mod n)] mod n = (a·b) mod n, tornando viáveis cálculos de RSA e Diffie-Hellman.",
+    "exemplo_uso": "Em vez de multiplicar 10.023 × 10.004 para depois achar o resto por 10.000, reduzimos primeiro para 23 × 4 = 92 mod 10.000 = 92."
+  },
+  {
+    "sigla": "Hash Criptográfico",
+    "nome_completo": "Função de Resumo Criptográfico (SHA-256, SHA-1, MD5)",
+    "tema": "seguranca",
+    "o_que_e": "É uma função matemática de mão única que transforma uma mensagem ou arquivo de qualquer tamanho em uma 'impressão digital' de tamanho fixo.",
+    "o_que_faz": "Garante resistência a colisões (é computacionalmente inviável achar duas mensagens diferentes com o mesmo hash) e efeito avalanche (mudar 1 bit altera completamente o hash). Muito mais seguro que um checksum comum.",
+    "exemplo_uso": "Sites de download de distribuições Linux publicam o hash SHA-256 da imagem ISO; após baixar, você calcula o hash localmente para provar que o arquivo não foi adulterado."
+  },
+  {
+    "sigla": "MAC",
+    "nome_completo": "Message Authentication Code (Código de Autenticação de Mensagem)",
+    "tema": "seguranca",
+    "o_que_e": "É um resumo criptográfico gerado combinando a mensagem com uma chave secreta compartilhada entre remetente e destinatário (ex.: HMAC).",
+    "o_que_faz": "Garante integridade e autenticação da mensagem entre duas partes que já compartilham uma chave secreta. Não oferece não-repúdio e não escala para milhares de leitores públicos.",
+    "exemplo_uso": "Cada pacote trafegado dentro de uma conexão HTTPS (SSL/TLS) ou túnel IPsec carrega um MAC para que o receptor detecte imediatamente qualquer bit alterado no caminho."
+  },
+  {
+    "sigla": "Assinatura Digital",
+    "nome_completo": "Assinatura Criptográfica de Chave Pública",
+    "tema": "seguranca",
+    "o_que_e": "É o equivalente eletrônico verificável de uma assinatura manuscrita, construída com função hash e criptografia de chave pública.",
+    "o_que_faz": "O autor calcula o hash da mensagem e o cifra com sua CHAVE PRIVADA. Qualquer pessoa pode verificar a autenticidade e integridade usando a CHAVE PÚBLICA do autor, garantindo também o não-repúdio.",
+    "exemplo_uso": "Um desenvolvedor assina digitalmente uma atualização de software; milhões de computadores verificam a assinatura usando a chave pública do fabricante antes de instalar."
+  },
+  {
+    "sigla": "CA e Certificado Digital",
+    "nome_completo": "Autoridade Certificadora (Certificate Authority)",
+    "tema": "seguranca",
+    "o_que_e": "A CA é uma entidade confiável (como Let's Encrypt ou DigiCert) que emite Certificados Digitais vinculando uma identidade (ex.: um site) à sua chave pública.",
+    "o_que_faz": "A CA verifica a identidade do dono do domínio e assina o hash do certificado usando a CHAVE PRIVADA da própria CA. Os navegadores já vêm com as chaves públicas das CAs confiáveis para validar esses certificados.",
+    "exemplo_uso": "Quando você entra em https://github.com, o navegador confere o certificado assinado pela CA para ter certeza de que aquela chave pública realmente pertence ao GitHub e não a um impostor."
+  },
+  {
+    "sigla": "Nonce",
+    "nome_completo": "Number Used Once (Número Usado Apenas Uma Vez)",
+    "tema": "seguranca",
+    "o_que_e": "É um número aleatório ou pseudoaleatório gerado para ser usado uma única vez na vida de um protocolo de autenticação.",
+    "o_que_faz": "Garante 'vivacidade' (liveness) e frescor em protocolos de desafio-resposta (como o ap4.0 do Kurose), impedindo que um invasor reutilize mensagens gravadas de sessões antigas.",
+    "exemplo_uso": "Bob envia o nonce R = 839201 para Alice; Alice devolve R cifrado com a chave secreta. Mesmo que Trudy grave essa resposta hoje, amanhã Bob enviará outro nonce e a gravação será rejeitada."
+  },
+  {
+    "sigla": "Ataque de Repetição",
+    "nome_completo": "Replay Attack / Playback Attack",
+    "tema": "seguranca",
+    "o_que_e": "É um ataque de rede no qual um invasor captura um pacote válido (mesmo criptografado) e o reenvia novamente mais tarde para induzir o receptor a repetir uma ação ou aceitar uma autenticação.",
+    "o_que_faz": "Explora protocolos que não possuem controle de frescor. É combatido com nonces (em autenticação), números de sequência implícitos (no SSL/TLS) e janelas anti-replay com número de sequência ESP (no IPsec).",
+    "exemplo_uso": "Um invasor captura o pacote cifrado de uma transferência bancária ou de um pacote IPsec e o envia novamente ao servidor; graças ao número de sequência ESP duplicado, o roteador IPsec descarta o pacote."
+  },
+  {
+    "sigla": "PGP",
+    "nome_completo": "Pretty Good Privacy (E-mail Seguro e Criptografia Híbrida)",
+    "tema": "seguranca",
+    "o_que_e": "É um famoso sistema de segurança para e-mails que combina criptografia simétrica, assimétrica e hash (criptografia híbrida).",
+    "o_que_faz": "Assina o hash da mensagem com a chave privada do remetente, cifra mensagem + assinatura rapidamente com uma chave simétrica de sessão (K_S) aleatória e cifra K_S com a chave pública do destinatário.",
+    "exemplo_uso": "Jornalistas e ativistas usam PGP para trocar e-mails sigilosos e autenticados mesmo usando provedores de e-mail comuns na Internet."
+  },
+  {
+    "sigla": "SSL / TLS",
+    "nome_completo": "Secure Sockets Layer / Transport Layer Security",
+    "tema": "seguranca",
+    "o_que_e": "É o protocolo de segurança que protege conexões TCP (base do HTTPS), fornecendo confidencialidade, integridade e autenticação.",
+    "o_que_faz": "Realiza um Handshake para autenticar o servidor via certificado e derivar 4 chaves de sessão (cifração e MAC em cada direção). Protege contra reordenação via números de sequência implícitos no MAC e contra ataques por truncamento via campo 'tipo'.",
+    "exemplo_uso": "O cadeado verde/HTTPS no navegador ao fazer compras online, acessar e-mails ou usar APIs REST seguras."
+  },
+  {
+    "sigla": "Pre-Master Secret",
+    "nome_completo": "Segredo Pré-Mestre no Handshake SSL/TLS",
+    "tema": "seguranca",
+    "o_que_e": "É um valor secreto gerado pelo cliente durante o handshake SSL e enviado ao servidor cifrado com a chave pública extraída do certificado do servidor.",
+    "o_que_faz": "Serve de base (junto com nonces) para que ambos calculem o Master Secret e as 4 chaves de sessão. Um impostor que envia o certificado de outra pessoa não consegue decifrar o Pre-Master Secret e falha na verificação final do MAC.",
+    "exemplo_uso": "Mesmo que Trudy intercepte sua conexão e apresente o certificado legítimo do banco, ela não tem a chave privada do banco para abrir o Pre-Master Secret; o handshake falha imediatamente."
+  },
+  {
+    "sigla": "IPsec e VPN",
+    "nome_completo": "Internet Protocol Security e Virtual Private Network",
+    "tema": "seguranca",
+    "o_que_e": "IPsec é o conjunto de protocolos que provê segurança diretamente na camada de rede (IP), sendo a base das VPNs corporativas (site-to-site).",
+    "o_que_faz": "No Modo Túnel, encapsula e cifra o datagrama IP inteiro dentro de um novo pacote IP entre dois roteadores de borda, permitindo que filiais se comuniquem com segurança atravessando a Internet pública.",
+    "exemplo_uso": "O roteador da filial em São Paulo cria um túnel IPsec com o roteador da matriz em Curitiba; todo o tráfego interno dos funcionários trafega cifrado pela Internet como se estivessem na mesma rede local."
+  },
+  {
+    "sigla": "AH vs. ESP",
+    "nome_completo": "Authentication Header vs. Encapsulating Security Payload",
+    "tema": "seguranca",
+    "o_que_e": "São os dois protocolos de proteção de datagramas oferecidos pela arquitetura IPsec.",
+    "o_que_faz": "O AH fornece apenas autenticação de origem e integridade (sem cifrar os dados). O ESP (muito mais utilizado) fornece confidencialidade (cifração), autenticação de origem, integridade e proteção anti-replay.",
+    "exemplo_uso": "Quase todas as VPNs IPsec empresariais escolhem o protocolo ESP no Modo Túnel porque precisam tanto ocultar os dados (confidencialidade) quanto impedir adulterações."
+  },
+  {
+    "sigla": "SA, SAD e SPD",
+    "nome_completo": "Associação de Segurança e seus Bancos de Dados no IPsec",
+    "tema": "seguranca",
+    "o_que_e": "Uma SA é um contrato unidirecional (simplex) de segurança entre dois pontos IPsec; SPD e SAD são as duas tabelas internas mantidas nos roteadores/hosts IPsec.",
+    "o_que_faz": "A SPD (Política de Segurança) decide QUAIS pacotes devem ser descartados, liberados ou protegidos com IPsec; a SAD (Associação de Segurança) guarda as chaves, algoritmos, SPI e números de sequência das SAs ativas.",
+    "exemplo_uso": "Quando um pacote sai da filial para a matriz, o roteador olha na SPD que aquele destino exige VPN, busca as chaves daquela SA na SAD e aplica o encapsulamento ESP."
+  },
+  {
+    "sigla": "IKE",
+    "nome_completo": "Internet Key Exchange (Troca de Chaves da Internet)",
+    "tema": "seguranca",
+    "o_que_e": "É o protocolo de gerenciamento automático de chaves utilizado pelo IPsec.",
+    "o_que_faz": "Autentica roteadores (via certificados ou chave pré-compartilhada) e usa Diffie-Hellman para criar e renovar automaticamente Associações de Segurança (SAs) sem precisar digitar chaves manualmente em centenas de roteadores.",
+    "exemplo_uso": "Ao ligar uma nova filial à matriz, os roteadores executam o IKE para negociar automaticamente as chaves ESP da VPN e renová-las periodicamente a cada poucas horas."
+  },
+  {
+    "sigla": "WEP e IEEE 802.11i (WPA2)",
+    "nome_completo": "Protocolos de Segurança em Redes Locais Sem Fio (Wi-Fi)",
+    "tema": "seguranca",
+    "o_que_e": "WEP foi o primeiro padrão de segurança Wi-Fi (hoje obsoleto e inseguro); IEEE 802.11i (conhecido comercialmente como WPA2) é o padrão seguro que o substituiu.",
+    "o_que_faz": "O WEP cifrava dados + ICV com XOR usando um keystream RC4 derivado de chave estática + IV curto de 24 bits (que se repetia rapidamente). O 802.11i introduziu autenticação forte (EAP/RADIUS), chaves dinâmicas por sessão, AES-CCMP e IV de 48 bits.",
+    "exemplo_uso": "Ao conectar seu celular ao Wi-Fi de casa ou da faculdade (WPA2/WPA3), um handshake de 4 vias cria uma chave única para a sua sessão, impedindo que vizinhos capturem seus pacotes."
+  },
+  {
+    "sigla": "Firewall",
+    "nome_completo": "Filtro Sem Estado, Stateful e Gateway de Aplicação",
+    "tema": "seguranca",
+    "o_que_e": "É uma combinação de hardware e software que isola uma rede interna da Internet externa, controlando quais pacotes podem entrar ou sair.",
+    "o_que_faz": "Filtros sem estado analisam apenas cabeçalhos isolados via ACL; Firewalls Stateful mantêm ACL + Tabela de Conexões rastreando sessões TCP/UDP ativas; Gateways de Aplicação (proxies) inspecionam dados da aplicação e exigem um filtro de roteador para impedir desvios.",
+    "exemplo_uso": "O firewall stateful da empresa permite que funcionários acessem sites externos (porta 80/443) e aceita automaticamente os pacotes de resposta dessas conexões ativas, mas bloqueia qualquer tentativa externa de iniciar conexão para dentro."
+  },
+  {
+    "sigla": "IDS e IPS",
+    "nome_completo": "Intrusion Detection System / Intrusion Prevention System",
+    "tema": "seguranca",
+    "o_que_e": "São sistemas de segurança operacional que realizam Inspeção Profunda de Pacotes (DPI), olhando além dos cabeçalhos até a carga útil da aplicação.",
+    "o_que_faz": "O IDS apenas gera alertas ao detectar tráfego suspeito; o IPS bloqueia/descarta pacotes maliciosos em tempo real. Podem ser baseados em assinaturas (regras de ataques conhecidos, como Snort) ou em anomalias (desvios estatísticos do tráfego normal).",
+    "exemplo_uso": "Mesmo que um ataque de SQL Injection chegue pela porta 443 permitida pelo firewall, um IPS inspeciona o conteúdo da requisição HTTP, reconhece a assinatura do ataque e bloqueia o pacote."
+  }
+];
+    let isGlossaryOpen = false;
+    let glossaryTheme = 'all';
+
+    function toggleGlossaryView() {
+      if (isGlossaryOpen) {
+        closeGlossaryView();
+      } else {
+        openGlossaryView();
+      }
+    }
+
+    function openGlossaryView() {
+      isGlossaryOpen = true;
+      document.getElementById('btn-mode-glossary').classList.add('active');
+      document.getElementById('btn-mode-study').classList.remove('active');
+      document.getElementById('btn-mode-exam').classList.remove('active');
+      document.getElementById('quiz-filter-bar').style.display = 'none';
+      document.getElementById('quiz-progress-bar').style.display = 'none';
+      document.getElementById('nav-grid').style.display = 'none';
+      document.getElementById('question-card').style.display = 'none';
+      document.getElementById('final-card').style.display = 'none';
+      document.getElementById('glossary-section').classList.add('show');
+      renderGlossary();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function closeGlossaryView() {
+      isGlossaryOpen = false;
+      document.getElementById('btn-mode-glossary').classList.remove('active');
+      document.getElementById('btn-mode-study').classList.toggle('active', currentMode === 'study');
+      document.getElementById('btn-mode-exam').classList.toggle('active', currentMode === 'exam');
+      document.getElementById('quiz-filter-bar').style.display = 'flex';
+      document.getElementById('quiz-progress-bar').style.display = 'block';
+      document.getElementById('nav-grid').style.display = 'flex';
+      document.getElementById('glossary-section').classList.remove('show');
+      document.getElementById('question-card').style.display = 'block';
+    }
+
+    function setGlossaryTheme(theme, el) {
+      glossaryTheme = theme;
+      document.querySelectorAll('#glossary-section .filter-btn').forEach(btn => btn.classList.remove('active'));
+      if (el) el.classList.add('active');
+      renderGlossary();
+    }
+
+    function renderGlossary() {
+      const query = (document.getElementById('glossary-search').value || '').trim().toLowerCase();
+      const grid = document.getElementById('glossary-grid');
+      grid.innerHTML = '';
+
+      const filtrados = DADOS_GLOSSARIO.filter(item => {
+        const matchTheme = glossaryTheme === 'all' || item.tema === glossaryTheme;
+        if (!matchTheme) return false;
+        if (!query) return true;
+        const texto = `${item.sigla} ${item.nome_completo} ${item.o_que_e} ${item.o_que_faz} ${item.exemplo_uso}`.toLowerCase();
+        return texto.includes(query);
+      });
+
+      document.getElementById('glossary-count').textContent =
+        `Exibindo ${filtrados.length} de ${DADOS_GLOSSARIO.length} termos`;
+
+      if (filtrados.length === 0) {
+        grid.innerHTML = '<div class="glossary-empty">Nenhum termo encontrado para a sua busca. Tente outra sigla ou limpe o filtro.</div>';
+        return;
+      }
+
+      filtrados.forEach(item => {
+        const isMulti = item.tema === 'multimidia';
+        const card = document.createElement('article');
+        card.className = 'glossary-card';
+        card.innerHTML = `
+          <div class="glossary-card-head">
+            <div>
+              <div class="glossary-sigla">${item.sigla}</div>
+              <div class="glossary-fullname">${item.nome_completo}</div>
+            </div>
+            <span class="badge ${isMulti ? 'badge-tema-multi' : 'badge-tema-sec'}">
+              ${isMulti ? '🌐 Cap. 7' : '🔒 Cap. 8'}
+            </span>
+          </div>
+          <div class="glossary-block">
+            <span class="glossary-block-label label-oque">📌 O que é</span><br>
+            ${item.o_que_e}
+          </div>
+          <div class="glossary-block">
+            <span class="glossary-block-label label-faz">⚙️ O que faz</span><br>
+            ${item.o_que_faz}
+          </div>
+          <div class="glossary-example">
+            <strong>💡 Exemplo de uso</strong>
+            ${item.exemplo_uso}
+          </div>
+        `;
+        grid.appendChild(card);
+      });
     }
 
     // Inicialização da aplicação

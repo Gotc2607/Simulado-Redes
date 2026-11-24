@@ -40,18 +40,71 @@ def exibir_cabecalho(titulo, referencia):
     print(f"{Cores.CINZA}📚 {referencia}{Cores.RESET}")
     print(f"{Cores.CIANO}{'=' * 75}{Cores.RESET}\n")
 
+def carregar_glossario():
+    caminho = Path(__file__).parent / "glossario.json"
+    if not caminho.exists():
+        return []
+    with open(caminho, "r", encoding="utf-8") as f:
+        return json.load(f).get("termos", [])
+
 def menu_principal():
     print(f"{Cores.NEGRITO}Escolha o modo de estudo:{Cores.RESET}\n")
     print(f"  {Cores.VERDE}[1]{Cores.RESET} Modo Prática (Feedback imediato e opção de ver Teoria/Cálculo)")
     print(f"  {Cores.AMARELO}[2]{Cores.RESET} Modo Prova Real (Cronometrado, sem consulta nem gabarito até o fim)")
     print(f"  {Cores.AZUL}[3]{Cores.RESET} Filtrar por Capítulo ou Tipo (Prática focada)")
-    print(f"  {Cores.CINZA}[4] Sair{Cores.RESET}\n")
+    print(f"  {Cores.MAGENTA}[4]{Cores.RESET} Glossário de Termos (O que é, o que faz e exemplo de uso)")
+    print(f"  {Cores.CINZA}[5] Sair{Cores.RESET}\n")
     
     while True:
-        opcao = input(f"{Cores.NEGRITO}Opção [1-4]: {Cores.RESET}").strip()
-        if opcao in ["1", "2", "3", "4"]:
+        opcao = input(f"{Cores.NEGRITO}Opção [1-5]: {Cores.RESET}").strip()
+        if opcao in ["1", "2", "3", "4", "5"]:
             return opcao
         print("Opção inválida, tente novamente.")
+
+def executar_glossario():
+    termos = carregar_glossario()
+    if not termos:
+        print(f"{Cores.VERMELHO}Arquivo glossario.json não encontrado.{Cores.RESET}")
+        input("Pressione ENTER para voltar...")
+        return
+
+    while True:
+        limpar_tela()
+        print(f"{Cores.MAGENTA}{'=' * 75}{Cores.RESET}")
+        print(f"{Cores.NEGRITO}{Cores.MAGENTA}📖 GLOSSÁRIO DE REDES MULTIMÍDIA E SEGURANÇA ({len(termos)} termos){Cores.RESET}")
+        print(f"{Cores.MAGENTA}{'=' * 75}{Cores.RESET}\n")
+        print("  [1] Buscar por termo/sigla (ex: RTP, VoIP, RSA, IPsec)")
+        print("  [2] Listar todos de Redes Multimídia (Cap. 7)")
+        print("  [3] Listar todos de Segurança em Redes (Cap. 8)")
+        print("  [4] Voltar ao menu principal\n")
+
+        escolha = input(f"{Cores.NEGRITO}Escolha [1-4]: {Cores.RESET}").strip()
+        if escolha == "4":
+            break
+        elif escolha == "1":
+            busca = input(f"\n{Cores.CIANO}Digite o termo ou sigla para buscar: {Cores.RESET}").strip().lower()
+            filtrados = [
+                t for t in termos
+                if busca in f"{t['sigla']} {t['nome_completo']} {t['o_que_e']} {t['o_que_faz']} {t['exemplo_uso']}".lower()
+            ]
+        elif escolha == "2":
+            filtrados = [t for t in termos if t["tema"] == "multimidia"]
+        elif escolha == "3":
+            filtrados = [t for t in termos if t["tema"] == "seguranca"]
+        else:
+            continue
+
+        limpar_tela()
+        if not filtrados:
+            print(f"{Cores.AMARELO}Nenhum termo encontrado.{Cores.RESET}")
+        else:
+            for t in filtrados:
+                tag = "🌐 Cap. 7" if t["tema"] == "multimidia" else "🔒 Cap. 8"
+                print(f"{Cores.CIANO}{Cores.NEGRITO}{t['sigla']}{Cores.RESET} {Cores.CINZA}({t['nome_completo']}) [{tag}]{Cores.RESET}")
+                print(f"  {Cores.AZUL}📌 O que é:{Cores.RESET} {t['o_que_e']}")
+                print(f"  {Cores.MAGENTA}⚙️  O que faz:{Cores.RESET} {t['o_que_faz']}")
+                print(f"  {Cores.VERDE}💡 Exemplo:{Cores.RESET} {t['exemplo_uso']}\n")
+        input(f"{Cores.CIANO}Pressione ENTER para continuar...{Cores.RESET}")
 
 def filtrar_questoes(todas):
     print(f"\n{Cores.NEGRITO}Filtrar questões por:{Cores.RESET}")
@@ -224,6 +277,8 @@ def main():
             filtradas = filtrar_questoes(todas)
             executar_simulado(filtradas, modo_prova=False)
         elif opcao == "4":
+            executar_glossario()
+        elif opcao == "5":
             print(f"\n{Cores.VERDE}Bons estudos e boa prova! Até mais.{Cores.RESET}\n")
             break
 
