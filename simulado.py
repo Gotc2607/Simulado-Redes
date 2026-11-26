@@ -108,11 +108,11 @@ def executar_glossario():
 
 def filtrar_questoes(todas):
     print(f"\n{Cores.NEGRITO}Filtrar questões por:{Cores.RESET}")
-    print("  [1] Apenas Capítulo 7 - Redes Multimídia (20 questões)")
-    print("  [2] Apenas Capítulo 8 - Segurança em Redes (20 questões)")
+    print("  [1] Apenas Capítulo 7 - Redes Multimídia (26 questões)")
+    print("  [2] Apenas Capítulo 8 - Segurança em Redes (25 questões)")
     print("  [3] Apenas Questões de Cálculo / Práticas (11 questões)")
-    print("  [4] Apenas Questões Conceituais / Teóricas (29 questões)")
-    print("  [5] Todas as 40 questões")
+    print("  [4] Apenas Questões Conceituais / Teóricas (40 questões)")
+    print("  [5] Todas as 51 questões")
 
     opcao = input(f"\n{Cores.NEGRITO}Escolha [1-5]: {Cores.RESET}").strip()
     if opcao == "1":

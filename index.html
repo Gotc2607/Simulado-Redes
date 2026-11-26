@@ -1198,11 +1198,11 @@
       </div>
 
       <div class="filter-bar" id="quiz-filter-bar">
-        <button class="filter-btn active" onclick="applyFilter('all', this)">Todas as Questões (40)</button>
-        <button class="filter-btn" onclick="applyFilter('cap7', this)">Cap. 7 - Multimídia (20)</button>
-        <button class="filter-btn" onclick="applyFilter('cap8', this)">Cap. 8 - Segurança (20)</button>
+        <button class="filter-btn active" onclick="applyFilter('all', this)">Todas as Questões (51)</button>
+        <button class="filter-btn" onclick="applyFilter('cap7', this)">Cap. 7 - Multimídia (26)</button>
+        <button class="filter-btn" onclick="applyFilter('cap8', this)">Cap. 8 - Segurança (25)</button>
         <button class="filter-btn" onclick="applyFilter('calc', this)">🧮 Cálculos (11)</button>
-        <button class="filter-btn" onclick="applyFilter('conc', this)">📖 Conceituais (29)</button>
+        <button class="filter-btn" onclick="applyFilter('conc', this)">📖 Conceituais (40)</button>
       </div>
 
       <div class="progress-bar-container" id="quiz-progress-bar">
@@ -1264,7 +1264,7 @@
 
         <div class="action-bar">
           <button class="btn btn-secondary" id="btn-prev" onclick="navQuestion(-1)">← Anterior</button>
-          <span id="q-counter" style="color: var(--text-muted); font-size: 0.9rem; font-weight: 500;">1 / 40</span>
+          <span id="q-counter" style="color: var(--text-muted); font-size: 0.9rem; font-weight: 500;">1 / 51</span>
           <button class="btn btn-primary" id="btn-next" onclick="navQuestion(1)">Próxima →</button>
         </div>
       </div>
@@ -1276,7 +1276,7 @@
 
         <div class="score-circle">
           <span class="score-number" id="final-score">0</span>
-          <span class="score-total" id="final-total">de 40 acertos</span>
+          <span class="score-total" id="final-total">de 51 acertos</span>
         </div>
 
         <div class="stats-grid">
@@ -1579,114 +1579,6 @@
   {
     "id": 6,
     "capitulo": "Capítulo 7 - Redes Multimídia",
-    "referencia_livro": "Cap. 7 - P13",
-    "tipo": "conceitual",
-    "enunciado": "Considere dois esquemas de FEC para VoIP: o Esquema 1 envia 1 bloco redundante (XOR) para cada 4 blocos originais; o Esquema 2 anexa (piggyback) no pacote atual uma cópia de baixa taxa do bloco anterior com 25% da taxa nominal. Sobre a banda adicional exigida e o desempenho caso o primeiro pacote de cada par (1 a cada 2 pacotes) seja perdido, é correto afirmar que:",
-    "alternativas": {
-      "A": "Ambos exigem 25% de banda adicional; o Esquema 2 terá melhor qualidade de áudio, pois consegue recuperar cada pacote perdido usando o pacote seguinte, enquanto o Esquema 1 falha ao perder mais de 1 pacote por grupo de 5.",
-      "B": "O Esquema 1 exige 20% de banda e o Esquema 2 exige 50%; o Esquema 1 terá melhor qualidade pois o XOR reconstrói todos os pacotes perdidos.",
-      "C": "Ambos exigem 25% de banda adicional; o Esquema 1 terá melhor qualidade porque não depende de codificação de baixa taxa.",
-      "D": "Nenhum dos esquemas consegue recuperar qualquer pacote nesse cenário de perda."
-    },
-    "resposta_correta": "A",
-    "explicacao": "Ambos adicionam 25% de sobrecarga de banda (1/4 = 25%). Com perda alternada (1 a cada 2 pacotes), em cada grupo de 5 pacotes do Esquema 1 perdem-se 2 ou 3 pacotes, inviabilizando a recuperação via XOR. Já no Esquema 2, como as perdas não são consecutivas, cada pacote perdido é recuperado em baixa resolução a partir do próximo pacote.",
-    "guia_estudo": {
-      "conceito_geral": "Mecanismos de Correção Antecipada de Erros (FEC - Forward Error Correction) para mídia contínua interativa, onde o uso de retransmissões (ARQ/TCP) é inviável devido à estrita restrição de atraso (latência interativa < 150-400 ms).",
-      "termos_chave": [
-        {
-          "termo": "FEC (Forward Error Correction)",
-          "definicao": "Técnica onde o transmissor envia dados redundantes junto com a mensagem original para que o receptor possa reconstruir pacotes perdidos sem precisar pedir retransmissão."
-        },
-        {
-          "termo": "FEC por Bloco com XOR (Paridade)",
-          "definicao": "A cada K blocos de dados, gera-se um bloco extra aplicando a operação lógica XOR entre eles (K+1 pacotes). Se exatamente 1 bloco do grupo se perder, ele é perfeitamente reconstruído; se 2 ou mais se perderem, o bloco de paridade é inútil."
-        },
-        {
-          "termo": "FEC com Áudio Redundante em Baixa Taxa (Piggybacking)",
-          "definicao": "O pacote n carrega o áudio original em alta taxa do instante n e uma cópia muito compactada (baixa taxa) do pacote n-1. Se o pacote n-1 for perdido, o pacote n reconstrói o áudio ausente com fidelidade aceitável."
-        },
-        {
-          "termo": "Padrão de Perda Alternada (1 a cada 2 pacotes)",
-          "definicao": "Cenário de perda de 50% dos pacotes (ex: perdem-se os pacotes 1, 3, 5). No grupo de 5 pacotes do FEC XOR, ocorrem 2 ou 3 perdas, excedendo a tolerância máxima de 1 erro."
-        }
-      ]
-    }
-  },
-  {
-    "id": 7,
-    "capitulo": "Capítulo 7 - Redes Multimídia",
-    "referencia_livro": "Cap. 7 - P15",
-    "tipo": "conceitual",
-    "enunciado": "Em uma audioconferência usando SIP e RTP entre Alice, Bob e Claire, suponha que Bob (IP A1, porta P1) e Claire (IP A2, porta P2) enviem pacotes RTP para o mesmo IP e a mesma porta UDP T de Alice. Os datagramas de Bob e Claire serão recebidos pelo mesmo socket UDP em Alice? Como o cliente de Alice distingue os pacotes de Bob dos de Claire?",
-    "alternativas": {
-      "A": "Não, pois sockets UDP exigem um socket distinto para cada IP de origem diferente.",
-      "B": "Sim, pois sockets UDP são demultiplexados apenas pelo IP e porta de destino; o cliente distingue os fluxos usando o campo SSRC (Synchronization Source ID) do cabeçalho RTP.",
-      "C": "Sim, mas o cliente só consegue distingui-los se Bob e Claire usarem codecs diferentes no campo Payload Type.",
-      "D": "Não, pois o RTP exige uma porta UDP exclusiva para cada participante da conferência."
-    },
-    "resposta_correta": "B",
-    "explicacao": "Um socket UDP é identificado apenas pelo par (IP destino, porta destino), portanto ambos os fluxos chegam ao mesmo socket. Dentro da sessão RTP, cada fluxo de origem possui um identificador SSRC único no cabeçalho RTP, permitindo distingui-los.",
-    "guia_estudo": {
-      "conceito_geral": "Interação entre a camada de transporte (demultiplexação de sockets UDP sem conexão) e a camada de aplicação/multimídia (RTP) em conferências multipartidárias.",
-      "termos_chave": [
-        {
-          "termo": "Socket UDP (Demultiplexação sem conexão)",
-          "definicao": "Um socket UDP na máquina de destino é identificado apenas pela tupla de 2 elementos: (IP de Destino, Porta de Destino). Pacotes vindos de IPs ou portas de origem diferentes com o mesmo destino entram pelo mesmo socket."
-        },
-        {
-          "termo": "SSRC (Synchronization Source Identifier)",
-          "definicao": "Campo de 32 bits no cabeçalho RTP escolhido aleatoriamente na inicialização do fluxo para identificar de maneira exclusiva a fonte do fluxo de mídia dentro da sessão RTP."
-        },
-        {
-          "termo": "SIP (Session Initiation Protocol)",
-          "definicao": "Protocolo de sinalização da camada de aplicação usado para criar, modificar e encerrar sessões multimídia (estabelece quem vai falar com quem e em quais portas)."
-        },
-        {
-          "termo": "RTP (Real-Time Transport Protocol)",
-          "definicao": "Protocolo que roda sobre UDP fornecendo suporte para empacotamento de áudio/vídeo com timestamps, números de sequência e identificação de fonte."
-        }
-      ]
-    }
-  },
-  {
-    "id": 8,
-    "capitulo": "Capítulo 7 - Redes Multimídia",
-    "referencia_livro": "Cap. 7 - P16",
-    "tipo": "conceitual",
-    "enunciado": "Com base nas especificações de RTP, SIP e DiffServ, assinale a única afirmação VERDADEIRA:",
-    "alternativas": {
-      "A": "Todas as aplicações que utilizam RTP são obrigadas a usar a porta padrão 87.",
-      "B": "Em uma sessão RTP com áudio e vídeo de um mesmo remetente, ambos os fluxos compartilham obrigatoriamente o mesmo valor de SSRC.",
-      "C": "No RTP, é possível que o remetente mude a codificação de áudio no meio de uma sessão, e no DiffServ o comportamento por salto (PHB) define diferenças de desempenho sem impor um mecanismo específico.",
-      "D": "Quando Alice envia 'm=audio 48753 RTP/AVP 3' em um SIP INVITE, ela indica que enviará áudio GSM para a porta 48753 de Bob."
-    },
-    "resposta_correta": "C",
-    "explicacao": "O RTP permite mudar o codec dinamicamente alterando o campo Payload Type, e o PHB no DiffServ especifica o comportamento observável sem ditar a implementação interna. (A é falsa: não existe porta fixa 87; B é falsa: cada fluxo tem SSRC próprio; D é falsa: Alice indica a porta e o codec nos quais ela deseja RECEBER áudio).",
-    "guia_estudo": {
-      "conceito_geral": "Especificações fundamentais dos protocolos RTP, SIP/SDP e da arquitetura de Qualidade de Serviço DiffServ (Serviços Diferenciados).",
-      "termos_chave": [
-        {
-          "termo": "Payload Type (Tipo de Carga Útil no RTP)",
-          "definicao": "Campo de 7 bits no cabeçalho RTP que identifica o algoritmo de codificação (ex: 0 para PCM mu-law, 3 para GSM, 26 para JPEG). Permite que o remetente troque de codec em tempo real se o enlace degradar."
-        },
-        {
-          "termo": "SSRC em Áudio e Vídeo",
-          "definicao": "No RTP, fluxos de mídias diferentes (mesmo vindo da mesma pessoa) possuem identificadores SSRC distintos e utilizam sessões/portas RTP diferentes."
-        },
-        {
-          "termo": "DiffServ (Differentiated Services) & PHB",
-          "definicao": "Arquitetura escalável de QoS. O PHB (Per-Hop Behavior) define o tratamento observável que um roteador deve dar a uma classe de pacotes (ex: encaminhamento expedito vs encaminhamento assegurado), sem amarrar a uma tecnologia proprietária de fila."
-        },
-        {
-          "termo": "Linha 'm=' no SDP do SIP",
-          "definicao": "A linha de mídia especifica a porta em que o anunciante está escutando para RECEBER a mídia e os formatos aceitos, não a porta para onde ele enviará."
-        }
-      ]
-    }
-  },
-  {
-    "id": 9,
-    "capitulo": "Capítulo 7 - Redes Multimídia",
     "referencia_livro": "Cap. 7 - P17",
     "tipo": "calculo_pratico",
     "enunciado": "Suponha que a política de escalonamento WFQ (Weighted Fair Queuing) seja aplicada a um enlace que suporta três classes com pesos 0,5 (Classe 1), 0,25 (Classe 2) e 0,25 (Classe 3). Se as Classes 1 e 2 possuírem muitos pacotes na fila, mas não houver nenhum pacote da Classe 3 no buffer, qual sequência de atendimento atinge corretamente os pesos do WFQ?",
@@ -1727,79 +1619,7 @@
     }
   },
   {
-    "id": 10,
-    "capitulo": "Capítulo 7 - Redes Multimídia",
-    "referencia_livro": "Cap. 7 - P24",
-    "tipo": "conceitual",
-    "enunciado": "Diz-se que um fluxo de pacotes está em conformidade com um balde de fichas (token bucket) de parâmetros (r, b) se o número de pacotes que chega em qualquer intervalo de duração t for menor ou igual a rt + b. Um fluxo que obedece estritamente a essa especificação alguma vez precisará esperar em um regulador de balde de fichas com os mesmos parâmetros r e b (inicialmente cheio)?",
-    "alternativas": {
-      "A": "Sim, sempre que ocorrer uma rajada de tamanho igual a b.",
-      "B": "Sim, pois o regulador sempre retém cada pacote por pelo menos 1/r segundos.",
-      "C": "Não, o fluxo nunca precisará esperar, pois sempre haverá fichas suficientes disponíveis no balde para admitir imediatamente os pacotes em conformidade.",
-      "D": "Depende exclusivamente do protocolo de transporte (TCP ou UDP) utilizado pelo fluxo."
-    },
-    "resposta_correta": "C",
-    "explicacao": "Se o fluxo nunca envia mais que rt + b pacotes em qualquer intervalo t e o balde começa cheio com b fichas sendo preenchido à taxa r, o número de fichas geradas mais as iniciais nunca será inferior ao número de pacotes chegados; logo, nenhum pacote precisará esperar.",
-    "guia_estudo": {
-      "conceito_geral": "Policiamento e modelagem de tráfego (traffic policing and shaping) utilizando o algoritmo Token Bucket (Balde de Fichas) para limitar taxa média e tamanho máximo de rajada.",
-      "termos_chave": [
-        {
-          "termo": "Balde de Fichas (Token Bucket)",
-          "definicao": "Mecanismo regulador onde fichas virtuais são depositadas em um balde de capacidade máxima 'b' a uma taxa constante de 'r' fichas por segundo. Para que um pacote passe, uma ficha deve ser retirada do balde."
-        },
-        {
-          "termo": "Taxa Média Permitida (r)",
-          "definicao": "Limita a taxa sustentada de longo prazo do fluxo a no máximo 'r' unidades por segundo."
-        },
-        {
-          "termo": "Capacidade do Balde (b) / Tamanho da Rajada",
-          "definicao": "Permite que o tráfego envie rajadas pontuais de dados acima da taxa média, limitado a no máximo 'b' pacotes simultâneos acumulados."
-        },
-        {
-          "termo": "Conformidade (Conformance rt + b)",
-          "definicao": "Condição matemática formal: o volume de dados em qualquer intervalo de tamanho t não ultrapassa r·t + b. Se o gerador cumpre essa regra e o regulador tem exatamente esses limites, as fichas no balde nunca chegam a zero durante a chegada de um pacote."
-        }
-      ]
-    }
-  },
-  {
-    "id": 11,
-    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
-    "referencia_livro": "Cap. 8 - R1",
-    "tipo": "conceitual",
-    "enunciado": "Sobre a relação entre confidencialidade de mensagem e integridade de mensagem, assinale a alternativa correta:",
-    "alternativas": {
-      "A": "É impossível ter confidencialidade sem integridade, pois criptografar impede qualquer alteração de bits em trânsito.",
-      "B": "É impossível ter integridade sem confidencialidade, pois todo código de integridade exige que a mensagem seja cifrada.",
-      "C": "É possível ter confidencialidade sem integridade (um atacante pode alterar bits de uma mensagem cifrada sem detecção) e integridade sem confidencialidade (ex: enviar mensagem em texto claro acompanhada de assinatura digital ou MAC).",
-      "D": "Confidencialidade e integridade são sinônimos na segurança de redes."
-    },
-    "resposta_correta": "C",
-    "explicacao": "Confidencialidade (sigilo) e integridade (detecção de adulteração) são propriedades independentes: pode-se cifrar sem autenticar/verificar integridade, e pode-se anexar um MAC ou assinatura digital a uma mensagem enviada em texto claro.",
-    "guia_estudo": {
-      "conceito_geral": "Os pilares fundamentais da segurança da informação em redes: confidencialidade, integridade e autenticação, demonstrando que são objetivos ortogonais e independentes.",
-      "termos_chave": [
-        {
-          "termo": "Confidencialidade (Sigilo)",
-          "definicao": "Garantia de que apenas o remetente e o destinatário legítimos conseguem compreender o conteúdo da mensagem transmitida. Obtida mediante algoritmos de criptografia (cifração)."
-        },
-        {
-          "termo": "Integridade de Mensagem",
-          "definicao": "Garantia de que a mensagem recebida pelo destinatário não foi alterada, forjada ou truncada por um atacante (man-in-the-middle) durante o trânsito na rede."
-        },
-        {
-          "termo": "Ataques de Bit-Flipping (Cifrado sem integridade)",
-          "definicao": "Em cifras de fluxo ou modos CBC sem autenticação, um invasor pode alterar bits específicos do texto cifrado. O destinatário decifra um conteúdo modificado sem perceber que foi adulterado."
-        },
-        {
-          "termo": "Texto Claro Autenticado (Integridade sem sigilo)",
-          "definicao": "Cenários como comunicados oficiais, downloads de softwares livres com hash SHA-256 ou certificados digitais: o conteúdo é público (sem sigilo), mas possui integridade e autenticidade estritas."
-        }
-      ]
-    }
-  },
-  {
-    "id": 12,
+    "id": 7,
     "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
     "referencia_livro": "Cap. 8 - R6",
     "tipo": "calculo_pratico",
@@ -1840,7 +1660,7 @@
     }
   },
   {
-    "id": 13,
+    "id": 8,
     "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
     "referencia_livro": "Cap. 8 - R7",
     "tipo": "calculo_pratico",
@@ -1882,7 +1702,7 @@
     }
   },
   {
-    "id": 14,
+    "id": 9,
     "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
     "referencia_livro": "Cap. 8 - P8",
     "tipo": "calculo_pratico",
@@ -1929,7 +1749,7 @@
     }
   },
   {
-    "id": 15,
+    "id": 10,
     "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
     "referencia_livro": "Cap. 8 - P9",
     "tipo": "calculo_pratico",
@@ -1975,115 +1795,7 @@
     }
   },
   {
-    "id": 16,
-    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
-    "referencia_livro": "Cap. 8 - R14 e R15",
-    "tipo": "conceitual",
-    "enunciado": "Suponha que Alice queira disponibilizar uma mensagem pública para milhares de pessoas verificarem sua integridade e autenticidade. Além disso, considere como uma Autoridade Certificadora (CA) cria um certificado digital. Assinale a alternativa correta:",
-    "alternativas": {
-      "A": "Para Alice, um MAC é mais apropriado que assinatura digital; e a CA criptografa o certificado inteiro usando sua própria chave pública.",
-      "B": "Para Alice, uma assinatura digital é mais apropriada (pois um MAC exigiria compartilhar chaves secretas com milhares de usuários); e a CA assina o resumo (hash) do certificado com sua chave privada, em vez de cifrar tudo com sua chave pública.",
-      "C": "Para Alice, um MAC é mais apropriado porque garante não-repúdio; e a CA assina o certificado com a chave privada do cliente.",
-      "D": "Ambos os esquemas (MAC e assinatura digital) exigem uma chave secreta compartilhada prévia entre Alice e cada leitor."
-    },
-    "resposta_correta": "B",
-    "explicacao": "Com milhares de destinatários, a assinatura digital é ideal porque todos verificam usando apenas a chave pública de Alice (sem distribuir chaves secretas). Quanto aos certificados (R14), é FALSO que a CA cifra o certificado inteiro com sua chave pública: ela assina o hash do certificado com sua chave PRIVADA.",
-    "guia_estudo": {
-      "conceito_geral": "Assinaturas Digitais versus Códigos de Autenticação de Mensagem (MAC) e a arquitetura de Infraestrutura de Chaves Públicas (PKI) com Autoridades Certificadoras (CA).",
-      "termos_chave": [
-        {
-          "termo": "MAC (Message Authentication Code)",
-          "definicao": "Técnica simétrica baseada em chave secreta compartilhada. Quem possui a chave pode verificar e também pode forjar mensagens, inviabilizando o não-repúdio e a distribuição pública massiva."
-        },
-        {
-          "termo": "Assinatura Digital",
-          "definicao": "Técnica assimétrica: o emissor cifra o hash da mensagem com sua CHAVE PRIVADA. Qualquer pessoa no mundo pode conferir a assinatura decifrando-a com a CHAVE PÚBLICA do emissor."
-        },
-        {
-          "termo": "Não-Repúdio",
-          "definicao": "Propriedade que impede o autor de negar a autoria da mensagem, já que apenas ele possui a chave privada que gerou aquela assinatura."
-        },
-        {
-          "termo": "Autoridade Certificadora (CA)",
-          "definicao": "Entidade confiável que atesta que uma chave pública pertence legitimamente a determinado domínio ou pessoa. A CA gera um certificado contendo os dados do titular e a chave pública dele, e assina esse conjunto com a CHAVE PRIVADA da própria CA."
-        }
-      ]
-    }
-  },
-  {
-    "id": 17,
-    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
-    "referencia_livro": "Cap. 8 - R20 e R23",
-    "tipo": "conceitual",
-    "enunciado": "Durante uma conexão SSL, suponha que Bob inicie uma conexão com Trudy, que finge ser Alice e envia a Bob o certificado legítimo de Alice. Em qual etapa do handshake SSL Bob descobrirá a fraude, e como os números de sequência são tratados nos registros SSL?",
-    "alternativas": {
-      "A": "Bob descobre imediatamente ao receber o certificado; e cada registro SSL carrega um campo explícito de número de sequência no cabeçalho.",
-      "B": "Bob descobre na verificação do MAC das mensagens do handshake (etapa final), pois Trudy não tem a chave privada de Alice para decifrar o pre-master secret e gerar as chaves corretas; além disso, NÃO há campo de número de sequência no cabeçalho do registro SSL.",
-      "C": "Bob nunca descobre a fraude porque o certificado de Alice é válido; e o número de sequência fica no cabeçalho IP.",
-      "D": "Bob descobre ao enviar o ClientHello; e o número de sequência SSL é enviado em texto claro no final de cada registro."
-    },
-    "resposta_correta": "B",
-    "explicacao": "Bob cifra o pre-master secret com a chave pública de Alice (extraída do certificado válido). Sem a chave privada de Alice, Trudy não recupera o segredo e não consegue gerar o MAC válido das mensagens do handshake. Além disso (R20), o número de sequência SSL entra no cálculo do MAC, mas não existe como campo no cabeçalho do registro.",
-    "guia_estudo": {
-      "conceito_geral": "O aperto de mão (handshake) do protocolo SSL/TLS, autenticação de servidores com certificados de terceiros e integridade de registros com contadores de sequência implícitos.",
-      "termos_chave": [
-        {
-          "termo": "Pre-Master Secret (PMS)",
-          "definicao": "Valor aleatório gerado pelo cliente e enviado ao servidor cifrado com a chave pública contida no certificado. Somente quem possui a chave privada correspondente consegue decifrá-lo."
-        },
-        {
-          "termo": "Master Secret e Chaves de Sessão",
-          "definicao": "Ambas as pontas combinam o PMS com números pseudoaleatórios trocados no handshake para derivar as 4 chaves de sessão: cifração e MAC para cada sentido."
-        },
-        {
-          "termo": "Mensagem 'Finished' / Verificação Final",
-          "definicao": "Última etapa do handshake: cada lado envia um MAC de todas as mensagens trocadas anteriormente. Se o atacante não decifrou o PMS, seu MAC será incorreto e a conexão é abortada na hora."
-        },
-        {
-          "termo": "Número de Sequência Implícito no SSL",
-          "definicao": "Para economizar largura de banda e impedir ataques de reordenação ou repetição de registros, o SSL mantém um contador interno de 64 bits que entra no cálculo do MAC, mas NÃO é transmitido fisicamente no cabeçalho do pacote."
-        }
-      ]
-    }
-  },
-  {
-    "id": 18,
-    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
-    "referencia_livro": "Cap. 8 - R25 e P23",
-    "tipo": "conceitual",
-    "enunciado": "Em uma VPN IPsec no modo túnel com ESP conectando os roteadores R1 (matriz) e R2 (filial), suponha que: (1) o TCP retransmita um segmento perdido entre dois hosts; e (2) Trudy realize um ataque de repetição (replay) enviando a R2 uma cópia duplicada de um datagrama IPsec capturado. O que ocorre nos dois casos?",
-    "alternativas": {
-      "A": "No caso (1), os dois datagramas ESP terão o mesmo número de sequência ESP; no caso (2), R2 aceita o pacote duplicado porque o MAC é válido.",
-      "B": "No caso (1), R1 atribuirá um NOVO número de sequência ESP ao segmento TCP retransmitido; no caso (2), R2 detecta o número de sequência ESP duplicado e descarta o pacote sem encaminhá-lo à filial.",
-      "C": "No caso (1), R1 descarta a retransmissão TCP; no caso (2), R2 cria uma nova SA automaticamente para o pacote duplicado.",
-      "D": "Em ambos os casos, os números de sequência ESP só mudam quando a chave IKE expira."
-    },
-    "resposta_correta": "B",
-    "explicacao": "O IPsec incrementa o número de sequência ESP a cada datagrama enviado naquela SA, independentemente de ser uma retransmissão TCP (R25 é Falso). Já contra ataques de replay (P23), R2 verifica o número de sequência ESP (protegido pelo MAC) e descarta datagramas duplicados.",
-    "guia_estudo": {
-      "conceito_geral": "Operação do protocolo IPsec no Modo Túnel com ESP (Encapsulating Security Payload), independência entre camadas de rede/transporte e proteção contra ataques de repetição (anti-replay).",
-      "termos_chave": [
-        {
-          "termo": "IPsec Modo Túnel",
-          "definicao": "O datagrama IP original inteiro (cabeçalho + carga) é encapsulado dentro de um novo pacote IP com cabeçalhos ESP. Usado tipicamente entre roteadores de borda para criar VPNs site-to-site."
-        },
-        {
-          "termo": "ESP (Encapsulating Security Payload)",
-          "definicao": "Protocolo do IPsec que provê simultaneamente confidencialidade (cifração), autenticação de origem dos dados e integridade com proteção contra repetição."
-        },
-        {
-          "termo": "Número de Sequência ESP",
-          "definicao": "Campo de 32 bits no cabeçalho ESP incrementado a cada novo pacote despachado pela Associação de Segurança (SA). O roteador IPsec não examina nem depende dos números de sequência TCP dos hosts internos."
-        },
-        {
-          "termo": "Janela Anti-Replay",
-          "definicao": "O receptor mantém um mapa de bits dos números de sequência recentes válidos já recebidos. Se um pacote com número de sequência antigo ou repetido chegar (mesmo com integridade válida), ele é imediatamente descartado."
-        }
-      ]
-    }
-  },
-  {
-    "id": 19,
+    "id": 11,
     "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
     "referencia_livro": "Cap. 8 - P24",
     "tipo": "calculo_pratico",
@@ -2129,397 +1841,621 @@
     }
   },
   {
-    "id": 20,
+    "id": 12,
     "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
-    "referencia_livro": "Cap. 8 - R29 e R32",
+    "referencia_livro": "Cap. 8 - Seção 8.1",
     "tipo": "conceitual",
-    "enunciado": "Quais duas estruturas de dados um firewall de filtragem de pacotes com estado (stateful) mantém, e por que um gateway de aplicação precisa operar em conjunto com um filtro de roteador?",
+    "enunciado": "Qual propriedade fundamental da segurança da informação garante que uma mensagem não foi modificada durante o trânsito pela rede?",
     "alternativas": {
-      "A": "Mantém uma tabela ARP e uma tabela DNS; o filtro de roteador serve apenas para criptografar os pacotes do gateway.",
-      "B": "Mantém uma Lista de Controle de Acesso (ACL) e uma tabela de conexões (rastreando conexões ativas); o filtro de roteador é necessário para bloquear tráfego daquela aplicação que tente contornar o gateway de aplicação.",
-      "C": "Mantém uma tabela SPD e uma tabela SAD; o filtro de roteador substitui a autenticação de usuários no gateway.",
-      "D": "Mantém apenas filas WFQ e um balde de fichas; o filtro de roteador serve para impedir fragmentação IP."
+      "A": "Confidencialidade",
+      "B": "Integridade",
+      "C": "Disponibilidade",
+      "D": "Anonimato"
     },
     "resposta_correta": "B",
-    "explicacao": "O firewall stateful combina uma ACL (regras de filtragem) com uma tabela de conexões (estado das sessões TCP/UDP ativas). Já o gateway de aplicação depende do filtro no roteador para garantir que todo o tráfego da aplicação passe obrigatoriamente por ele, bloqueando conexões diretas.",
+    "explicacao": "A integridade assegura que os dados recebidos são exatamente os mesmos enviados, sem alterações acidentais ou maliciosas no caminho.",
     "guia_estudo": {
-      "conceito_geral": "Mecanismos de defesa de perímetro de rede: Firewalls com inspeção de estado (Stateful Packet Filters) e Gateways de Aplicação (Application Proxies).",
+      "conceito_geral": "A integridade assegura que os dados recebidos são exatamente os mesmos enviados, sem alterações acidentais ou maliciosas no caminho.",
       "termos_chave": [
         {
-          "termo": "Firewall com Estado (Stateful Firewall)",
-          "definicao": "Firewall inteligente que não analisa pacotes isoladamente. Ele rastreia o ciclo de vida completo de conexões TCP (SYN, SYN-ACK, ACK, FIN) e fluxos UDP, admitindo pacotes de retorno apenas se pertencerem a uma conexão previamente autorizada."
+          "termo": "Tríade de Segurança (Confidencialidade, Integridade e Autenticação)",
+          "definicao": "São as propriedades fundamentais que uma comunicação segura em redes de computadores busca garantir diante de um invasor (Trudy). Confidencialidade garante sigilo (ninguém lê); Integridade garante que os dados não foram alterados em trânsito; Autenticação confirma a identidade real de quem está do outro lado. São propriedades independentes entre si."
         },
         {
-          "termo": "Tabela de Conexões (Connection State Table)",
-          "definicao": "Tabela em memória que armazena pares de IPs, portas e números de sequência das conexões abertas no momento. Expira entradas inativas por timeout."
+          "termo": "Hash Criptográfico (Função de Resumo Criptográfico (SHA-256, SHA-1, MD5))",
+          "definicao": "É uma função matemática de mão única que transforma uma mensagem ou arquivo de qualquer tamanho em uma 'impressão digital' de tamanho fixo. Garante resistência a colisões (é computacionalmente inviável achar duas mensagens diferentes com o mesmo hash) e efeito avalanche (mudar 1 bit altera completamente o hash). Muito mais seguro que um checksum comum."
         },
         {
-          "termo": "Lista de Controle de Acesso (ACL - Access Control List)",
-          "definicao": "Conjunto de regras estáticas ordenadas (origem, destino, porta, ação PERMIT/DENY) avaliadas no início de novas conexões."
+          "termo": "MAC (Message Authentication Code (Código de Autenticação de Mensagem))",
+          "definicao": "É um resumo criptográfico gerado combinando a mensagem com uma chave secreta compartilhada entre remetente e destinatário (ex.: HMAC). Garante integridade e autenticação da mensagem entre duas partes que já compartilham uma chave secreta. Não oferece não-repúdio e não escala para milhares de leitores públicos."
+        }
+      ]
+    }
+  },
+  {
+    "id": 13,
+    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
+    "referencia_livro": "Cap. 8 - Seção 8.3.2",
+    "tipo": "conceitual",
+    "enunciado": "Por que um código HMAC não garante, por si só, a propriedade de não-repúdio?",
+    "alternativas": {
+      "A": "Porque o HMAC não utiliza funções hash criptográficas.",
+      "B": "Porque o HMAC depende de uma Autoridade Certificadora externa.",
+      "C": "Porque a chave secreta é compartilhada entre remetente e destinatário, permitindo que ambos gerem o mesmo código.",
+      "D": "Porque o HMAC cifra apenas o cabeçalho do pacote."
+    },
+    "resposta_correta": "C",
+    "explicacao": "Como remetente e destinatário possuem a mesma chave simétrica secreta, qualquer um dos dois poderia ter gerado o HMAC, impedindo a prova irrefutável de autoria perante terceiros.",
+    "guia_estudo": {
+      "conceito_geral": "Como remetente e destinatário possuem a mesma chave simétrica secreta, qualquer um dos dois poderia ter gerado o HMAC, impedindo a prova irrefutável de autoria perante terceiros.",
+      "termos_chave": [
+        {
+          "termo": "MAC (Message Authentication Code (Código de Autenticação de Mensagem))",
+          "definicao": "É um resumo criptográfico gerado combinando a mensagem com uma chave secreta compartilhada entre remetente e destinatário (ex.: HMAC). Garante integridade e autenticação da mensagem entre duas partes que já compartilham uma chave secreta. Não oferece não-repúdio e não escala para milhares de leitores públicos."
         },
         {
-          "termo": "Gateway de Aplicação (Application Proxy)",
-          "definicao": "Servidor intermediário que encerra e analisa requisições no nível de aplicação (ex: proxy Telnet, HTTP, FTP) exigindo autenticação do usuário e inspeção profunda de comandos."
+          "termo": "Assinatura Digital (Assinatura Criptográfica de Chave Pública)",
+          "definicao": "É o equivalente eletrônico verificável de uma assinatura manuscrita, construída com função hash e criptografia de chave pública. O autor calcula o hash da mensagem e o cifra com sua CHAVE PRIVADA. Qualquer pessoa pode verificar a autenticidade e integridade usando a CHAVE PÚBLICA do autor, garantindo também o não-repúdio."
         },
         {
-          "termo": "Papel do Filtro de Roteador com Gateway",
-          "definicao": "Sem o filtro no roteador barrando tráfego direto entre a rede interna e externa, usuários e invasores poderiam simplesmente ignorar o gateway e se conectar diretamente aos servidores finais."
+          "termo": "Criptografia Simétrica (Criptografia de Chave Secreta Compartilhada (AES / DES))",
+          "definicao": "É o tipo de criptografia em que remetente e destinatário utilizam exatamente a mesma chave secreta tanto para cifrar quanto para decifrar a mensagem. É extremamente rápida e ideal para cifrar grandes volumes de dados (como vídeos, arquivos ou tráfego HTTPS/VPN). Sua limitação é o problema de distribuição de chaves: para N pessoas, exige N(N-1)/2 chaves."
+        }
+      ]
+    }
+  },
+  {
+    "id": 14,
+    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
+    "referencia_livro": "Cap. 8 - Seção 8.3.3",
+    "tipo": "conceitual",
+    "enunciado": "Em um sistema de criptografia assimétrica, qual chave deve ser utilizada pelo remetente para gerar uma assinatura digital de um documento?",
+    "alternativas": {
+      "A": "Uma chave simétrica de sessão.",
+      "B": "A chave privada do remetente.",
+      "C": "A chave pública do destinatário.",
+      "D": "A chave pública do remetente."
+    },
+    "resposta_correta": "B",
+    "explicacao": "A assinatura digital cifra o hash da mensagem com a chave privada do remetente; qualquer pessoa pode verificá-la usando a chave pública correspondente, garantindo autenticidade e não-repúdio.",
+    "guia_estudo": {
+      "conceito_geral": "A assinatura digital cifra o hash da mensagem com a chave privada do remetente; qualquer pessoa pode verificá-la usando a chave pública correspondente, garantindo autenticidade e não-repúdio.",
+      "termos_chave": [
+        {
+          "termo": "Assinatura Digital (Assinatura Criptográfica de Chave Pública)",
+          "definicao": "É o equivalente eletrônico verificável de uma assinatura manuscrita, construída com função hash e criptografia de chave pública. O autor calcula o hash da mensagem e o cifra com sua CHAVE PRIVADA. Qualquer pessoa pode verificar a autenticidade e integridade usando a CHAVE PÚBLICA do autor, garantindo também o não-repúdio."
+        },
+        {
+          "termo": "Criptografia Assimétrica (Criptografia de Chave Pública)",
+          "definicao": "É um sistema criptográfico onde cada usuário possui um par matematicamente ligado de chaves: uma Chave Pública (divulgada a todos) e uma Chave Privada (mantida em segredo absoluto). O que é cifrado com a chave pública só pode ser decifrado com a chave privada correspondente (confidencialidade), e o que é cifrado com a chave privada pode ser verificado por todos com a chave pública (assinatura digital). Escala linearmente: 2N chaves para N pessoas."
+        },
+        {
+          "termo": "Hash Criptográfico (Função de Resumo Criptográfico (SHA-256, SHA-1, MD5))",
+          "definicao": "É uma função matemática de mão única que transforma uma mensagem ou arquivo de qualquer tamanho em uma 'impressão digital' de tamanho fixo. Garante resistência a colisões (é computacionalmente inviável achar duas mensagens diferentes com o mesmo hash) e efeito avalanche (mudar 1 bit altera completamente o hash). Muito mais seguro que um checksum comum."
+        }
+      ]
+    }
+  },
+  {
+    "id": 15,
+    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
+    "referencia_livro": "Cap. 8 - Seção 8.2",
+    "tipo": "conceitual",
+    "enunciado": "Qual é a principal vantagem da criptografia simétrica (como AES) em relação à criptografia assimétrica (como RSA)?",
+    "alternativas": {
+      "A": "Garante automaticamente o não-repúdio das mensagens.",
+      "B": "Oferece desempenho computacional muito superior para cifrar grandes volumes de dados.",
+      "C": "Dispensa o uso de vetores de inicialização.",
+      "D": "Elimina a necessidade de compartilhar segredos previamente."
+    },
+    "resposta_correta": "B",
+    "explicacao": "Algoritmos simétricos são ordens de grandeza mais rápidos e consomem menos recursos de CPU que algoritmos assimétricos, sendo ideais para o tráfego de dados em massa.",
+    "guia_estudo": {
+      "conceito_geral": "Algoritmos simétricos são ordens de grandeza mais rápidos e consomem menos recursos de CPU que algoritmos assimétricos, sendo ideais para o tráfego de dados em massa.",
+      "termos_chave": [
+        {
+          "termo": "Criptografia Simétrica (Criptografia de Chave Secreta Compartilhada (AES / DES))",
+          "definicao": "É o tipo de criptografia em que remetente e destinatário utilizam exatamente a mesma chave secreta tanto para cifrar quanto para decifrar a mensagem. É extremamente rápida e ideal para cifrar grandes volumes de dados (como vídeos, arquivos ou tráfego HTTPS/VPN). Sua limitação é o problema de distribuição de chaves: para N pessoas, exige N(N-1)/2 chaves."
+        },
+        {
+          "termo": "Criptografia Assimétrica (Criptografia de Chave Pública)",
+          "definicao": "É um sistema criptográfico onde cada usuário possui um par matematicamente ligado de chaves: uma Chave Pública (divulgada a todos) e uma Chave Privada (mantida em segredo absoluto). O que é cifrado com a chave pública só pode ser decifrado com a chave privada correspondente (confidencialidade), e o que é cifrado com a chave privada pode ser verificado por todos com a chave pública (assinatura digital). Escala linearmente: 2N chaves para N pessoas."
+        },
+        {
+          "termo": "RSA (Algoritmo Rivest-Shamir-Adleman)",
+          "definicao": "É o algoritmo de criptografia de chave pública mais famoso do mundo, baseado na dificuldade computacional de fatorar o produto de dois números primos muito grandes. Escolhe dois primos p e q, calcula n = p·q e z = (p-1)(q-1), escolhe o expoente público e, encontra o expoente privado d tal que (e·d) mod z = 1, e cifra mensagens fazendo c = m^e mod n."
+        }
+      ]
+    }
+  },
+  {
+    "id": 16,
+    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
+    "referencia_livro": "Cap. 8 - Seção 8.3.1",
+    "tipo": "conceitual",
+    "enunciado": "Qual propriedade de uma função hash criptográfica garante que, dado um valor de resumo H(m), seja computacionalmente inviável descobrir a mensagem original m?",
+    "alternativas": {
+      "A": "Resistência a colisões fortes.",
+      "B": "Resistência à pré-imagem (unidirecionalidade).",
+      "C": "Simetria de bloco.",
+      "D": "Efeito avalanche reverso."
+    },
+    "resposta_correta": "B",
+    "explicacao": "A resistência à pré-imagem define o caráter unidirecional (one-way) do hash, impedindo a recuperação da entrada original a partir do resumo.",
+    "guia_estudo": {
+      "conceito_geral": "A resistência à pré-imagem define o caráter unidirecional (one-way) do hash, impedindo a recuperação da entrada original a partir do resumo.",
+      "termos_chave": [
+        {
+          "termo": "Hash Criptográfico (Função de Resumo Criptográfico (SHA-256, SHA-1, MD5))",
+          "definicao": "É uma função matemática de mão única que transforma uma mensagem ou arquivo de qualquer tamanho em uma 'impressão digital' de tamanho fixo. Garante resistência a colisões (é computacionalmente inviável achar duas mensagens diferentes com o mesmo hash) e efeito avalanche (mudar 1 bit altera completamente o hash). Muito mais seguro que um checksum comum."
+        },
+        {
+          "termo": "MAC (Message Authentication Code (Código de Autenticação de Mensagem))",
+          "definicao": "É um resumo criptográfico gerado combinando a mensagem com uma chave secreta compartilhada entre remetente e destinatário (ex.: HMAC). Garante integridade e autenticação da mensagem entre duas partes que já compartilham uma chave secreta. Não oferece não-repúdio e não escala para milhares de leitores públicos."
+        },
+        {
+          "termo": "Assinatura Digital (Assinatura Criptográfica de Chave Pública)",
+          "definicao": "É o equivalente eletrônico verificável de uma assinatura manuscrita, construída com função hash e criptografia de chave pública. O autor calcula o hash da mensagem e o cifra com sua CHAVE PRIVADA. Qualquer pessoa pode verificar a autenticidade e integridade usando a CHAVE PÚBLICA do autor, garantindo também o não-repúdio."
+        }
+      ]
+    }
+  },
+  {
+    "id": 17,
+    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
+    "referencia_livro": "Cap. 8 - Seção 8.3.3",
+    "tipo": "conceitual",
+    "enunciado": "Qual ataque é diretamente mitigado pela verificação de certificados digitais emitidos por uma Autoridade Certificadora (CA) confiável?",
+    "alternativas": {
+      "A": "Esgotamento de tabela ARP na camada de enlace.",
+      "B": "Injeção de SQL em bancos de dados.",
+      "C": "Falsificação de chave pública em ataques Man-in-the-Middle (MitM).",
+      "D": "Ataque de negação de serviço volumétrico (DDoS)."
+    },
+    "resposta_correta": "C",
+    "explicacao": "A CA assina digitalmente o vínculo entre a identidade do servidor e sua chave pública, impedindo que um atacante no meio do caminho substitua a chave pública legítima pela sua.",
+    "guia_estudo": {
+      "conceito_geral": "A CA assina digitalmente o vínculo entre a identidade do servidor e sua chave pública, impedindo que um atacante no meio do caminho substitua a chave pública legítima pela sua.",
+      "termos_chave": [
+        {
+          "termo": "CA e Certificado Digital (Autoridade Certificadora (Certificate Authority))",
+          "definicao": "A CA é uma entidade confiável (como Let's Encrypt ou DigiCert) que emite Certificados Digitais vinculando uma identidade (ex.: um site) à sua chave pública. A CA verifica a identidade do dono do domínio e assina o hash do certificado usando a CHAVE PRIVADA da própria CA. Os navegadores já vêm com as chaves públicas das CAs confiáveis para validar esses certificados."
+        },
+        {
+          "termo": "Assinatura Digital (Assinatura Criptográfica de Chave Pública)",
+          "definicao": "É o equivalente eletrônico verificável de uma assinatura manuscrita, construída com função hash e criptografia de chave pública. O autor calcula o hash da mensagem e o cifra com sua CHAVE PRIVADA. Qualquer pessoa pode verificar a autenticidade e integridade usando a CHAVE PÚBLICA do autor, garantindo também o não-repúdio."
+        },
+        {
+          "termo": "Criptografia Assimétrica (Criptografia de Chave Pública)",
+          "definicao": "É um sistema criptográfico onde cada usuário possui um par matematicamente ligado de chaves: uma Chave Pública (divulgada a todos) e uma Chave Privada (mantida em segredo absoluto). O que é cifrado com a chave pública só pode ser decifrado com a chave privada correspondente (confidencialidade), e o que é cifrado com a chave privada pode ser verificado por todos com a chave pública (assinatura digital). Escala linearmente: 2N chaves para N pessoas."
+        }
+      ]
+    }
+  },
+  {
+    "id": 18,
+    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
+    "referencia_livro": "Cap. 8 - Seção 8.6",
+    "tipo": "conceitual",
+    "enunciado": "No protocolo TLS, qual é a finalidade principal da fase de Handshake?",
+    "alternativas": {
+      "A": "Autenticar as partes, negociar algoritmos criptográficos e estabelecer chaves de sessão simétricas.",
+      "B": "Comprimir os cabeçalhos IP para economizar largura de banda.",
+      "C": "Encapsular pacotes Ethernet em túneis IPsec.",
+      "D": "Substituir o protocolo TCP pelo UDP para reduzir latência."
+    },
+    "resposta_correta": "A",
+    "explicacao": "O Handshake do TLS utiliza criptografia assimétrica e certificados para autenticar o servidor (e opcionalmente o cliente) e acordar as chaves simétricas usadas no restante da conexão.",
+    "guia_estudo": {
+      "conceito_geral": "O Handshake do TLS utiliza criptografia assimétrica e certificados para autenticar o servidor (e opcionalmente o cliente) e acordar as chaves simétricas usadas no restante da conexão.",
+      "termos_chave": [
+        {
+          "termo": "SSL / TLS (Secure Sockets Layer / Transport Layer Security)",
+          "definicao": "É o protocolo de segurança que protege conexões TCP (base do HTTPS), fornecendo confidencialidade, integridade e autenticação. Realiza um Handshake para autenticar o servidor via certificado e derivar 4 chaves de sessão (cifração e MAC em cada direção). Protege contra reordenação via números de sequência implícitos no MAC e contra ataques por truncamento via campo 'tipo'."
+        },
+        {
+          "termo": "Pre-Master Secret (Segredo Pré-Mestre no Handshake SSL/TLS)",
+          "definicao": "É um valor secreto gerado pelo cliente durante o handshake SSL e enviado ao servidor cifrado com a chave pública extraída do certificado do servidor. Serve de base (junto com nonces) para que ambos calculem o Master Secret e as 4 chaves de sessão. Um impostor que envia o certificado de outra pessoa não consegue decifrar o Pre-Master Secret e falha na verificação final do MAC."
+        },
+        {
+          "termo": "CA e Certificado Digital (Autoridade Certificadora (Certificate Authority))",
+          "definicao": "A CA é uma entidade confiável (como Let's Encrypt ou DigiCert) que emite Certificados Digitais vinculando uma identidade (ex.: um site) à sua chave pública. A CA verifica a identidade do dono do domínio e assina o hash do certificado usando a CHAVE PRIVADA da própria CA. Os navegadores já vêm com as chaves públicas das CAs confiáveis para validar esses certificados."
+        }
+      ]
+    }
+  },
+  {
+    "id": 19,
+    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
+    "referencia_livro": "Cap. 8 - Seção 8.2.2",
+    "tipo": "conceitual",
+    "enunciado": "Qual é a função teórica do algoritmo de troca de chaves Diffie-Hellman?",
+    "alternativas": {
+      "A": "Permitir que duas partes estabeleçam uma chave secreta compartilhada através de um canal inseguro.",
+      "B": "Assinar digitalmente certificados X.509.",
+      "C": "Gerar resumos criptográficos de tamanho fixo.",
+      "D": "Detectar pacotes duplicados em redes sem fio."
+    },
+    "resposta_correta": "A",
+    "explicacao": "O Diffie-Hellman permite que duas entidades derivem o mesmo segredo compartilhado trocando valores públicos em um meio aberto, sem nunca transmitir a chave final.",
+    "guia_estudo": {
+      "conceito_geral": "O Diffie-Hellman permite que duas entidades derivem o mesmo segredo compartilhado trocando valores públicos em um meio aberto, sem nunca transmitir a chave final.",
+      "termos_chave": [
+        {
+          "termo": "Diffie-Hellman (DHKE) (Troca de Chaves Diffie-Hellman)",
+          "definicao": "É um protocolo matemático que permite que duas pessoas criem uma mesma chave secreta compartilhada conversando apenas por um canal público e inseguro. A partir de parâmetros públicos (primo p e base g), cada lado escolhe um segredo privado (SA, SB), troca valores públicos (g^SA mod p e g^SB mod p) e ambos calculam o mesmo segredo S = g^(SA·SB) mod p."
+        },
+        {
+          "termo": "Aritmética Modular (Operação Módulo (mod n))",
+          "definicao": "É o sistema matemático que trabalha com o resto da divisão inteira por um número n (como as horas de um relógio que voltam ao zero após 12). Permite simplificar multiplicações e potências gigantescas usando identidades como [(a mod n)·(b mod n)] mod n = (a·b) mod n, tornando viáveis cálculos de RSA e Diffie-Hellman."
+        },
+        {
+          "termo": "Criptografia Assimétrica (Criptografia de Chave Pública)",
+          "definicao": "É um sistema criptográfico onde cada usuário possui um par matematicamente ligado de chaves: uma Chave Pública (divulgada a todos) e uma Chave Privada (mantida em segredo absoluto). O que é cifrado com a chave pública só pode ser decifrado com a chave privada correspondente (confidencialidade), e o que é cifrado com a chave privada pode ser verificado por todos com a chave pública (assinatura digital). Escala linearmente: 2N chaves para N pessoas."
+        }
+      ]
+    }
+  },
+  {
+    "id": 20,
+    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
+    "referencia_livro": "Cap. 8 - Seção 8.7.2",
+    "tipo": "conceitual",
+    "enunciado": "Na arquitetura do IPsec, qual serviço de segurança é fornecido pelo protocolo ESP (Encapsulating Security Payload), mas NÃO é fornecido pelo protocolo AH (Authentication Header)?",
+    "alternativas": {
+      "A": "Integridade sem conexão.",
+      "B": "Proteção contra ataques de repetição (anti-replay).",
+      "C": "Autenticação da origem dos dados.",
+      "D": "Confidencialidade por meio de criptografia do payload."
+    },
+    "resposta_correta": "D",
+    "explicacao": "O AH garante apenas integridade e autenticação; o ESP adiciona confidencialidade (cifragem dos dados), além de poder prover integridade e autenticação.",
+    "guia_estudo": {
+      "conceito_geral": "O AH garante apenas integridade e autenticação; o ESP adiciona confidencialidade (cifragem dos dados), além de poder prover integridade e autenticação.",
+      "termos_chave": [
+        {
+          "termo": "AH vs. ESP (Authentication Header vs. Encapsulating Security Payload)",
+          "definicao": "São os dois protocolos de proteção de datagramas oferecidos pela arquitetura IPsec. O AH fornece apenas autenticação de origem e integridade (sem cifrar os dados). O ESP (muito mais utilizado) fornece confidencialidade (cifração), autenticação de origem, integridade e proteção anti-replay."
+        },
+        {
+          "termo": "IPsec e VPN (Internet Protocol Security e Virtual Private Network)",
+          "definicao": "IPsec é o conjunto de protocolos que provê segurança diretamente na camada de rede (IP), sendo a base das VPNs corporativas (site-to-site). No Modo Túnel, encapsula e cifra o datagrama IP inteiro dentro de um novo pacote IP entre dois roteadores de borda, permitindo que filiais se comuniquem com segurança atravessando a Internet pública."
+        },
+        {
+          "termo": "SA, SAD e SPD (Associação de Segurança e seus Bancos de Dados no IPsec)",
+          "definicao": "Uma SA é um contrato unidirecional (simplex) de segurança entre dois pontos IPsec; SPD e SAD são as duas tabelas internas mantidas nos roteadores/hosts IPsec. A SPD (Política de Segurança) decide QUAIS pacotes devem ser descartados, liberados ou protegidos com IPsec; a SAD (Associação de Segurança) guarda as chaves, algoritmos, SPI e números de sequência das SAs ativas."
         }
       ]
     }
   },
   {
     "id": 21,
-    "capitulo": "Capítulo 7 - Redes Multimídia",
-    "referencia_livro": "Cap. 7 - Seção 7.1.3",
+    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
+    "referencia_livro": "Cap. 8 - Seção 8.7.1",
     "tipo": "conceitual",
-    "enunciado": "Segundo Kurose & Ross, as aplicações de redes multimídia dividem-se em três grandes categorias: (1) vídeo/áudio de fluxo contínuo armazenado, (2) áudio/vídeo conversacionais (interativos em tempo real) e (3) vídeo/áudio de fluxo contínuo ao vivo. Em relação aos requisitos de atraso (latência) e tolerância a perdas, assinale a alternativa correta:",
+    "enunciado": "Em qual cenário o Modo Túnel do IPsec é teoricamente preferível ao Modo Transporte?",
     "alternativas": {
-      "A": "Aplicações conversacionais (como VoIP) toleram atrasos fim a fim de até 10 segundos, mas não toleram qualquer perda de pacotes.",
-      "B": "Aplicações de fluxo contínuo armazenado exigem atrasos fim a fim inferiores a 150 ms, sendo mais sensíveis à latência do que chamadas VoIP.",
-      "C": "Aplicações conversacionais são altamente sensíveis ao atraso fim a fim (atrasos abaixo de 150 ms são imperceptíveis e acima de 400 ms tornam a conversa frustrante), mas toleram pequenas perdas de pacotes.",
-      "D": "Todas as três categorias exigem entrega 100% confiável e ordenada via TCP, pois qualquer perda de pacote interrompe imediatamente a decodificação."
+      "A": "Exclusivamente para tráfego local dentro da mesma VLAN.",
+      "B": "Quando se deseja criptografar apenas o payload TCP mantendo o cabeçalho IP original exposto na Internet.",
+      "C": "Quando se deseja evitar qualquer sobrecarga de cabeçalho IP adicional.",
+      "D": "Em VPNs site-to-site entre gateways, onde todo o datagrama IP original (incluindo endereços internos) deve ser ocultado."
     },
-    "resposta_correta": "C",
-    "explicacao": "Aplicações interativas em tempo real (conversacionais, como VoIP) têm restrições severas de atraso (<150 ms ideal, >400 ms problemático), mas são tolerantes a pequenas taxas de perda. Já o streaming armazenado e o ao vivo toleram atrasos iniciais de alguns segundos graças ao uso de buffer.",
+    "resposta_correta": "D",
+    "explicacao": "O Modo Túnel encapsula o pacote IP inteiro dentro de um novo datagrama IP, ocultando os endereços de origem e destino reais entre gateways de rede.",
     "guia_estudo": {
-      "conceito_geral": "Classificação fundamental das aplicações multimídia segundo suas exigências de latência, interatividade e tolerância a perdas na Internet de melhor esforço.",
+      "conceito_geral": "O Modo Túnel encapsula o pacote IP inteiro dentro de um novo datagrama IP, ocultando os endereços de origem e destino reais entre gateways de rede.",
       "termos_chave": [
         {
-          "termo": "Fluxo Contínuo Armazenado (Stored Streaming)",
-          "definicao": "O conteúdo já está pré-gravado em servidores (ex: YouTube, Netflix). Permite interatividade (pausar, avançar) e tolera atrasos iniciais de 1 a 10 segundos via buffer no cliente."
+          "termo": "IPsec e VPN (Internet Protocol Security e Virtual Private Network)",
+          "definicao": "IPsec é o conjunto de protocolos que provê segurança diretamente na camada de rede (IP), sendo a base das VPNs corporativas (site-to-site). No Modo Túnel, encapsula e cifra o datagrama IP inteiro dentro de um novo pacote IP entre dois roteadores de borda, permitindo que filiais se comuniquem com segurança atravessando a Internet pública."
         },
         {
-          "termo": "Aplicações Conversacionais (Interativas em Tempo Real)",
-          "definicao": "Comunicação bidirecional humana em tempo real (ex: VoIP, videoconferência). Atrasos fim a fim < 150 ms não são percebidos; entre 150 e 400 ms são aceitáveis; > 400 ms prejudicam seriamente a conversa."
+          "termo": "AH vs. ESP (Authentication Header vs. Encapsulating Security Payload)",
+          "definicao": "São os dois protocolos de proteção de datagramas oferecidos pela arquitetura IPsec. O AH fornece apenas autenticação de origem e integridade (sem cifrar os dados). O ESP (muito mais utilizado) fornece confidencialidade (cifração), autenticação de origem, integridade e proteção anti-replay."
         },
         {
-          "termo": "Fluxo Contínuo ao Vivo (Live Streaming)",
-          "definicao": "Transmissão de eventos ao vivo (esportes, shows) para milhares de usuários simultâneos. Tolera atraso de alguns segundos em relação ao evento real, mas não permite avançar no tempo."
-        },
-        {
-          "termo": "Tolerância a Perdas",
-          "definicao": "Diferente de transferências de arquivos ou páginas web, áudio e vídeo podem sofrer pequenas perdas de pacotes resultando apenas em falhas breves ou imperceptíveis na mídia."
+          "termo": "SA, SAD e SPD (Associação de Segurança e seus Bancos de Dados no IPsec)",
+          "definicao": "Uma SA é um contrato unidirecional (simplex) de segurança entre dois pontos IPsec; SPD e SAD são as duas tabelas internas mantidas nos roteadores/hosts IPsec. A SPD (Política de Segurança) decide QUAIS pacotes devem ser descartados, liberados ou protegidos com IPsec; a SAD (Associação de Segurança) guarda as chaves, algoritmos, SPI e números de sequência das SAs ativas."
         }
       ]
     }
   },
   {
     "id": 22,
-    "capitulo": "Capítulo 7 - Redes Multimídia",
-    "referencia_livro": "Cap. 7 - Seções 7.2.1 e 7.2.2",
+    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
+    "referencia_livro": "Cap. 8 - Seção 8.4",
     "tipo": "conceitual",
-    "enunciado": "Apesar de o streaming sobre UDP ter sido inicialmente popular em redes multimídia, a grande maioria dos serviços modernos (como YouTube e Netflix) migrou para o HTTP de fluxo contínuo sobre TCP. Qual conjunto de fatores explica essa adoção massiva do HTTP/TCP?",
+    "enunciado": "Qual é o objetivo teórico de um 'nonce' (number used once) em protocolos de desafio-resposta?",
     "alternativas": {
-      "A": "O TCP garante taxa de transmissão constante sem controle de congestionamento, eliminando totalmente a necessidade de buffer no cliente.",
-      "B": "O tráfego HTTP atravessa facilmente firewalls e NATs (que frequentemente bloqueiam UDP), dispensa servidores de mídia complexos com controle de estado (RTSP) e aproveita a infraestrutura de servidores Web e CDNs já existente.",
-      "C": "O UDP não suporta a transmissão de quadros de vídeo comprimidos em MPEG ou H.264.",
-      "D": "O HTTP opera diretamente sobre a camada de enlace, evitando o cabeçalho IP e reduzindo a latência para zero."
+      "A": "Substituir o endereço IP de origem do pacote.",
+      "B": "Garantir a atualidade da mensagem e impedir ataques de repetição (replay).",
+      "C": "Aumentar o tamanho da chave simétrica.",
+      "D": "Permitir a compressão sem perdas do payload."
     },
     "resposta_correta": "B",
-    "explicacao": "No UDP de fluxo contínuo, firewalls frequentemente bloqueiam pacotes UDP, é necessário um servidor de controle separado (como RTSP) mantendo estado do cliente, e o protocolo não se adapta bem a variações de banda. O HTTP/TCP atravessa firewalls/NATs sem atrito, é stateless (sem estado no servidor) e usa toda a infraestrutura Web/CDN existente.",
+    "explicacao": "Ao exigir que a resposta incorpore um número único recém-gerado, o protocolo comprova que a mensagem não é uma cópia antiga reenviada por um atacante.",
     "guia_estudo": {
-      "conceito_geral": "Evolução arquitetural do streaming na Internet: por que o HTTP sobre TCP substituiu o streaming tradicional baseado em UDP e RTSP.",
+      "conceito_geral": "Ao exigir que a resposta incorpore um número único recém-gerado, o protocolo comprova que a mensagem não é uma cópia antiga reenviada por um atacante.",
       "termos_chave": [
         {
-          "termo": "UDP de Fluxo Contínuo",
-          "definicao": "O servidor envia pacotes de vídeo diretamente sobre UDP na taxa de consumo do vídeo. Sofre com bloqueios em firewalls corporativos/NATs e não reage bem a variações abruptas de largura de banda."
+          "termo": "Nonce (Number Used Once (Número Usado Apenas Uma Vez))",
+          "definicao": "É um número aleatório ou pseudoaleatório gerado para ser usado uma única vez na vida de um protocolo de autenticação. Garante 'vivacidade' (liveness) e frescor em protocolos de desafio-resposta (como o ap4.0 do Kurose), impedindo que um invasor reutilize mensagens gravadas de sessões antigas."
         },
         {
-          "termo": "RTSP (Real-Time Streaming Protocol)",
-          "definicao": "Protocolo de controle fora de banda usado em streaming UDP para comandos de pausa/avanço, exigindo que o servidor mantenha informações de estado para cada cliente conectado."
+          "termo": "Ataque de Repetição (Replay Attack / Playback Attack)",
+          "definicao": "É um ataque de rede no qual um invasor captura um pacote válido (mesmo criptografado) e o reenvia novamente mais tarde para induzir o receptor a repetir uma ação ou aceitar uma autenticação. Explora protocolos que não possuem controle de frescor. É combatido com nonces (em autenticação), números de sequência implícitos (no SSL/TLS) e janelas anti-replay com número de sequência ESP (no IPsec)."
         },
         {
-          "termo": "HTTP de Fluxo Contínuo (HTTP Streaming)",
-          "definicao": "O vídeo é tratado como um arquivo comum em um servidor HTTP. O cliente usa requisições HTTP GET (e cabeçalho Range para saltos) sobre TCP, atravessando firewalls/NATs transparentemente."
-        },
-        {
-          "termo": "Controle de Fluxo e Congestionamento do TCP",
-          "definicao": "No HTTP streaming, o TCP envia os dados na maior taxa permitida pela rede até encher o buffer do cliente; se o buffer enche, o controle de fluxo TCP (rwnd) reduz automaticamente o envio."
+          "termo": "Tríade de Segurança (Confidencialidade, Integridade e Autenticação)",
+          "definicao": "São as propriedades fundamentais que uma comunicação segura em redes de computadores busca garantir diante de um invasor (Trudy). Confidencialidade garante sigilo (ninguém lê); Integridade garante que os dados não foram alterados em trânsito; Autenticação confirma a identidade real de quem está do outro lado. São propriedades independentes entre si."
         }
       ]
     }
   },
   {
     "id": 23,
-    "capitulo": "Capítulo 7 - Redes Multimídia",
-    "referencia_livro": "Cap. 7 - Seção 7.2.4",
+    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
+    "referencia_livro": "Cap. 8 - Seção 8.7",
     "tipo": "conceitual",
-    "enunciado": "As Redes de Distribuição de Conteúdo (CDNs) distribuem cópias de vídeos em servidores geograficamente espalhados. Segundo Kurose & Ross, existem duas filosofias principais de posicionamento de servidores de CDN: 'entrar profundamente' (Enter Deep) e 'trazer para dentro de casa' (Bring Home). Qual alternativa descreve corretamente essas duas abordagens?",
+    "enunciado": "Qual camada do modelo TCP/IP é protegida nativamente pelo protocolo IPsec?",
     "alternativas": {
-      "A": "'Entrar profundamente' instala clusters de servidores dentro das redes de acesso de muitos ISPs locais (próximos aos usuários finais, ex: Akamai), enquanto 'trazer para dentro de casa' constrói clusters maiores em poucos locais-chave (como IXPs) conectando-os por redes privadas de alta velocidade (ex: Limelight).",
-      "B": "'Entrar profundamente' armazena o vídeo diretamente no roteador Wi-Fi residencial do usuário, enquanto 'trazer para dentro de casa' mantém todos os vídeos em um único datacenter central.",
-      "C": "'Entrar profundamente' usa apenas comunicação P2P entre usuários, enquanto 'trazer para dentro de casa' exige exclusivamente transmissão via satélite.",
-      "D": "Ambas as filosofias dispensam o uso de DNS para redirecionar o cliente ao servidor de conteúdo mais adequado."
+      "A": "Camada de Aplicação.",
+      "B": "Camada de Rede.",
+      "C": "Camada de Transporte.",
+      "D": "Camada Física."
     },
-    "resposta_correta": "A",
-    "explicacao": "Na filosofia 'Entrar profundamente' (ex: Akamai), a CDN implanta muitos clusters menores dentro das redes de acesso dos ISPs para minimizar atraso e aumentar vazão, com maior custo de manutenção. Na 'Trazer para dentro de casa' (ex: Limelight), constrói clusters grandes em poucos pontos estratégicos (como IXPs), facilitando manutenção e gerenciamento.",
+    "resposta_correta": "B",
+    "explicacao": "O IPsec opera na Camada de Rede, protegendo datagramas IP de forma transparente para as camadas superiores (TCP, UDP e aplicações).",
     "guia_estudo": {
-      "conceito_geral": "Arquitetura e operação de Redes de Distribuição de Conteúdo (CDNs), responsáveis por entregar a maior parte do tráfego de vídeo da Internet moderna com baixa latência e alta escalabilidade.",
+      "conceito_geral": "O IPsec opera na Camada de Rede, protegendo datagramas IP de forma transparente para as camadas superiores (TCP, UDP e aplicações).",
       "termos_chave": [
         {
-          "termo": "CDN (Content Distribution Network)",
-          "definicao": "Rede distribuída de servidores geograficamente dispersos que armazenam réplicas de conteúdo (vídeos, imagens) para entregá-las ao usuário a partir de um nó próximo, evitando congestionamento no servidor de origem."
+          "termo": "IPsec e VPN (Internet Protocol Security e Virtual Private Network)",
+          "definicao": "IPsec é o conjunto de protocolos que provê segurança diretamente na camada de rede (IP), sendo a base das VPNs corporativas (site-to-site). No Modo Túnel, encapsula e cifra o datagrama IP inteiro dentro de um novo pacote IP entre dois roteadores de borda, permitindo que filiais se comuniquem com segurança atravessando a Internet pública."
         },
         {
-          "termo": "Entrar Profundamente (Enter Deep)",
-          "definicao": "Estratégia (ex: Akamai) que posiciona clusters de servidores dentro das redes de acesso de centenas de ISPs ao redor do mundo. Reduz o número de enlaces entre cliente e servidor, mas aumenta a complexidade de manutenção."
+          "termo": "AH vs. ESP (Authentication Header vs. Encapsulating Security Payload)",
+          "definicao": "São os dois protocolos de proteção de datagramas oferecidos pela arquitetura IPsec. O AH fornece apenas autenticação de origem e integridade (sem cifrar os dados). O ESP (muito mais utilizado) fornece confidencialidade (cifração), autenticação de origem, integridade e proteção anti-replay."
         },
         {
-          "termo": "Trazer para Dentro de Casa (Bring Home)",
-          "definicao": "Estratégia (ex: Limelight) que constrói clusters grandes em um número menor de pontos centrais (geralmente Pontos de Troca de Tráfego - IXPs), reduzindo custos de manutenção ao preço de uma distância ligeiramente maior até o usuário."
-        },
-        {
-          "termo": "Redirecionamento via DNS",
-          "definicao": "Mecanismo pelo qual a CDN intercepta a consulta DNS do cliente (através do servidor DNS autoritativo da CDN) e retorna o endereço IP do cluster mais adequado considerando proximidade geográfica, latência ou carga."
+          "termo": "IKE (Internet Key Exchange (Troca de Chaves da Internet))",
+          "definicao": "É o protocolo de gerenciamento automático de chaves utilizado pelo IPsec. Autentica roteadores (via certificados ou chave pré-compartilhada) e usa Diffie-Hellman para criar e renovar automaticamente Associações de Segurança (SAs) sem precisar digitar chaves manualmente em centenas de roteadores."
         }
       ]
     }
   },
   {
     "id": 24,
-    "capitulo": "Capítulo 7 - Redes Multimídia",
-    "referencia_livro": "Cap. 7 - Seções 7.3.1 e 7.3.2",
+    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
+    "referencia_livro": "Cap. 8 - Seção 8.9.1",
     "tipo": "conceitual",
-    "enunciado": "Em chamadas VoIP sobre a Internet de melhor esforço, os pacotes sofrem variações aleatórias de atraso nas filas dos roteadores (jitter). Para lidar com isso, receptores utilizam um atraso de reprodução (playout delay) adaptativo. Em qual momento o algoritmo adaptativo deve ajustar o atraso de reprodução e por quê?",
+    "enunciado": "O que caracteriza um firewall do tipo Stateful (com inspeção de estado) em comparação a um firewall Stateless?",
     "alternativas": {
-      "A": "A cada pacote individual recebido, acelerando ou desacelerando cada sílaba no meio das palavras.",
-      "B": "Apenas no início de cada período de fala (talk spurt), pois pequenos alongamentos ou encurtamentos nos intervalos de silêncio entre falas são praticamente imperceptíveis ao ouvido humano.",
-      "C": "Somente quando a conexão TCP reinicia sua janela de congestionamento para 1 MSS.",
-      "D": "O atraso de reprodução nunca deve ser ajustado; ele é sempre fixado permanentemente em 5 segundos no início da chamada."
+      "A": "Ele mantém uma tabela de conexões ativas para permitir pacotes de resposta legítimos sem precisar abrir portas permanentemente.",
+      "B": "Ele descarta automaticamente todo tráfego UDP.",
+      "C": "Ele opera exclusivamente na camada física bloqueando sinais elétricos.",
+      "D": "Ele não consegue ler endereços IP ou portas TCP."
     },
-    "resposta_correta": "B",
-    "explicacao": "No playout adaptativo, o receptor estima continuamente o atraso médio e a variância (jitter) usando média móvel exponencialmente ponderada (EWMA), mas só altera o instante de reprodução no início de cada período de fala (talk spurt). Assim, altera-se apenas a duração do silêncio entre frases, mantendo a cadência natural da voz.",
+    "resposta_correta": "A",
+    "explicacao": "Firewalls Stateful rastreiam o estado das conexões (como o handshake TCP), tomando decisões baseadas no contexto do fluxo e não apenas em regras estáticas por pacote.",
     "guia_estudo": {
-      "conceito_geral": "Remoção da variação de atraso (jitter) no receptor em aplicações de Voz sobre IP (VoIP) utilizando números de sequência, carimbos de tempo (timestamps) e atraso de reprodução fixo versus adaptativo.",
+      "conceito_geral": "Firewalls Stateful rastreiam o estado das conexões (como o handshake TCP), tomando decisões baseadas no contexto do fluxo e não apenas em regras estáticas por pacote.",
       "termos_chave": [
         {
-          "termo": "Jitter (Variação de Atraso)",
-          "definicao": "Flutuação no atraso fim a fim sofrido por pacotes consecutivos devido a filas variáveis nos roteadores. Sem remoção de jitter, o áudio reproduzido ficaria picotado e ininteligível."
+          "termo": "Firewall (Filtro Sem Estado, Stateful e Gateway de Aplicação)",
+          "definicao": "É uma combinação de hardware e software que isola uma rede interna da Internet externa, controlando quais pacotes podem entrar ou sair. Filtros sem estado analisam apenas cabeçalhos isolados via ACL; Firewalls Stateful mantêm ACL + Tabela de Conexões rastreando sessões TCP/UDP ativas; Gateways de Aplicação (proxies) inspecionam dados da aplicação e exigem um filtro de roteador para impedir desvios."
         },
         {
-          "termo": "Atraso de Reprodução (Playout Delay)",
-          "definicao": "Tempo que o receptor aguarda após a geração (timestamp) de um pacote antes de reproduzi-lo. Se um pacote chega depois de seu instante programado de reprodução, ele é descartado (considerado perdido)."
+          "termo": "IDS e IPS (Intrusion Detection System / Intrusion Prevention System)",
+          "definicao": "São sistemas de segurança operacional que realizam Inspeção Profunda de Pacotes (DPI), olhando além dos cabeçalhos até a carga útil da aplicação. O IDS apenas gera alertas ao detectar tráfego suspeito; o IPS bloqueia/descarta pacotes maliciosos em tempo real. Podem ser baseados em assinaturas (regras de ataques conhecidos, como Snort) ou em anomalias (desvios estatísticos do tráfego normal)."
         },
         {
-          "termo": "Período de Fala (Talk Spurt)",
-          "definicao": "Intervalo contínuo em que o locutor está falando, intercalado por períodos de silêncio. O receptor detecta o início de um novo talk spurt comparando a diferença de timestamps com a diferença de números de sequência."
-        },
-        {
-          "termo": "Playout Adaptativo",
-          "definicao": "Técnica que estima dinamicamente o atraso médio (d_i) e o desvio médio (v_i) da rede para escolher um atraso de reprodução grande o bastante para evitar perdas, mas pequeno o bastante para preservar a interatividade."
+          "termo": "Tríade de Segurança (Confidencialidade, Integridade e Autenticação)",
+          "definicao": "São as propriedades fundamentais que uma comunicação segura em redes de computadores busca garantir diante de um invasor (Trudy). Confidencialidade garante sigilo (ninguém lê); Integridade garante que os dados não foram alterados em trânsito; Autenticação confirma a identidade real de quem está do outro lado. São propriedades independentes entre si."
         }
       ]
     }
   },
   {
     "id": 25,
-    "capitulo": "Capítulo 7 - Redes Multimídia",
-    "referencia_livro": "Cap. 7 - Seção 7.3.3",
+    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
+    "referencia_livro": "Cap. 8 - Seção 8.9.2",
     "tipo": "conceitual",
-    "enunciado": "Além da FEC (Forward Error Correction), Kurose & Ross descrevem a intercalação (interleaving) como técnica de recuperação de perdas de pacotes em áudio VoIP. Qual é a principal vantagem e a principal desvantagem da intercalação em comparação com a FEC?",
+    "enunciado": "Qual é a principal diferença entre detecção baseada em assinaturas e detecção baseada em anomalias em um IDS/IPS?",
     "alternativas": {
-      "A": "Vantagem: não aumenta a largura de banda consumida (zero redundância); Desvantagem: aumenta a latência (atraso), o que limita seu uso em aplicações conversacionais muito interativas.",
-      "B": "Vantagem: reduz a latência pela metade; Desvantagem: exige o dobro da largura de banda do enlace.",
-      "C": "Vantagem: recupera 100% dos pacotes perdidos em rajadas longas; Desvantagem: exige criptografia assimétrica em cada pacote.",
-      "D": "Vantagem: dispensa qualquer buffer no receptor; Desvantagem: funciona apenas sobre o protocolo TCP."
+      "A": "A baseada em assinaturas identifica padrões de ataques conhecidos; a baseada em anomalias detecta desvios em relação ao comportamento normal da rede.",
+      "B": "A baseada em assinaturas só funciona em redes sem fio.",
+      "C": "A baseada em anomalias nunca gera falsos positivos.",
+      "D": "A baseada em assinaturas bloqueia ataques desconhecidos (zero-day) com 100% de precisão."
     },
     "resposta_correta": "A",
-    "explicacao": "Na intercalação, o transmissor reordena pequenas unidades de áudio (ex: 5 ms) antes de empacotá-las, de modo que unidades originalmente adjacentes vão em pacotes diferentes. Se um pacote se perder, ocorrem apenas pequenas lacunas espalhadas (muito menos perceptíveis). Ela não adiciona nenhum bit redundante (0% de sobrecarga de banda), porém exige esperar vários pacotes para remontar o áudio, aumentando a latência.",
+    "explicacao": "Assinaturas dependem de uma base prévia de ataques conhecidos (alta precisão, mas falha em zero-days), enquanto anomalias comparam o tráfego com uma linha de base normal (detecta novos ataques, mas gera mais falsos positivos).",
     "guia_estudo": {
-      "conceito_geral": "Técnicas de mitigação de perda de pacotes em VoIP: comparação entre FEC (que consome banda extra) e Intercalação (que não consome banda extra, mas aumenta a latência).",
+      "conceito_geral": "Assinaturas dependem de uma base prévia de ataques conhecidos (alta precisão, mas falha em zero-days), enquanto anomalias comparam o tráfego com uma linha de base normal (detecta novos ataques, mas gera mais falsos positivos).",
       "termos_chave": [
         {
-          "termo": "Intercalação (Interleaving)",
-          "definicao": "Reordenação de pequenas unidades de áudio antes da transmissão para que amostras adjacentes não viajem no mesmo pacote. A perda de um pacote gera pequenas falhas isoladas de poucos milissegundos em vez de um buraco longo."
+          "termo": "IDS e IPS (Intrusion Detection System / Intrusion Prevention System)",
+          "definicao": "São sistemas de segurança operacional que realizam Inspeção Profunda de Pacotes (DPI), olhando além dos cabeçalhos até a carga útil da aplicação. O IDS apenas gera alertas ao detectar tráfego suspeito; o IPS bloqueia/descarta pacotes maliciosos em tempo real. Podem ser baseados em assinaturas (regras de ataques conhecidos, como Snort) ou em anomalias (desvios estatísticos do tráfego normal)."
         },
         {
-          "termo": "Compromisso Banda vs. Latência",
-          "definicao": "Ao contrário da FEC, a intercalação não envia dados redundantes (não aumenta a taxa de bits). Entretanto, o receptor precisa esperar a chegada de um grupo inteiro de pacotes intercalados para reconstruir o trecho, aumentando o atraso fim a fim."
+          "termo": "Firewall (Filtro Sem Estado, Stateful e Gateway de Aplicação)",
+          "definicao": "É uma combinação de hardware e software que isola uma rede interna da Internet externa, controlando quais pacotes podem entrar ou sair. Filtros sem estado analisam apenas cabeçalhos isolados via ACL; Firewalls Stateful mantêm ACL + Tabela de Conexões rastreando sessões TCP/UDP ativas; Gateways de Aplicação (proxies) inspecionam dados da aplicação e exigem um filtro de roteador para impedir desvios."
         },
         {
-          "termo": "Ocultação de Erro no Receptor",
-          "definicao": "Técnicas locais (como repetição do último trecho recebido ou interpolação de ondas sonoras) usadas para mascarar pequenas lacunas de áudio quando pacotes são perdidos."
+          "termo": "Tríade de Segurança (Confidencialidade, Integridade e Autenticação)",
+          "definicao": "São as propriedades fundamentais que uma comunicação segura em redes de computadores busca garantir diante de um invasor (Trudy). Confidencialidade garante sigilo (ninguém lê); Integridade garante que os dados não foram alterados em trânsito; Autenticação confirma a identidade real de quem está do outro lado. São propriedades independentes entre si."
         }
       ]
     }
   },
   {
     "id": 26,
-    "capitulo": "Capítulo 7 - Redes Multimídia",
-    "referencia_livro": "Cap. 7 - Seção 7.4.1",
+    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
+    "referencia_livro": "Cap. 8 - Seção 8.1 / 8.9",
     "tipo": "conceitual",
-    "enunciado": "O RTP (Real-Time Transport Protocol) trabalha em conjunto com um protocolo companheiro chamado RTCP (Real-Time Control Protocol). Qual é a função principal do RTCP em uma sessão multimídia e como ele evita congestionar sessões com muitos participantes?",
+    "enunciado": "Como funciona teoricamente um ataque de SYN Flood?",
     "alternativas": {
-      "A": "O RTCP retransmite automaticamente todos os pacotes de áudio perdidos no RTP e consome até 50% da banda disponível.",
-      "B": "O RTCP envia periodicamente relatórios de controle contendo estatísticas de qualidade (como fração de pacotes perdidos, jitter e sincronização de fluxos), e os participantes escalonam dinamicamente seus envios para limitar o tráfego RTCP a cerca de 5% da largura de banda total da sessão.",
-      "C": "O RTCP substitui o cabeçalho IP para criar rotas exclusivas com reserva de banda nos roteadores do núcleo.",
-      "D": "O RTCP serve exclusivamente para autenticar senhas de usuários antes do início de uma chamada telefônica."
+      "A": "O atacante envia milhares de pacotes FIN para encerrar sessões UDP.",
+      "B": "O atacante altera o registro DNS do servidor alvo.",
+      "C": "O atacante envia grande quantidade de pacotes TCP SYN sem completar o three-way handshake, esgotando a fila de conexões semi-abertas do servidor.",
+      "D": "O atacante intercepta chaves privadas durante o handshake TLS."
     },
-    "resposta_correta": "B",
-    "explicacao": "Pacotes RTCP não carregam dados de mídia, mas sim relatórios de remetente e receptor (taxa de perda, jitter, último número de sequência, timestamps para sincronizar áudio e vídeo). Para escalar em conferências grandes, o RTCP ajusta dinamicamente o intervalo de envio de cada participante para manter o tráfego de controle limitado a aproximadamente 5% da banda da sessão.",
+    "resposta_correta": "C",
+    "explicacao": "Ao não enviar o ACK final do handshake TCP, o atacante força o servidor a alocar recursos para conexões pendentes até negar serviço a clientes legítimos.",
     "guia_estudo": {
-      "conceito_geral": "Funcionamento do protocolo de controle RTCP em conjunto com o RTP para monitoramento de desempenho, feedback de rede e sincronização multimídia.",
+      "conceito_geral": "Ao não enviar o ACK final do handshake TCP, o atacante força o servidor a alocar recursos para conexões pendentes até negar serviço a clientes legítimos.",
       "termos_chave": [
         {
-          "termo": "RTCP (Real-Time Control Protocol)",
-          "definicao": "Protocolo companheiro do RTP (RFC 3550) que trafega em uma porta UDP distinta (geralmente porta RTP + 1) enviando pacotes de controle periódicos entre os participantes."
+          "termo": "SYN Flood (Ataque DoS)",
+          "definicao": "Ataque de negação de serviço que explora o three-way handshake do TCP: envia enxurradas de pacotes SYN (frequentemente com IP falsificado) sem devolver o ACK final, saturando a tabela de conexões semi-abertas do servidor."
         },
         {
-          "termo": "Relatórios de Receptor (Receiver Reports)",
-          "definicao": "Enviados por quem recebe mídia; informam ao remetente o SSRC da fonte, a fração de pacotes perdidos, o maior número de sequência recebido e o jitter entre chegadas."
+          "termo": "Firewall (Filtro Sem Estado, Stateful e Gateway de Aplicação)",
+          "definicao": "É uma combinação de hardware e software que isola uma rede interna da Internet externa, controlando quais pacotes podem entrar ou sair. Filtros sem estado analisam apenas cabeçalhos isolados via ACL; Firewalls Stateful mantêm ACL + Tabela de Conexões rastreando sessões TCP/UDP ativas; Gateways de Aplicação (proxies) inspecionam dados da aplicação e exigem um filtro de roteador para impedir desvios."
         },
         {
-          "termo": "Relatórios de Remetente (Sender Reports)",
-          "definicao": "Enviados por quem transmite mídia; associam o relógio de parede (NTP) ao timestamp RTP, permitindo que o receptor sincronize corretamente fluxos separados (como áudio e vídeo / lip-sync)."
+          "termo": "IDS e IPS (Intrusion Detection System / Intrusion Prevention System)",
+          "definicao": "São sistemas de segurança operacional que realizam Inspeção Profunda de Pacotes (DPI), olhando além dos cabeçalhos até a carga útil da aplicação. O IDS apenas gera alertas ao detectar tráfego suspeito; o IPS bloqueia/descarta pacotes maliciosos em tempo real. Podem ser baseados em assinaturas (regras de ataques conhecidos, como Snort) ou em anomalias (desvios estatísticos do tráfego normal)."
         },
         {
-          "termo": "Escalonamento de Banda RTCP (Regra dos 5%)",
-          "definicao": "Quanto mais participantes entram na conferência, menos frequentemente cada um transmite pacotes RTCP, mantendo a sobrecarga total de controle restrita a ~5% da banda da sessão."
+          "termo": "Tríade de Segurança (Confidencialidade, Integridade e Autenticação)",
+          "definicao": "São as propriedades fundamentais que uma comunicação segura em redes de computadores busca garantir diante de um invasor (Trudy). Confidencialidade garante sigilo (ninguém lê); Integridade garante que os dados não foram alterados em trânsito; Autenticação confirma a identidade real de quem está do outro lado. São propriedades independentes entre si."
         }
       ]
     }
   },
   {
     "id": 27,
-    "capitulo": "Capítulo 7 - Redes Multimídia",
-    "referencia_livro": "Cap. 7 - Seção 7.4.2",
+    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
+    "referencia_livro": "Cap. 8 - Seção 8.1 / 8.4",
     "tipo": "conceitual",
-    "enunciado": "Sobre a arquitetura do SIP (Session Initiation Protocol) para estabelecimento de chamadas VoIP, qual alternativa descreve corretamente o papel do Registrador SIP, do Proxy SIP e do fluxo de dados de voz?",
+    "enunciado": "O que caracteriza um ataque de IP Spoofing?",
     "alternativas": {
-      "A": "O Registrador SIP armazena o mapeamento entre o endereço SIP do usuário (ex: sip:bob@dominio) e seu endereço IP atual; o Proxy SIP encaminha as mensagens de sinalização (como INVITE); e, após a negociação, o fluxo de áudio RTP pode trafegar diretamente ponto a ponto entre os usuários.",
-      "B": "Todo o áudio digitalizado da chamada é obrigatoriamente encapsulado dentro de mensagens SIP INVITE e retransmitido pelo Proxy SIP.",
-      "C": "O SIP exige que o chamador conheça previamente o endereço IP físico fixo do destinatário, não suportando mobilidade de usuários.",
-      "D": "O SIP é um protocolo da camada de enlace usado apenas em redes Wi-Fi para negociar taxas de modulação."
+      "A": "A escuta passiva de tráfego em uma rede Wi-Fi aberta.",
+      "B": "O redirecionamento de portas em um roteador NAT.",
+      "C": "A criptografia não autorizada de arquivos do servidor.",
+      "D": "A falsificação do endereço IP de origem nos cabeçalhos dos pacotes para ocultar a identidade do atacante ou se passar por um host confiável."
     },
-    "resposta_correta": "A",
-    "explicacao": "O SIP é um protocolo de sinalização fora de banda (out-of-band). Usuários enviam mensagens REGISTER ao Registrador SIP informando seu IP atual; Proxies SIP encaminham mensagens INVITE até localizar o destinatário; estabelecida a sessão (INVITE -> 200 OK -> ACK), a mídia RTP flui diretamente entre os terminais.",
+    "resposta_correta": "D",
+    "explicacao": "No IP Spoofing, o atacante forja o campo de endereço IP de origem do pacote, técnica muito usada em ataques de reflexão/amplificação e evasão de filtros simples.",
     "guia_estudo": {
-      "conceito_geral": "Arquitetura de sinalização SIP: mobilidade de usuários, resolução de endereços, servidores de infraestrutura e separação entre plano de sinalização e plano de mídia.",
+      "conceito_geral": "No IP Spoofing, o atacante forja o campo de endereço IP de origem do pacote, técnica muito usada em ataques de reflexão/amplificação e evasão de filtros simples.",
       "termos_chave": [
         {
-          "termo": "Registrador SIP (SIP Registrar)",
-          "definicao": "Servidor que recebe mensagens SIP REGISTER dos clientes sempre que eles se conectam ou mudam de rede, mantendo atualizado o vínculo (endereço SIP -> endereço IP atual)."
+          "termo": "IP Spoofing",
+          "definicao": "Criação de datagramas IP com endereço de origem falsificado. Demonstra por que o endereço IP sozinho não serve para autenticação (protocolo ap2.0 do Kurose)."
         },
         {
-          "termo": "Proxy SIP",
-          "definicao": "Intermediário que recebe requisições SIP (como INVITE) em nome do chamador, consulta o Registrador ou outros proxies para localizar o destinatário e encaminha a sinalização."
+          "termo": "Tríade de Segurança (Confidencialidade, Integridade e Autenticação)",
+          "definicao": "São as propriedades fundamentais que uma comunicação segura em redes de computadores busca garantir diante de um invasor (Trudy). Confidencialidade garante sigilo (ninguém lê); Integridade garante que os dados não foram alterados em trânsito; Autenticação confirma a identidade real de quem está do outro lado. São propriedades independentes entre si."
         },
         {
-          "termo": "Handshake SIP (INVITE / 200 OK / ACK)",
-          "definicao": "Sequência de três mensagens de texto legível (similar ao HTTP) para iniciar a sessão e negociar portas e codecs usando SDP (Session Description Protocol)."
+          "termo": "Firewall (Filtro Sem Estado, Stateful e Gateway de Aplicação)",
+          "definicao": "É uma combinação de hardware e software que isola uma rede interna da Internet externa, controlando quais pacotes podem entrar ou sair. Filtros sem estado analisam apenas cabeçalhos isolados via ACL; Firewalls Stateful mantêm ACL + Tabela de Conexões rastreando sessões TCP/UDP ativas; Gateways de Aplicação (proxies) inspecionam dados da aplicação e exigem um filtro de roteador para impedir desvios."
         },
         {
-          "termo": "Sinalização Fora de Banda (Out-of-Band)",
-          "definicao": "As mensagens SIP controlam a chamada (início, alteração, término com BYE), mas os pacotes de voz reais viajam em um fluxo RTP/UDP separado, geralmente direto entre os participantes."
+          "termo": "Nonce (Number Used Once (Número Usado Apenas Uma Vez))",
+          "definicao": "É um número aleatório ou pseudoaleatório gerado para ser usado uma única vez na vida de um protocolo de autenticação. Garante 'vivacidade' (liveness) e frescor em protocolos de desafio-resposta (como o ap4.0 do Kurose), impedindo que um invasor reutilize mensagens gravadas de sessões antigas."
         }
       ]
     }
   },
   {
     "id": 28,
-    "capitulo": "Capítulo 7 - Redes Multimídia",
-    "referencia_livro": "Cap. 7 - Seção 7.5.2",
+    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
+    "referencia_livro": "Cap. 8 - Seção 8.5",
     "tipo": "conceitual",
-    "enunciado": "Para fornecer múltiplas classes de serviço em roteadores, Kurose & Ross comparam mecanismos de escalonamento de pacotes como FIFO, Enfileiramento por Prioridade, Round Robin e WFQ. Qual é a diferença fundamental entre o Enfileiramento por Prioridade estrita e o WFQ (Weighted Fair Queuing)?",
+    "enunciado": "No contexto de segurança de e-mail (PGP e S/MIME), por que uma mensagem é cifrada com uma chave simétrica descartável em vez de ser cifrada diretamente com a chave pública do destinatário?",
     "alternativas": {
-      "A": "No enfileiramento por prioridade estrita, pacotes de baixa prioridade só são transmitidos quando não há nenhum pacote na fila de alta prioridade (podendo causar inanição/starvation); já o WFQ garante uma fração mínima de largura de banda a cada classe proporcional ao seu peso, evitando inanição.",
-      "B": "O enfileiramento por prioridade estrita distribui a largura de banda igualmente entre todas as filas, enquanto o WFQ descarta todos os pacotes UDP.",
-      "C": "O enfileiramento por prioridade estrita não é conservador de trabalho, deixando o enlace ocioso mesmo com pacotes na fila.",
-      "D": "Não há diferença prática entre prioridade estrita e WFQ; ambos atendem pacotes estritamente na ordem de chegada (FIFO)."
+      "A": "Para combinar a velocidade da criptografia simétrica no corpo da mensagem com a segurança da criptografia assimétrica apenas para proteger a chave de sessão.",
+      "B": "Porque o protocolo SMTP bloqueia mensagens cifradas com RSA.",
+      "C": "Para garantir que o servidor de e-mail consiga ler o conteúdo.",
+      "D": "Porque a chave pública do destinatário não pode ser usada para cifragem."
     },
     "resposta_correta": "A",
-    "explicacao": "No escalonamento por prioridade estrita (não-preemptivo), a fila de alta prioridade sempre tem preferência absoluta — se ela ficar continuamente ocupada, a classe de baixa prioridade sofre inanição (starvation). O WFQ (generalização do Round Robin) assegura a cada classe uma taxa mínima garantida proporcional ao seu peso w_i.",
+    "explicacao": "Essa abordagem híbrida (envelope digital) garante alto desempenho ao cifrar o corpo do e-mail com uma chave simétrica aleatória e cifrar apenas essa pequena chave com a chave pública do destinatário.",
     "guia_estudo": {
-      "conceito_geral": "Políticas de escalonamento de enlace em roteadores para provimento de isolamento entre classes de tráfego e Qualidade de Serviço (QoS).",
+      "conceito_geral": "Essa abordagem híbrida (envelope digital) garante alto desempenho ao cifrar o corpo do e-mail com uma chave simétrica aleatória e cifrar apenas essa pequena chave com a chave pública do destinatário.",
       "termos_chave": [
         {
-          "termo": "FIFO (First-In, First-Out)",
-          "definicao": "Política mais simples: pacotes saem na exata ordem em que chegam. Não oferece nenhuma diferenciação ou isolamento entre aplicações sensíveis (VoIP) e rajadas elásticas (downloads)."
+          "termo": "PGP (Pretty Good Privacy (E-mail Seguro e Criptografia Híbrida))",
+          "definicao": "É um famoso sistema de segurança para e-mails que combina criptografia simétrica, assimétrica e hash (criptografia híbrida). Assina o hash da mensagem com a chave privada do remetente, cifra mensagem + assinatura rapidamente com uma chave simétrica de sessão (K_S) aleatória e cifra K_S com a chave pública do destinatário."
         },
         {
-          "termo": "Enfileiramento por Prioridade Estrita",
-          "definicao": "Pacotes são classificados em filas de prioridade (alta, baixa). Um pacote de baixa prioridade só é transmitido se a fila de alta prioridade estiver vazia. Risco: inanição (starvation) da classe inferior."
+          "termo": "Criptografia Simétrica (Criptografia de Chave Secreta Compartilhada (AES / DES))",
+          "definicao": "É o tipo de criptografia em que remetente e destinatário utilizam exatamente a mesma chave secreta tanto para cifrar quanto para decifrar a mensagem. É extremamente rápida e ideal para cifrar grandes volumes de dados (como vídeos, arquivos ou tráfego HTTPS/VPN). Sua limitação é o problema de distribuição de chaves: para N pessoas, exige N(N-1)/2 chaves."
         },
         {
-          "termo": "Round Robin (RR)",
-          "definicao": "Alterna ciclicamente o atendimento entre as classes que possuem pacotes em fila, garantindo equidade simples (mesma fração de atendimento por classe)."
-        },
-        {
-          "termo": "WFQ (Weighted Fair Queuing)",
-          "definicao": "Generalização ponderada do Round Robin: cada classe i recebe um peso w_i e tem garantida uma fração mínima R × (w_i / soma dos pesos ativos) da taxa R do enlace."
+          "termo": "Criptografia Assimétrica (Criptografia de Chave Pública)",
+          "definicao": "É um sistema criptográfico onde cada usuário possui um par matematicamente ligado de chaves: uma Chave Pública (divulgada a todos) e uma Chave Privada (mantida em segredo absoluto). O que é cifrado com a chave pública só pode ser decifrado com a chave privada correspondente (confidencialidade), e o que é cifrado com a chave privada pode ser verificado por todos com a chave pública (assinatura digital). Escala linearmente: 2N chaves para N pessoas."
         }
       ]
     }
   },
   {
     "id": 29,
-    "capitulo": "Capítulo 7 - Redes Multimídia",
-    "referencia_livro": "Cap. 7 - Seção 7.5.3",
+    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
+    "referencia_livro": "Cap. 8 - Seção 8.1 / 8.9",
     "tipo": "conceitual",
-    "enunciado": "A arquitetura DiffServ (Serviços Diferenciados) foi projetada para oferecer QoS de maneira escalável na Internet. Como o DiffServ divide as funções entre os roteadores de borda e os roteadores do núcleo da rede?",
+    "enunciado": "O que é um ataque de amplificação DDoS (como DNS ou NTP Amplification)?",
     "alternativas": {
-      "A": "Os roteadores do núcleo mantêm uma tabela de reserva de recursos para cada fluxo TCP individual, enquanto os roteadores de borda apenas encaminham pacotes sem inspecioná-los.",
-      "B": "Os roteadores de borda executam funções mais complexas por fluxo (classificação, policiamento/modelagem e marcação do campo DSCP no cabeçalho IP), enquanto os roteadores do núcleo apenas encaminham os pacotes rapidamente de acordo com o PHB (comportamento por salto) indicado pela marcação, sem manter estado por fluxo.",
-      "C": "Apenas os hosts finais podem marcar pacotes DiffServ; roteadores de borda e de núcleo são proibidos de ler o campo DSCP.",
-      "D": "O DiffServ exige que cada chamada VoIP envie mensagens de reserva RSVP para todos os roteadores do backbone antes de transmitir o primeiro pacote."
+      "A": "Um ataque físico aos cabos de fibra óptica de um datacenter.",
+      "B": "Um ataque que aumenta a potência do sinal de rádio em redes Wi-Fi.",
+      "C": "Um ataque que duplica o tamanho das chaves criptográficas no TLS.",
+      "D": "Um ataque onde requisições pequenas com IP de origem forjado (da vítima) geram respostas muito maiores direcionadas à vítima."
     },
-    "resposta_correta": "B",
-    "explicacao": "A escalabilidade do DiffServ vem de empurrar a complexidade para a borda da rede: roteadores de borda classificam, policiam (ex: token bucket) e marcam o campo DSCP (6 bits no cabeçalho IP). Roteadores de núcleo ficam simples e ultrarrápidos, tratando agregados de tráfego conforme o PHB (Per-Hop Behavior) sem guardar estado de fluxos individuais.",
+    "resposta_correta": "D",
+    "explicacao": "O atacante explora protocolos sem conexão (UDP) enviando consultas pequenas com o IP da vítima falsificado, fazendo servidores intermediários inundarem a vítima com respostas volumosas.",
     "guia_estudo": {
-      "conceito_geral": "Arquitetura DiffServ (RFC 2475): princípio de simplicidade no núcleo e complexidade na borda para prover diferenciação de classes em larga escala.",
+      "conceito_geral": "O atacante explora protocolos sem conexão (UDP) enviando consultas pequenas com o IP da vítima falsificado, fazendo servidores intermediários inundarem a vítima com respostas volumosas.",
       "termos_chave": [
         {
-          "termo": "Funções de Borda (Edge Functions)",
-          "definicao": "Executadas nos roteadores de entrada do domínio DiffServ: classificação de pacotes, medição/policiamento contra o perfil contratado (SLA) e marcação do campo DSCP."
+          "termo": "Amplificação DDoS",
+          "definicao": "Ataque distribuído de negação de serviço que combina IP Spoofing com protocolos UDP assimétricos (como DNS/NTP), onde um pedido de poucos bytes gera uma resposta dezenas de vezes maior voltada à vítima."
         },
         {
-          "termo": "Campo DSCP (Differentiated Services Code Point)",
-          "definicao": "Campo de 6 bits localizado no campo Tipo de Serviço (IPv4) ou Classe de Tráfego (IPv6) do cabeçalho IP, usado para indicar a classe de serviço a que o pacote pertence."
+          "termo": "Firewall (Filtro Sem Estado, Stateful e Gateway de Aplicação)",
+          "definicao": "É uma combinação de hardware e software que isola uma rede interna da Internet externa, controlando quais pacotes podem entrar ou sair. Filtros sem estado analisam apenas cabeçalhos isolados via ACL; Firewalls Stateful mantêm ACL + Tabela de Conexões rastreando sessões TCP/UDP ativas; Gateways de Aplicação (proxies) inspecionam dados da aplicação e exigem um filtro de roteador para impedir desvios."
         },
         {
-          "termo": "Funções de Núcleo (Core Functions)",
-          "definicao": "Os roteadores internos examinam apenas o DSCP do pacote e aplicam o PHB correspondente (encaminhamento e fila). Como não há estado por fluxo individual, o núcleo escala para milhões de conexões."
+          "termo": "IDS e IPS (Intrusion Detection System / Intrusion Prevention System)",
+          "definicao": "São sistemas de segurança operacional que realizam Inspeção Profunda de Pacotes (DPI), olhando além dos cabeçalhos até a carga útil da aplicação. O IDS apenas gera alertas ao detectar tráfego suspeito; o IPS bloqueia/descarta pacotes maliciosos em tempo real. Podem ser baseados em assinaturas (regras de ataques conhecidos, como Snort) ou em anomalias (desvios estatísticos do tráfego normal)."
         },
         {
-          "termo": "PHB (Per-Hop Behavior)",
-          "definicao": "Especificação do comportamento de encaminhamento observável em cada salto (ex: EF - Expedited Forwarding para baixa latência; AF - Assured Forwarding para diferentes níveis de garantia de entrega)."
+          "termo": "Tríade de Segurança (Confidencialidade, Integridade e Autenticação)",
+          "definicao": "São as propriedades fundamentais que uma comunicação segura em redes de computadores busca garantir diante de um invasor (Trudy). Confidencialidade garante sigilo (ninguém lê); Integridade garante que os dados não foram alterados em trânsito; Autenticação confirma a identidade real de quem está do outro lado. São propriedades independentes entre si."
         }
       ]
     }
   },
   {
     "id": 30,
-    "capitulo": "Capítulo 7 - Redes Multimídia",
-    "referencia_livro": "Cap. 7 - Seção 7.5.4",
+    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
+    "referencia_livro": "Cap. 8 - Seção 8.9.2",
     "tipo": "conceitual",
-    "enunciado": "Para fornecer garantias rígidas de QoS por conexão individual (como na arquitetura IntServ), Kurose & Ross destacam a necessidade de controle de admissão (call admission) e reserva de recursos ao longo do caminho. Por que o controle de admissão é indispensável nesse modelo?",
+    "enunciado": "Por que um sistema IPS (Intrusion Prevention System) precisa estar posicionado 'em linha' (in-line) no caminho do tráfego de rede?",
     "alternativas": {
-      "A": "Porque sem controle de admissão, novos fluxos poderiam entrar indefinidamente em um enlace já saturado, violando as garantias de largura de banda e atraso dos fluxos que já haviam sido admitidos.",
-      "B": "Porque o controle de admissão comprime automaticamente vídeos 4K em áudio PCM de 64 kbps.",
-      "C": "Porque o protocolo IP não permite que mais de dois hosts compartilhem o mesmo enlace físico simultaneamente.",
-      "D": "Porque o controle de admissão elimina a necessidade de qualquer protocolo de roteamento (como OSPF ou BGP)."
+      "A": "Para apenas copiar os pacotes sem interferir no fluxo.",
+      "B": "Para evitar a necessidade de atualização de assinaturas.",
+      "C": "Para atuar como servidor DHCP da rede local.",
+      "D": "Para poder descartar ou bloquear pacotes maliciosos em tempo real antes que cheguem ao destino."
     },
-    "resposta_correta": "A",
-    "explicacao": "Em garantias rígidas por fluxo (IntServ), a soma das taxas reservadas não pode exceder a capacidade do enlace. Logo, um fluxo precisa declarar seus requisitos de QoS previamente via sinalização (como RSVP) e a rede pode bloquear (rejeitar) a nova chamada caso não haja recursos livres suficientes, preservando as garantias das sessões ativas.",
+    "resposta_correta": "D",
+    "explicacao": "Diferente do IDS (que opera fora de banda/em espelhamento apenas gerando alertas), o IPS precisa estar no caminho ativo do tráfego para intervir e bloquear ameaças.",
     "guia_estudo": {
-      "conceito_geral": "Arquitetura de Serviços Integrados (IntServ), reserva de recursos por fluxo, controle de admissão e razões pelas quais esse modelo tem baixa escalabilidade na Internet pública.",
+      "conceito_geral": "Diferente do IDS (que opera fora de banda/em espelhamento apenas gerando alertas), o IPS precisa estar no caminho ativo do tráfego para intervir e bloquear ameaças.",
       "termos_chave": [
         {
-          "termo": "IntServ (Integrated Services)",
-          "definicao": "Arquitetura de QoS orientada a fluxo individual que busca oferecer garantias rígidas (determinísticas) de taxa de transmissão e limite máximo de atraso fim a fim."
+          "termo": "IDS e IPS (Intrusion Detection System / Intrusion Prevention System)",
+          "definicao": "São sistemas de segurança operacional que realizam Inspeção Profunda de Pacotes (DPI), olhando além dos cabeçalhos até a carga útil da aplicação. O IDS apenas gera alertas ao detectar tráfego suspeito; o IPS bloqueia/descarta pacotes maliciosos em tempo real. Podem ser baseados em assinaturas (regras de ataques conhecidos, como Snort) ou em anomalias (desvios estatísticos do tráfego normal)."
         },
         {
-          "termo": "Controle de Admissão (Call Admission)",
-          "definicao": "Mecanismo pelo qual a rede avalia se há largura de banda e buffer disponíveis em todos os roteadores do trajeto; caso contrário, recusa a nova sessão (similar ao sinal de ocupado na telefonia)."
+          "termo": "Firewall (Filtro Sem Estado, Stateful e Gateway de Aplicação)",
+          "definicao": "É uma combinação de hardware e software que isola uma rede interna da Internet externa, controlando quais pacotes podem entrar ou sair. Filtros sem estado analisam apenas cabeçalhos isolados via ACL; Firewalls Stateful mantêm ACL + Tabela de Conexões rastreando sessões TCP/UDP ativas; Gateways de Aplicação (proxies) inspecionam dados da aplicação e exigem um filtro de roteador para impedir desvios."
         },
         {
-          "termo": "Protocolo de Sinalização (RSVP)",
-          "definicao": "Resource Reservation Protocol: protocolo usado para sinalizar e reservar recursos em cada roteador ao longo do caminho entre remetente e receptor."
-        },
-        {
-          "termo": "Limitação de Escalabilidade",
-          "definicao": "Manter estado e reservas individuais para milhões de fluxos simultâneos nos roteadores do backbone central da Internet mostrou-se computacionalmente caro e difícil de gerenciar entre múltiplos ISPs."
+          "termo": "Tríade de Segurança (Confidencialidade, Integridade e Autenticação)",
+          "definicao": "São as propriedades fundamentais que uma comunicação segura em redes de computadores busca garantir diante de um invasor (Trudy). Confidencialidade garante sigilo (ninguém lê); Integridade garante que os dados não foram alterados em trânsito; Autenticação confirma a identidade real de quem está do outro lado. São propriedades independentes entre si."
         }
       ]
     }
@@ -2527,359 +2463,675 @@
   {
     "id": 31,
     "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
-    "referencia_livro": "Cap. 8 - Seção 8.1",
+    "referencia_livro": "Cap. 8 - Seção 8.6",
     "tipo": "conceitual",
-    "enunciado": "Na introdução à segurança em redes de computadores, Kurose & Ross definem as propriedades desejáveis de uma comunicação segura entre Alice e Bob na presença de uma invasora (Trudy). Qual alternativa relaciona corretamente a propriedade de segurança à sua definição?",
+    "enunciado": "Qual conceito de segurança descreve a garantia de que, mesmo que a chave privada de longo prazo de um servidor seja comprometida no futuro, as sessões TLS gravadas anteriormente não poderão ser decifradas?",
     "alternativas": {
-      "A": "Autenticação do ponto final significa impedir que Trudy leia o conteúdo da mensagem; Confidencialidade significa verificar se a mensagem chegou sem alterações.",
-      "B": "Confidencialidade garante que apenas remetente e destinatário entendam o conteúdo; Integridade assegura que a mensagem não foi alterada em trânsito; Autenticação do ponto final permite confirmar a identidade da outra parte; e Segurança operacional envolve controlar acessos e manter disponibilidade.",
-      "C": "Integridade de mensagem garante que o servidor nunca sofrerá ataques de negação de serviço (DoS).",
-      "D": "Segurança operacional significa usar exclusivamente chaves simétricas de 56 bits em todas as camadas."
+      "A": "Não-repúdio absoluto.",
+      "B": "Resistência a pré-imagem.",
+      "C": "Perfect Forward Secrecy (Sigilo Perfeito de Encaminhamento).",
+      "D": "Autenticação mútua estática."
     },
-    "resposta_correta": "B",
-    "explicacao": "Os quatro pilares clássicos apresentados na Seção 8.1 do Kurose são: Confidencialidade (sigilo), Autenticação do ponto final (confirmar com quem se está falando), Integridade da mensagem (detectar adulterações) e Segurança operacional (proteger redes/sistemas com firewalls, IDS e controle de acesso).",
+    "resposta_correta": "C",
+    "explicacao": "O Perfect Forward Secrecy (PFS) usa trocas de chaves efêmeras (como ECDHE) para cada sessão, garantindo que o comprometimento futuro da chave privada do servidor não exponha o tráfego passado.",
     "guia_estudo": {
-      "conceito_geral": "Definição dos quatro requisitos fundamentais de segurança em redes e do modelo de ameaça (o invasor ativo/passivo Trudy no canal inseguro).",
+      "conceito_geral": "O Perfect Forward Secrecy (PFS) usa trocas de chaves efêmeras (como ECDHE) para cada sessão, garantindo que o comprometimento futuro da chave privada do servidor não exponha o tráfego passado.",
       "termos_chave": [
         {
-          "termo": "Confidencialidade",
-          "definicao": "Apenas o remetente e o destinatário pretendido devem ser capazes de compreender o conteúdo da mensagem transmitida (exige cifração)."
+          "termo": "Perfect Forward Secrecy (PFS)",
+          "definicao": "Propriedade obtida com troca de chaves efêmera (como Diffie-Hellman efêmero / ECDHE): cada sessão gera um segredo descartável, de modo que vazar a chave privada do servidor no futuro não decifra gravações antigas."
         },
         {
-          "termo": "Autenticação do Ponto Final",
-          "definicao": "Remetente e destinatário devem ser capazes de confirmar a identidade um do outro, impedindo falsificação de identidade (spoofing)."
+          "termo": "SSL / TLS (Secure Sockets Layer / Transport Layer Security)",
+          "definicao": "É o protocolo de segurança que protege conexões TCP (base do HTTPS), fornecendo confidencialidade, integridade e autenticação. Realiza um Handshake para autenticar o servidor via certificado e derivar 4 chaves de sessão (cifração e MAC em cada direção). Protege contra reordenação via números de sequência implícitos no MAC e contra ataques por truncamento via campo 'tipo'."
         },
         {
-          "termo": "Integridade de Mensagem",
-          "definicao": "Garantia de que o conteúdo da comunicação não foi modificado (acidental ou maliciosamente) durante o percurso na rede."
+          "termo": "Diffie-Hellman (DHKE) (Troca de Chaves Diffie-Hellman)",
+          "definicao": "É um protocolo matemático que permite que duas pessoas criem uma mesma chave secreta compartilhada conversando apenas por um canal público e inseguro. A partir de parâmetros públicos (primo p e base g), cada lado escolhe um segredo privado (SA, SB), troca valores públicos (g^SA mod p e g^SB mod p) e ambos calculam o mesmo segredo S = g^(SA·SB) mod p."
         },
         {
-          "termo": "Capacidades da Invasora (Trudy)",
-          "definicao": "Em um canal inseguro, Trudy pode escutar (eavesdrop), inserir pacotes falsos, modificar mensagens em trânsito, excluir pacotes e sequestrar conexões (hijacking)."
+          "termo": "Pre-Master Secret (Segredo Pré-Mestre no Handshake SSL/TLS)",
+          "definicao": "É um valor secreto gerado pelo cliente durante o handshake SSL e enviado ao servidor cifrado com a chave pública extraída do certificado do servidor. Serve de base (junto com nonces) para que ambos calculem o Master Secret e as 4 chaves de sessão. Um impostor que envia o certificado de outra pessoa não consegue decifrar o Pre-Master Secret e falha na verificação final do MAC."
         }
       ]
     }
   },
   {
     "id": 32,
-    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
-    "referencia_livro": "Cap. 8 - Seção 8.2.1",
+    "capitulo": "Capítulo 7 - Redes Multimídia",
+    "referencia_livro": "Cap. 7 - Seção 7.1.3",
     "tipo": "conceitual",
-    "enunciado": "Ao cifrar mensagens longas com cifras de bloco simétricas (como AES ou DES), dividir o texto em blocos e cifrar cada bloco independentemente com a mesma chave (modo ECB) apresenta uma vulnerabilidade grave: blocos de texto claro idênticos produzem blocos cifrados idênticos. Como o modo CBC (Cipher Block Chaining) resolve esse problema?",
+    "enunciado": "Qual é a principal diferença de requisitos de rede entre streaming de vídeo armazenado (como YouTube/Netflix) e aplicações interativas em tempo real (como VoIP/videoconferência)?",
     "alternativas": {
-      "A": "Aplicando XOR entre cada bloco de texto claro atual e o bloco cifrado anterior antes de cifrá-lo, utilizando um Vetor de Inicialização (IV) aleatório para o primeiro bloco.",
-      "B": "Substituindo a chave simétrica por uma chave pública RSA diferente para cada byte da mensagem.",
-      "C": "Removendo os blocos repetidos da mensagem antes da transmissão para que nenhum padrão apareça.",
-      "D": "Cifrando apenas o primeiro bloco da mensagem e enviando os demais blocos em texto claro."
+      "A": "O streaming armazenado só funciona sobre o protocolo UDP.",
+      "B": "O streaming armazenado não tolera nenhum atraso inicial, enquanto o VoIP tolera vários segundos.",
+      "C": "Aplicações interativas exigem latência fim-a-fim extremamente baixa (geralmente abaixo de 150 ms), enquanto o streaming armazenado tolera buffers maiores de vários segundos.",
+      "D": "O VoIP exige taxas de bits muito maiores que vídeo 4K."
     },
-    "resposta_correta": "A",
-    "explicacao": "No modo CBC (Encadeamento de Blocos de Cifra), gera-se um Vetor de Inicialização (IV) aleatório enviado em aberto. O primeiro bloco claro sofre XOR com o IV antes da cifração; cada bloco subsequente m(i) sofre XOR com o bloco cifrado anterior c(i-1). Assim, mensagens idênticas geram textos cifrados completamente distintos.",
+    "resposta_correta": "C",
+    "explicacao": "Na comunicação bidirecional interativa, atrasos altos inviabilizam o diálogo; já no vídeo sob demanda, um buffer inicial de alguns segundos absorve variações da rede sem prejudicar a experiência.",
     "guia_estudo": {
-      "conceito_geral": "Criptografia de chaves simétricas, cifras de bloco (DES, 3DES, AES) e a importância do encadeamento de blocos (CBC) com Vetor de Inicialização (IV).",
+      "conceito_geral": "Na comunicação bidirecional interativa, atrasos altos inviabilizam o diálogo; já no vídeo sob demanda, um buffer inicial de alguns segundos absorve variações da rede sem prejudicar a experiência.",
       "termos_chave": [
         {
-          "termo": "Cifra de Bloco (Block Cipher)",
-          "definicao": "Algoritmo simétrico que processa a mensagem em blocos de tamanho fixo (ex: 64 bits no DES, 128 bits no AES) aplicando permutações e substituições controladas pela chave."
+          "termo": "Streaming (HTTP vs. UDP) (Transmissão de Fluxo Contínuo)",
+          "definicao": "É a forma de transmitir áudio ou vídeo pela rede permitindo que o usuário comece a assistir/ouvir antes de baixar o arquivo inteiro. Envia a mídia em blocos contínuos. No HTTP Streaming (sobre TCP), atravessa firewalls/NATs facilmente e usa servidores Web comuns; no UDP Streaming, envia na taxa fixa do vídeo, mas pode ser bloqueado por firewalls."
         },
         {
-          "termo": "Vulnerabilidade do Modo ECB",
-          "definicao": "Se cada bloco for cifrado isoladamente com a mesma chave, blocos repetidos (como cabeçalhos fixos HTTP ou áreas homogêneas de imagens) geram blocos cifrados idênticos, vazando informações estruturais."
+          "termo": "VoIP (Voice over IP (Voz sobre IP))",
+          "definicao": "É a tecnologia que permite realizar chamadas telefônicas e de voz em tempo real pela Internet (redes IP) em vez da rede telefônica fixa tradicional. Digitaliza a voz, divide em pequenos pedaços (ex.: a cada 20 ms), encapsula em pacotes RTP/UDP/IP e transmite em tempo real com tolerância a pequenas perdas, mas exigindo baixa latência (< 150 ms ideal)."
         },
         {
-          "termo": "CBC (Cipher Block Chaining)",
-          "definicao": "Modo de operação onde c(i) = K_S(m(i) ⊕ c(i-1)). O encadeamento faz com que cada bloco cifrado dependa de todos os blocos anteriores e do IV inicial."
-        },
-        {
-          "termo": "IV (Vetor de Inicialização)",
-          "definicao": "Bloco aleatório de k bits escolhido a cada nova mensagem e transmitido em texto claro junto com o texto cifrado. Garante aleatoriedade mesmo quando a mesma mensagem é enviada duas vezes."
+          "termo": "Playout Buffer (Buffer de Reprodução (Memória Amortecedora))",
+          "definicao": "É uma área temporária de memória no dispositivo do usuário (cliente) que armazena alguns segundos de vídeo ou milissegundos de áudio antes de reproduzi-los. Absorve oscilações de velocidade e atraso da rede (jitter), evitando que o vídeo congele (freezing) ou que a voz fique picotada durante a reprodução."
         }
       ]
     }
   },
   {
     "id": 33,
-    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
-    "referencia_livro": "Cap. 8 - Seção 8.3.1",
+    "capitulo": "Capítulo 7 - Redes Multimídia",
+    "referencia_livro": "Cap. 7 - Seção 7.3.1",
     "tipo": "conceitual",
-    "enunciado": "Para garantir a integridade de mensagens contra atacantes maliciosos, utilizam-se funções de hash criptográficas (como SHA-1 e SHA-256) em vez de somas de verificação simples (como o checksum da Internet). Qual propriedade fundamental distingue uma função de hash criptográfica de um checksum comum?",
+    "enunciado": "Em redes multimídia, o que significa dizer que um pacote chegou 'atrasado demais' no receptor?",
     "alternativas": {
-      "A": "A função de hash criptográfica é reversível, permitindo recuperar a mensagem original a partir do resumo de tamanho fixo.",
-      "B": "A função de hash criptográfica é resistente a colisões: é computacionalmente inviável encontrar duas mensagens diferentes x e y que produzam o mesmo resumo H(x) = H(y).",
-      "C": "A função de hash criptográfica gera um resumo maior que a mensagem original para dificultar a interceptação.",
-      "D": "O checksum da Internet é mais seguro que o SHA-256, porém é lento demais para rodar em navegadores Web."
+      "A": "Ele força o roteador a aumentar a largura de banda do enlace.",
+      "B": "Ele é reenviado automaticamente pelo protocolo UDP.",
+      "C": "Ele é armazenado para ser reproduzido ao final da chamada.",
+      "D": "Ele é tratado efetivamente como um pacote perdido e descartado, pois seu instante de reprodução já passou."
     },
-    "resposta_correta": "B",
-    "explicacao": "Uma função de hash criptográfica mapeia entradas de tamanho arbitrário em resumos (digests) de tamanho fixo e deve ser computacionalmente resistente a colisões (inviável achar x ≠ y com H(x) = H(y)). No checksum da Internet, é trivial alterar dois blocos de uma mensagem compensando a soma para gerar exatamente o mesmo checksum.",
+    "resposta_correta": "D",
+    "explicacao": "Em mídia em tempo real, pacotes que ultrapassam o limite do playout buffer não têm mais utilidade para a reprodução contínua e são descartados como perda.",
     "guia_estudo": {
-      "conceito_geral": "Funções de hash criptográficas (MD5, SHA-1, SHA-256) como blocos construtivos essenciais para MACs e assinaturas digitais.",
+      "conceito_geral": "Em mídia em tempo real, pacotes que ultrapassam o limite do playout buffer não têm mais utilidade para a reprodução contínua e são descartados como perda.",
       "termos_chave": [
         {
-          "termo": "Função de Hash Criptográfica H(m)",
-          "definicao": "Função matemática unidirecional que recebe uma mensagem m de qualquer tamanho e produz uma 'impressão digital' de tamanho fixo (ex: 128 bits no MD5, 160 bits no SHA-1, 256 bits no SHA-256)."
+          "termo": "Playout Buffer (Buffer de Reprodução (Memória Amortecedora))",
+          "definicao": "É uma área temporária de memória no dispositivo do usuário (cliente) que armazena alguns segundos de vídeo ou milissegundos de áudio antes de reproduzi-los. Absorve oscilações de velocidade e atraso da rede (jitter), evitando que o vídeo congele (freezing) ou que a voz fique picotada durante a reprodução."
         },
         {
-          "termo": "Resistência a Colisões",
-          "definicao": "Propriedade central exigida pelo Kurose: deve ser computacionalmente impraticável encontrar quaisquer duas entradas distintas x ≠ y tais que H(x) = H(y)."
+          "termo": "Jitter (Variação de Atraso Fim a Fim)",
+          "definicao": "É a diferença irregular no tempo que pacotes consecutivos levam para atravessar a rede até o destino. Embora um pacote saia a cada 20 ms do microfone, filas variáveis nos roteadores fazem com que eles cheguem em intervalos irregulares (ex.: 15 ms, 45 ms, 18 ms). É combatido com timestamps e buffer de reprodução (playout adaptativo)."
         },
         {
-          "termo": "Efeito Avalanche",
-          "definicao": "A alteração de um único bit na mensagem de entrada muda radicalmente (em média 50% dos bits) o valor do hash de saída."
-        },
-        {
-          "termo": "Por que Checksum não serve para Segurança?",
-          "definicao": "O checksum (usado em IP/TCP/UDP) detecta apenas erros aleatórios de transmissão; um invasor pode facilmente forjar uma mensagem falsa com exatamente o mesmo checksum."
+          "termo": "VoIP (Voice over IP (Voz sobre IP))",
+          "definicao": "É a tecnologia que permite realizar chamadas telefônicas e de voz em tempo real pela Internet (redes IP) em vez da rede telefônica fixa tradicional. Digitaliza a voz, divide em pequenos pedaços (ex.: a cada 20 ms), encapsula em pacotes RTP/UDP/IP e transmite em tempo real com tolerância a pequenas perdas, mas exigindo baixa latência (< 150 ms ideal)."
         }
       ]
     }
   },
   {
     "id": 34,
-    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
-    "referencia_livro": "Cap. 8 - Seção 8.4",
+    "capitulo": "Capítulo 7 - Redes Multimídia",
+    "referencia_livro": "Cap. 7 - Seção 7.4.1",
     "tipo": "conceitual",
-    "enunciado": "Na Seção 8.4, Kurose & Ross evoluem gradualmente protocolos de autenticação do ponto final (de ap1.0 até ap4.0). No protocolo ap3.1, Alice envia sua senha cifrada para Bob, mas ainda sofre um ataque de repetição (playback attack) caso Trudy grave e reenvie o pacote cifrado depois. Como o protocolo ap4.0 corrige essa falha?",
+    "enunciado": "Por que o protocolo RTP (Real-time Transport Protocol) normalmente opera sobre UDP em vez de TCP em chamadas de voz e vídeo ao vivo?",
     "alternativas": {
-      "A": "Bob envia a Alice um nonce R (um número aleatório usado apenas uma vez na vida) e Alice responde cifrando esse nonce R com a chave secreta compartilhada (ou assinando com sua chave privada), provando identidade e 'vivacidade' (liveness) naquele instante.",
-      "B": "Alice envia seu endereço IP duas vezes seguidas para provar que não é uma invasora.",
-      "C": "Bob exige que Alice envie sua senha em texto claro, pois senhas cifradas são sempre vulneráveis a repetição.",
-      "D": "O protocolo ap4.0 elimina a troca de mensagens e confia apenas no endereço MAC da placa de rede de Alice."
+      "A": "Porque o UDP reserva largura de banda nos roteadores do núcleo da Internet.",
+      "B": "Porque o UDP possui criptografia nativa obrigatória.",
+      "C": "Porque o TCP não consegue transportar dados binários de áudio.",
+      "D": "Porque as retransmissões confiáveis e o controle de congestionamento do TCP introduzem atrasos e jitter inaceitáveis para tempo real."
     },
-    "resposta_correta": "A",
-    "explicacao": "No ap3.1, Trudy pode gravar a mensagem cifrada contendo a senha de Alice e reproduzi-la mais tarde (ataque de repetição). O ap4.0 resolve isso usando um desafio-resposta com nonce (R): Bob escolhe um número nunca usado antes e envia a Alice; ao devolver K_A-B(R), Alice prova tanto que conhece o segredo quanto que está ativa (live) naquele momento.",
+    "resposta_correta": "D",
+    "explicacao": "Em tempo real, é melhor tolerar pequenas perdas do que pausar o fluxo aguardando retransmissões do TCP ou sofrer cortes bruscos na taxa de envio.",
     "guia_estudo": {
-      "conceito_geral": "Evolução didática dos protocolos de autenticação do ponto final (ap1.0 a ap4.0) no Kurose & Ross, culminando no mecanismo de desafio-resposta baseado em nonce.",
+      "conceito_geral": "Em tempo real, é melhor tolerar pequenas perdas do que pausar o fluxo aguardando retransmissões do TCP ou sofrer cortes bruscos na taxa de envio.",
       "termos_chave": [
         {
-          "termo": "Nonce (Number Used Once)",
-          "definicao": "Número aleatório que o protocolo utiliza somente uma única vez por toda a vida. Garante frescor (freshness) à troca de mensagens."
+          "termo": "RTP (Real-Time Transport Protocol (Protocolo de Transporte em Tempo Real))",
+          "definicao": "É o protocolo padrão da Internet que transporta pacotes de áudio e vídeo em tempo real (normalmente rodando sobre UDP). Adiciona um cabeçalho de 12 bytes com número de sequência (detecta perdas), timestamp (remove jitter), Payload Type (indica o codec usado, permitindo trocá-lo no meio da chamada) e SSRC (identifica quem está falando)."
         },
         {
-          "termo": "Ataque de Repetição (Playback / Replay Attack)",
-          "definicao": "Ataque no qual Trudy grava uma mensagem de autenticação válida (mesmo cifrada) enviada por Alice hoje e a retransmite a Bob amanhã para se passar por Alice."
+          "termo": "VoIP (Voice over IP (Voz sobre IP))",
+          "definicao": "É a tecnologia que permite realizar chamadas telefônicas e de voz em tempo real pela Internet (redes IP) em vez da rede telefônica fixa tradicional. Digitaliza a voz, divide em pequenos pedaços (ex.: a cada 20 ms), encapsula em pacotes RTP/UDP/IP e transmite em tempo real com tolerância a pequenas perdas, mas exigindo baixa latência (< 150 ms ideal)."
         },
         {
-          "termo": "Prova de Vivacidade (Liveness)",
-          "definicao": "Comprovação de que a entidade legítima está realmente ativa e participando da conversa naquele instante exato, e não uma gravação antiga reproduzida por um invasor."
-        },
-        {
-          "termo": "Evolução ap1.0 → ap4.0",
-          "definicao": "ap1.0: diz o nome; ap2.0: envia IP (falsificável via IP spoofing); ap3.0: senha em claro (capturável); ap3.1: senha cifrada (vulnerável a replay); ap4.0: desafio-resposta com nonce."
+          "termo": "Jitter (Variação de Atraso Fim a Fim)",
+          "definicao": "É a diferença irregular no tempo que pacotes consecutivos levam para atravessar a rede até o destino. Embora um pacote saia a cada 20 ms do microfone, filas variáveis nos roteadores fazem com que eles cheguem em intervalos irregulares (ex.: 15 ms, 45 ms, 18 ms). É combatido com timestamps e buffer de reprodução (playout adaptativo)."
         }
       ]
     }
   },
   {
     "id": 35,
-    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
-    "referencia_livro": "Cap. 8 - Seção 8.5",
+    "capitulo": "Capítulo 7 - Redes Multimídia",
+    "referencia_livro": "Cap. 7 - Seção 7.4.1",
     "tipo": "conceitual",
-    "enunciado": "Para prover simultaneamente confidencialidade, integridade e autenticação do remetente em um e-mail seguro (como no PGP), Alice utiliza criptografia híbrida. Qual sequência de operações Alice realiza corretamente antes de enviar a mensagem m para Bob?",
+    "enunciado": "Quais dois campos essenciais do cabeçalho RTP permitem ao receptor reordenar pacotes fora de ordem e sincronizar o ritmo de reprodução da mídia?",
     "alternativas": {
-      "A": "Cifra a mensagem inteira diretamente com a chave pública de Bob e descarta o uso de hash ou chave simétrica.",
-      "B": "Calcula o hash H(m) e o assina com sua própria chave privada (assinatura digital); gera uma chave simétrica de sessão K_S aleatória para cifrar (m + assinatura); cifra a chave K_S com a chave pública de Bob; e envia ambos os blocos cifrados a Bob.",
-      "C": "Cifra a mensagem com a chave pública de Alice e envia a chave privada de Alice anexada ao cabeçalho SMTP.",
-      "D": "Usa apenas o algoritmo MD5 sobre o texto da mensagem, pois o MD5 já garante confidencialidade total do e-mail."
+      "A": "Número de sequência e Timestamp (carimbo de tempo).",
+      "B": "Endereço MAC e TTL.",
+      "C": "Porta de origem e Flag SYN.",
+      "D": "Janela deslizante e Checksum TCP."
     },
-    "resposta_correta": "B",
-    "explicacao": "A criptografia assimétrica (RSA) é muito lenta para cifrar mensagens longas. Por isso, o PGP/e-mail seguro usa criptografia híbrida: (1) Alice assina H(m) com sua chave privada K_A⁻ (autenticação/integridade); (2) gera uma chave simétrica efêmera K_S e cifra rapidamente a mensagem + assinatura com K_S; (3) cifra apenas a pequena chave K_S com a chave pública de Bob K_B⁺ (confidencialidade).",
+    "resposta_correta": "A",
+    "explicacao": "O número de sequência detecta perdas e permite reordenação; o timestamp indica o instante de amostragem do primeiro byte de mídia do pacote para sincronização e cálculo de jitter.",
     "guia_estudo": {
-      "conceito_geral": "Arquitetura de e-mail seguro e PGP (Pretty Good Privacy): integração prática de funções hash, assinaturas digitais, criptografia simétrica (chave de sessão) e criptografia de chave pública.",
+      "conceito_geral": "O número de sequência detecta perdas e permite reordenação; o timestamp indica o instante de amostragem do primeiro byte de mídia do pacote para sincronização e cálculo de jitter.",
       "termos_chave": [
         {
-          "termo": "Criptografia Híbrida",
-          "definicao": "Combina a velocidade da criptografia simétrica (para cifrar os dados volumosos da mensagem) com a praticidade da criptografia de chave pública (para proteger e entregar a pequena chave de sessão)."
+          "termo": "RTP (Real-Time Transport Protocol (Protocolo de Transporte em Tempo Real))",
+          "definicao": "É o protocolo padrão da Internet que transporta pacotes de áudio e vídeo em tempo real (normalmente rodando sobre UDP). Adiciona um cabeçalho de 12 bytes com número de sequência (detecta perdas), timestamp (remove jitter), Payload Type (indica o codec usado, permitindo trocá-lo no meio da chamada) e SSRC (identifica quem está falando)."
         },
         {
-          "termo": "Chave de Sessão Efêmera (K_S)",
-          "definicao": "Chave simétrica aleatória gerada especificamente para um único e-mail. Mesmo que um dia seja comprometida, não afeta e-mails anteriores ou futuros."
+          "termo": "SSRC (Synchronization Source Identifier (Identificador da Fonte de Sincronização))",
+          "definicao": "É um número aleatório de 32 bits presente no cabeçalho de todo pacote RTP. Identifica de forma única a origem de um fluxo específico de mídia dentro de uma sessão RTP, permitindo diferenciar vários participantes que enviam pacotes para o mesmo socket UDP."
         },
         {
-          "termo": "PGP (Pretty Good Privacy)",
-          "definicao": "Sistema clássico de criptografia de e-mail baseado no modelo de 'rede de confiança' (Web of Trust) para certificação de chaves públicas, em contraste com a hierarquia de CAs do S/MIME."
-        },
-        {
-          "termo": "Ordem Assinar-e-Cifrar",
-          "definicao": "Alice gera K_A⁻(H(m)), concatena com m, cifra tudo com K_S, e anexa K_B⁺(K_S). Bob usa K_B⁻ para obter K_S, decifra a mensagem e a assinatura, e usa K_A⁺ para validar o hash."
+          "termo": "Jitter (Variação de Atraso Fim a Fim)",
+          "definicao": "É a diferença irregular no tempo que pacotes consecutivos levam para atravessar a rede até o destino. Embora um pacote saia a cada 20 ms do microfone, filas variáveis nos roteadores fazem com que eles cheguem em intervalos irregulares (ex.: 15 ms, 45 ms, 18 ms). É combatido com timestamps e buffer de reprodução (playout adaptativo)."
         }
       ]
     }
   },
   {
     "id": 36,
-    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
-    "referencia_livro": "Cap. 8 - Seção 8.6",
+    "capitulo": "Capítulo 7 - Redes Multimídia",
+    "referencia_livro": "Cap. 7 - Seção 7.2.3",
     "tipo": "conceitual",
-    "enunciado": "Ao detalhar o protocolo SSL/TLS na Seção 8.6, Kurose & Ross explicam que o cliente e o servidor derivam quatro chaves distintas a partir do segredo mestre (Master Secret) e incluem um campo 'tipo' nos registros SSL. Qual é a finalidade dessas duas decisões de projeto?",
+    "enunciado": "Na arquitetura DASH (Dynamic Adaptive Streaming over HTTP), qual é o papel do arquivo de manifesto (MPD - Media Presentation Description)?",
     "alternativas": {
-      "A": "As quatro chaves separam cifração e integridade (MAC) para cada direção da comunicação (cliente→servidor e servidor→cliente), aumentando a segurança; e o campo 'tipo' permite enviar um registro SSL específico de encerramento (autenticado pelo MAC), protegendo contra ataques por truncamento via TCP FIN falso.",
-      "B": "As quatro chaves servem para cifrar a mesma mensagem quatro vezes seguidas com RSA; e o campo 'tipo' informa ao roteador o número da porta UDP.",
-      "C": "As quatro chaves são usadas apenas quando o navegador não possui certificado de CA; e o campo 'tipo' substitui o número de sequência TCP.",
-      "D": "As quatro chaves são compartilhadas publicamente no ClientHello; e o campo 'tipo' indica se a conexão usa Wi-Fi ou Ethernet."
+      "A": "Reservar banda nos roteadores intermediários via RSVP.",
+      "B": "Informar ao cliente as URLs, durações e diferentes taxas de bits/resoluções disponíveis para cada segmento (chunk) de vídeo.",
+      "C": "Criptografar o vídeo usando chaves RSA.",
+      "D": "Substituir o protocolo HTTP pelo SIP."
     },
-    "resposta_correta": "A",
-    "explicacao": "No SSL, derivam-se 4 chaves independentes: E_c e M_c (cifração e MAC do cliente para o servidor) e E_s e M_s (cifração e MAC do servidor para o cliente). Além disso, se o encerramento dependesse apenas do TCP FIN (não autenticado pelo SSL), Trudy poderia injetar um TCP FIN falso para cortar a sessão antes da hora (ataque por truncamento). O registro SSL de encerramento autenticado no campo 'tipo' impede esse ataque.",
+    "resposta_correta": "B",
+    "explicacao": "O cliente baixa o manifesto primeiro para saber quais qualidades existem e onde buscar cada chunk, decidindo localmente qual taxa de bits requisitar a seguir.",
     "guia_estudo": {
-      "conceito_geral": "Detalhes internos da arquitetura de registros do SSL/TLS: separação criptográfica de chaves por direção/função e defesa contra ataques por truncamento na camada de transporte.",
+      "conceito_geral": "O cliente baixa o manifesto primeiro para saber quais qualidades existem e onde buscar cada chunk, decidindo localmente qual taxa de bits requisitar a seguir.",
       "termos_chave": [
         {
-          "termo": "As 4 Chaves de Sessão SSL",
-          "definicao": "Derivadas do Master Secret: E_c (cifração cliente→servidor), M_c (MAC cliente→servidor), E_s (cifração servidor→cliente) e M_s (MAC servidor→cliente). Evita ataques de reflexão e reutilização de chaves."
+          "termo": "MPD (Media Presentation Description (Arquivo de Manifesto))",
+          "definicao": "É um arquivo de índice (geralmente em XML) usado no sistema DASH. Lista todas as versões disponíveis de um vídeo (resoluções, taxas de bits), faixas de áudio/idiomas e as URLs exatas de cada pedaço (chunk) no servidor."
         },
         {
-          "termo": "Ataque por Truncamento (Truncation Attack)",
-          "definicao": "Ataque em que Trudy injeta um segmento TCP FIN forjado no meio de uma conexão SSL ativa para encerrá-la prematuramente (ex: cortando parte de uma transação comercial)."
+          "termo": "DASH (Dynamic Adaptive Streaming over HTTP)",
+          "definicao": "É o padrão moderno de streaming adaptativo de vídeo sobre HTTP, em que o vídeo é dividido em pequenos trechos (chunks) codificados em várias qualidades diferentes. Permite que o player do cliente meça a velocidade da sua internet em tempo real e peça o próximo trecho em maior qualidade (4K/1080p) quando a conexão está rápida, ou menor qualidade (480p) quando está lenta, sem travar."
         },
         {
-          "termo": "Campo 'Tipo' do Registro SSL",
-          "definicao": "Indica se o registro é de handshake, dados de aplicação ou alerta/fechamento. Como o registro de fechamento (close_notify) é protegido pelo MAC, o destinatário sabe se o encerramento foi legítimo ou um ataque."
-        },
-        {
-          "termo": "Posição do SSL na Pilha",
-          "definicao": "Embora conceitualmente forneça segurança à camada de transporte (protegendo TCP), na prática o SSL/TLS é implementado como uma biblioteca na camada de aplicação (sobre sockets TCP)."
+          "termo": "Streaming (HTTP vs. UDP) (Transmissão de Fluxo Contínuo)",
+          "definicao": "É a forma de transmitir áudio ou vídeo pela rede permitindo que o usuário comece a assistir/ouvir antes de baixar o arquivo inteiro. Envia a mídia em blocos contínuos. No HTTP Streaming (sobre TCP), atravessa firewalls/NATs facilmente e usa servidores Web comuns; no UDP Streaming, envia na taxa fixa do vídeo, mas pode ser bloqueado por firewalls."
         }
       ]
     }
   },
   {
     "id": 37,
-    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
-    "referencia_livro": "Cap. 8 - Seções 8.7.2 e 8.7.3",
+    "capitulo": "Capítulo 7 - Redes Multimídia",
+    "referencia_livro": "Cap. 7 - Seções 7.2.2 e 7.2.3",
     "tipo": "conceitual",
-    "enunciado": "A arquitetura IPsec oferece dois protocolos principais de segurança — AH (Authentication Header) e ESP (Encapsulating Security Payload) — e utiliza duas bases de dados internas nos roteadores/hosts: SAD e SPD. Assinale a alternativa correta sobre esses componentes:",
+    "enunciado": "Por que o streaming adaptativo moderno (como DASH e HLS) utiliza HTTP sobre TCP com sucesso, apesar de o TCP ser evitado no VoIP?",
     "alternativas": {
-      "A": "O protocolo AH fornece confidencialidade (cifração) e integridade, enquanto o ESP fornece apenas autenticação sem cifrar os dados.",
-      "B": "O protocolo AH fornece autenticação de origem e integridade (sem confidencialidade), enquanto o ESP fornece confidencialidade além de autenticação e integridade; a SPD (Banco de Dados de Política de Segurança) define QUAIS pacotes devem ser protegidos e a SAD (Banco de Dados de Associação de Segurança) armazena os parâmetros criptográficos (chaves, algoritmos, SPI) das SAs ativas.",
-      "C": "A SAD armazena as regras de roteamento BGP da Internet e a SPD armazena senhas de usuários Wi-Fi.",
-      "D": "O IPsec só pode operar no modo transporte entre navegadores Web, não sendo compatível com VPNs entre roteadores."
+      "A": "Porque o DASH não sofre perda de pacotes na Internet.",
+      "B": "Porque o streaming armazenado utiliza buffers grandes no cliente que absorvem as variações e retransmissões do TCP, além de atravessar firewalls e NATs facilmente.",
+      "C": "Porque o TCP prioriza automaticamente pacotes de vídeo nos roteadores.",
+      "D": "Porque o HTTP desativa o controle de congestionamento do TCP."
     },
     "resposta_correta": "B",
-    "explicacao": "O AH autentica a origem e protege a integridade, mas não cifra a carga útil. O ESP (muito mais usado em VPNs) provê confidencialidade + integridade/autenticação. Para processar cada datagrama, o roteador consulta primeiro a SPD (política: descartar, passar direto ou aplicar IPsec) e, se aplicar IPsec, usa o ponteiro para a SA correspondente armazenada na SAD.",
+    "explicacao": "O buffer de vários segundos no reprodutor mascara o atraso das retransmissões do TCP, enquanto o uso de HTTP/HTTPS facilita o cache em CDNs e a passagem por firewalls.",
     "guia_estudo": {
-      "conceito_geral": "Arquitetura interna do IPsec na camada de rede: comparação entre AH e ESP e o funcionamento das tabelas SPD e SAD nos dispositivos IPsec.",
+      "conceito_geral": "O buffer de vários segundos no reprodutor mascara o atraso das retransmissões do TCP, enquanto o uso de HTTP/HTTPS facilita o cache em CDNs e a passagem por firewalls.",
       "termos_chave": [
         {
-          "termo": "AH (Authentication Header)",
-          "definicao": "Protocolo IPsec que fornece autenticação da fonte e integridade dos dados (inclusive partes imutáveis do cabeçalho IP), mas NÃO oferece confidencialidade (os dados trafegam em texto claro)."
+          "termo": "Streaming (HTTP vs. UDP) (Transmissão de Fluxo Contínuo)",
+          "definicao": "É a forma de transmitir áudio ou vídeo pela rede permitindo que o usuário comece a assistir/ouvir antes de baixar o arquivo inteiro. Envia a mídia em blocos contínuos. No HTTP Streaming (sobre TCP), atravessa firewalls/NATs facilmente e usa servidores Web comuns; no UDP Streaming, envia na taxa fixa do vídeo, mas pode ser bloqueado por firewalls."
         },
         {
-          "termo": "ESP (Encapsulating Security Payload)",
-          "definicao": "Protocolo IPsec amplamente utilizado em VPNs que oferece confidencialidade (cifração da carga) bem como autenticação de origem, integridade e proteção anti-replay."
+          "termo": "DASH (Dynamic Adaptive Streaming over HTTP)",
+          "definicao": "É o padrão moderno de streaming adaptativo de vídeo sobre HTTP, em que o vídeo é dividido em pequenos trechos (chunks) codificados em várias qualidades diferentes. Permite que o player do cliente meça a velocidade da sua internet em tempo real e peça o próximo trecho em maior qualidade (4K/1080p) quando a conexão está rápida, ou menor qualidade (480p) quando está lenta, sem travar."
         },
         {
-          "termo": "SPD (Security Policy Database)",
-          "definicao": "Banco de Dados de Política de Segurança: tabela que indica, com base em IP de origem/destino e protocolo, o que fazer com um pacote (ignorar/passar em claro, descartar ou processar via IPsec)."
-        },
-        {
-          "termo": "SAD (Security Association Database)",
-          "definicao": "Banco de Dados de Associação de Segurança: armazena o estado de cada SA simplex ativa (SPI - Índice de Parâmetro de Segurança, chaves de cifração/autenticação, algoritmo e número de sequência)."
+          "termo": "Playout Buffer (Buffer de Reprodução (Memória Amortecedora))",
+          "definicao": "É uma área temporária de memória no dispositivo do usuário (cliente) que armazena alguns segundos de vídeo ou milissegundos de áudio antes de reproduzi-los. Absorve oscilações de velocidade e atraso da rede (jitter), evitando que o vídeo congele (freezing) ou que a voz fique picotada durante a reprodução."
         }
       ]
     }
   },
   {
     "id": 38,
-    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
-    "referencia_livro": "Cap. 8 - Seção 8.7.5",
+    "capitulo": "Capítulo 7 - Redes Multimídia",
+    "referencia_livro": "Cap. 7 - Seção 7.2.3",
     "tipo": "conceitual",
-    "enunciado": "Em uma grande organização com centenas de escritórios interligados por VPNs IPsec, configurar manualmente chaves secretas e Associações de Segurança (SAs) em todos os roteadores é inviável. Qual é o papel do protocolo IKE (Internet Key Exchange) na arquitetura IPsec?",
+    "enunciado": "Em uma arquitetura DASH, quem monitora a largura de banda disponível e decide alternar a qualidade dos próximos blocos de vídeo?",
     "alternativas": {
-      "A": "Substituir o cabeçalho IPv4 por IPv6 automaticamente em todos os roteadores da filial.",
-      "B": "Automatizar o gerenciamento de chaves e o estabelecimento dinâmico de Associações de Segurança (SAs) IPsec entre entidades, usando troca de chaves Diffie-Hellman e autenticação mútua (por certificados ou chaves pré-compartilhadas).",
-      "C": "Atuar como um firewall de aplicação para filtrar e-mails de spam antes que entrem no túnel VPN.",
-      "D": "Medir o jitter de chamadas VoIP dentro da VPN e ajustar os pesos do escalonador WFQ."
+      "A": "O próprio cliente (reprodutor), solicitando os chunks na taxa adequada via HTTP.",
+      "B": "O servidor de origem, por meio de pacotes RTCP.",
+      "C": "O roteador de borda do provedor de Internet.",
+      "D": "O servidor DNS autoritativo."
     },
-    "resposta_correta": "B",
-    "explicacao": "O IKE (Internet Key Exchange, RFC 5996) é o protocolo de gerenciamento automático de chaves do IPsec. Em duas fases, ele autentica os pares (usando certificados digitais ou chave pré-compartilhada), executa Diffie-Hellman para derivar segredos compartilhados e negocia dinamicamente os parâmetros das SAs (chaves, algoritmos, SPIs) inseridos na SAD.",
+    "resposta_correta": "A",
+    "explicacao": "No DASH, a inteligência de adaptação fica no cliente, que mede a taxa de download recente e o nível do buffer para escolher a melhor qualidade disponível no manifesto.",
     "guia_estudo": {
-      "conceito_geral": "Gerenciamento automatizado de chaves e negociação de Associações de Segurança (SAs) no IPsec através do protocolo IKE.",
+      "conceito_geral": "No DASH, a inteligência de adaptação fica no cliente, que mede a taxa de download recente e o nível do buffer para escolher a melhor qualidade disponível no manifesto.",
       "termos_chave": [
         {
-          "termo": "IKE (Internet Key Exchange)",
-          "definicao": "Protocolo responsável por autenticar os roteadores/hosts IPsec e negociar automaticamente as chaves simétricas e parâmetros criptográficos das SAs sem intervenção manual."
+          "termo": "DASH (Dynamic Adaptive Streaming over HTTP)",
+          "definicao": "É o padrão moderno de streaming adaptativo de vídeo sobre HTTP, em que o vídeo é dividido em pequenos trechos (chunks) codificados em várias qualidades diferentes. Permite que o player do cliente meça a velocidade da sua internet em tempo real e peça o próximo trecho em maior qualidade (4K/1080p) quando a conexão está rápida, ou menor qualidade (480p) quando está lenta, sem travar."
         },
         {
-          "termo": "Fase 1 do IKE (IKE SA)",
-          "definicao": "Estabelece um canal seguro bidirecional inicial entre os dois pontos usando Diffie-Hellman para trocar segredos e proteger as negociações subsequentes."
+          "termo": "MPD (Media Presentation Description (Arquivo de Manifesto))",
+          "definicao": "É um arquivo de índice (geralmente em XML) usado no sistema DASH. Lista todas as versões disponíveis de um vídeo (resoluções, taxas de bits), faixas de áudio/idiomas e as URLs exatas de cada pedaço (chunk) no servidor."
         },
         {
-          "termo": "Fase 2 do IKE (IPsec SAs)",
-          "definicao": "Usando o canal protegido da Fase 1, autentica formalmente as partes (via certificados ou chave pré-compartilhada) e cria o par de SAs IPsec (uma para cada direção) que trafegarão os dados reais."
-        },
-        {
-          "termo": "Associação de Segurança (SA) Simplex",
-          "definicao": "Uma SA IPsec é unidirecional (simplex). Para comunicação bidirecional segura entre R1 e R2, são criadas duas SAs (uma de R1→R2 e outra de R2→R1)."
+          "termo": "CDN (Content Distribution Network (Rede de Distribuição de Conteúdo))",
+          "definicao": "É uma rede global de servidores espalhados geograficamente que guardam cópias (réplicas) de vídeos, imagens e sites perto dos usuários. Usa redirecionamento via DNS para conectar o usuário ao servidor mais próximo (estratégias 'Entrar profundamente' nos ISPs ou 'Trazer para dentro de casa' em IXPs), reduzindo latência e evitando sobrecarga no servidor original."
         }
       ]
     }
   },
   {
     "id": 39,
-    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
-    "referencia_livro": "Cap. 8 - Seções 8.8.1 e 8.8.2",
+    "capitulo": "Capítulo 7 - Redes Multimídia",
+    "referencia_livro": "Cap. 7 - Seção 7.3.2",
     "tipo": "conceitual",
-    "enunciado": "O protocolo WEP (Wired Equivalent Privacy), primeiro padrão de segurança do Wi-Fi 802.11, foi considerado gravemente inseguro e substituído pelo padrão IEEE 802.11i (WPA2). Qual foi uma das falhas críticas do WEP e quais avanços principais o IEEE 802.11i introduziu?",
+    "enunciado": "Qual é a diferença entre um Playout Buffer fixo e um Playout Buffer adaptativo em VoIP?",
     "alternativas": {
-      "A": "O WEP usava um IV muito curto (24 bits), fazendo com que fluxos de chaves (keystreams) se repetissem em poucas horas em redes movimentadas e permitindo recuperar a chave; o 802.11i introduziu servidor de autenticação separado (EAP/RADIUS), derivação dinâmica de chaves por sessão, criptografia forte baseada em AES (CCMP) e IV expandido para 48 bits.",
-      "B": "O WEP falhava por usar chaves RSA de 4096 bits lentas demais; o 802.11i resolveu o problema removendo toda criptografia da camada de enlace.",
-      "C": "O WEP não criptografava os dados do usuário, apenas o cabeçalho IP; o 802.11i passou a usar apenas checksum de 16 bits.",
-      "D": "A única mudança do 802.11i em relação ao WEP foi obrigar o uso de cabos Ethernet em vez de rádio Wi-Fi."
+      "A": "O buffer adaptativo ajusta dinamicamente o atraso de reprodução durante os intervalos de silêncio com base no jitter medido na rede.",
+      "B": "O buffer adaptativo elimina completamente a latência de propagação.",
+      "C": "O buffer fixo ajusta seu atraso a cada rajada de fala; o adaptativo nunca muda.",
+      "D": "O buffer fixo só funciona com áudio estéreo."
     },
     "resposta_correta": "A",
-    "explicacao": "No WEP, a mesma chave estática era compartilhada por todos os clientes e combinada com um IV de apenas 24 bits (que esgota em poucas horas de tráfego intenso, repetindo keystreams e permitindo ataques passivos de recuperação da chave). O IEEE 802.11i (WPA2) resolve isso separando o Servidor de Autenticação (AS) do Ponto de Acesso (AP), usando EAP, derivando chaves dinâmicas exclusivas por sessão, adotando AES-CCMP e ampliando o IV para 48 bits.",
+    "explicacao": "O buffer adaptativo estima o atraso e o jitter continuamente e recalibra o ponto de reprodução nos períodos de silêncio, equilibrando baixa latência e baixa taxa de descarte.",
     "guia_estudo": {
-      "conceito_geral": "Vulnerabilidades históricas do WEP em redes locais sem fio (802.11) e a arquitetura moderna de autenticação e criptografia do IEEE 802.11i (WPA2).",
+      "conceito_geral": "O buffer adaptativo estima o atraso e o jitter continuamente e recalibra o ponto de reprodução nos períodos de silêncio, equilibrando baixa latência e baixa taxa de descarte.",
       "termos_chave": [
         {
-          "termo": "Falha do IV de 24 bits no WEP",
-          "definicao": "Com apenas 2^24 (~16,7 milhões) de valores possíveis, um ponto de acesso movimentado repete o mesmo IV em poucas horas. Dois quadros cifrados com o mesmo keystream (c1 ⊕ c2 = m1 ⊕ m2) permitem ataques de texto claro conhecido e quebra da chave."
+          "termo": "Playout Buffer (Buffer de Reprodução (Memória Amortecedora))",
+          "definicao": "É uma área temporária de memória no dispositivo do usuário (cliente) que armazena alguns segundos de vídeo ou milissegundos de áudio antes de reproduzi-los. Absorve oscilações de velocidade e atraso da rede (jitter), evitando que o vídeo congele (freezing) ou que a voz fique picotada durante a reprodução."
         },
         {
-          "termo": "IEEE 802.11i (WPA2)",
-          "definicao": "Padrão robusto de segurança Wi-Fi que substituiu o WEP, oferecendo autenticação forte, gerenciamento dinâmico de chaves e integridade/confidencialidade baseadas em AES."
+          "termo": "Jitter (Variação de Atraso Fim a Fim)",
+          "definicao": "É a diferença irregular no tempo que pacotes consecutivos levam para atravessar a rede até o destino. Embora um pacote saia a cada 20 ms do microfone, filas variáveis nos roteadores fazem com que eles cheguem em intervalos irregulares (ex.: 15 ms, 45 ms, 18 ms). É combatido com timestamps e buffer de reprodução (playout adaptativo)."
         },
         {
-          "termo": "Separação entre AP e Servidor de Autenticação (AS)",
-          "definicao": "No 802.11i corporativo, o Ponto de Acesso (AP) atua apenas como intermediário repassando mensagens EAP (via 802.1X e RADIUS) para um Servidor de Autenticação centralizado."
-        },
-        {
-          "termo": "4-Way Handshake e Chaves Dinâmicas",
-          "definicao": "Após a autenticação (gerando a Pairwise Master Key - PMK), cliente e AP derivam chaves temporais únicas para aquela sessão, eliminando a chave estática compartilhada do WEP."
+          "termo": "VoIP (Voice over IP (Voz sobre IP))",
+          "definicao": "É a tecnologia que permite realizar chamadas telefônicas e de voz em tempo real pela Internet (redes IP) em vez da rede telefônica fixa tradicional. Digitaliza a voz, divide em pequenos pedaços (ex.: a cada 20 ms), encapsula em pacotes RTP/UDP/IP e transmite em tempo real com tolerância a pequenas perdas, mas exigindo baixa latência (< 150 ms ideal)."
         }
       ]
     }
   },
   {
     "id": 40,
-    "capitulo": "Capítulo 8 - Segurança em Redes de Computadores",
-    "referencia_livro": "Cap. 8 - Seção 8.9.2",
+    "capitulo": "Capítulo 7 - Redes Multimídia",
+    "referencia_livro": "Cap. 7 - Seção 7.3.3",
     "tipo": "conceitual",
-    "enunciado": "Além dos firewalls, redes corporativas empregam Sistemas de Detecção de Invasão (IDS) e Sistemas de Prevenção de Invasão (IPS) que fazem inspeção profunda de pacotes (DPI). Qual alternativa diferencia corretamente IDS de IPS e detecção baseada em assinaturas de detecção baseada em anomalias?",
+    "enunciado": "Como a técnica de FEC (Forward Error Correction) baseada em fluxo redundante de menor qualidade ajuda a mitigar perdas de pacotes em VoIP?",
     "alternativas": {
-      "A": "O IDS bloqueia automaticamente pacotes maliciosos enquanto o IPS apenas gera alertas; sistemas baseados em assinaturas detectam facilmente ataques inéditos (zero-day) sem precisar de regras.",
-      "B": "O IDS observa o tráfego e gera alertas ao detectar atividade suspeita, enquanto o IPS atua em linha filtrando/bloqueando pacotes suspeitos; sistemas baseados em assinaturas comparam pacotes com um banco de regras de ataques conhecidos (sendo cegos a ataques novos), enquanto sistemas baseados em anomalias identificam desvios estatísticos em relação ao tráfego normal (sujeitos a falsos positivos).",
-      "C": "IDS e IPS analisam exclusivamente os endereços IP de origem e destino, nunca inspecionando a carga útil da camada de aplicação.",
-      "D": "Sistemas baseados em anomalias usam exclusivamente assinaturas digitais RSA para validar cada pacote HTTP."
+      "A": "Solicitando retransmissão rápida via TCP.",
+      "B": "Descartando pacotes de vídeo para priorizar o áudio.",
+      "C": "Enviando, junto com cada pacote de áudio principal, uma cópia de menor taxa de bits do pacote anterior para reconstrução imediata em caso de perda.",
+      "D": "Aumentando o tamanho do buffer no servidor SIP."
     },
-    "resposta_correta": "B",
-    "explicacao": "IDS (Intrusion Detection System) gera alertas; IPS (Intrusion Prevention System) efetivamente bloqueia/filtra o tráfego malicioso. Na detecção por assinaturas (ex: Snort), comparam-se pacotes contra um banco de padrões de ataques conhecidos (alta precisão para ataques catalogados, mas não detecta novos ataques sem assinatura). Na detecção por anomalias, cria-se um perfil estatístico do tráfego normal e alertam-se desvios bruscos (pode detectar ataques inéditos, mas sofre com falsos alarmes).",
+    "resposta_correta": "C",
+    "explicacao": "A redundância piggybacked permite que, se o pacote N se perder, o receptor use a cópia de menor qualidade que chega embutida no pacote N+1 sem precisar de retransmissão.",
     "guia_estudo": {
-      "conceito_geral": "Segurança operacional além dos firewalls tradicionais: inspeção profunda de pacotes (DPI) com IDS e IPS e os dois paradigmas de detecção de ataques.",
+      "conceito_geral": "A redundância piggybacked permite que, se o pacote N se perder, o receptor use a cópia de menor qualidade que chega embutida no pacote N+1 sem precisar de retransmissão.",
       "termos_chave": [
         {
-          "termo": "IDS vs. IPS",
-          "definicao": "O IDS (Sistema de Detecção de Invasão) monitora cópias do tráfego e dispara alertas ao administrador. O IPS (Sistema de Prevenção de Invasão) fica em série no caminho da rede e descarta ativamente pacotes maliciosos."
+          "termo": "FEC (Forward Error Correction (Correção Antecipada de Erros))",
+          "definicao": "É um conjunto de técnicas para recuperar pacotes perdidos em áudio/vídeo em tempo real sem precisar pedir retransmissão ao remetente. Adiciona dados redundantes ao fluxo (como 1 pacote XOR para cada N pacotes originais, ou anexar uma cópia em baixa qualidade do pacote anterior via piggybacking), consumindo banda extra em troca de resiliência a perdas."
         },
         {
-          "termo": "Inspeção Profunda de Pacotes (DPI)",
-          "definicao": "Diferente de filtros simples de cabeçalho IP/TCP, IDS/IPS examinam a carga útil (payload) da camada de aplicação para identificar strings de vírus, worms, SQL injection e exploits."
+          "termo": "VoIP (Voice over IP (Voz sobre IP))",
+          "definicao": "É a tecnologia que permite realizar chamadas telefônicas e de voz em tempo real pela Internet (redes IP) em vez da rede telefônica fixa tradicional. Digitaliza a voz, divide em pequenos pedaços (ex.: a cada 20 ms), encapsula em pacotes RTP/UDP/IP e transmite em tempo real com tolerância a pequenas perdas, mas exigindo baixa latência (< 150 ms ideal)."
         },
         {
-          "termo": "Detecção Baseada em Assinaturas",
-          "definicao": "Mantém um banco de dados de regras/padrões de ataques conhecidos (ex: Snort). É muito eficiente contra ameaças já conhecidas, mas incapaz de detectar ataques inéditos (zero-day) até que a assinatura seja criada."
+          "termo": "Intercalação (Interleaving) (Reordenação de Unidades de Mídia)",
+          "definicao": "É uma técnica alternativa à FEC para reduzir o impacto perceptível da perda de pacotes em áudio. Divide o áudio em unidades menores (ex.: 5 ms) e mistura sua ordem antes de montar os pacotes, de modo que trechos vizinhos viajem em pacotes diferentes. Não aumenta a largura de banda, mas aumenta a latência."
+        }
+      ]
+    }
+  },
+  {
+    "id": 41,
+    "capitulo": "Capítulo 7 - Redes Multimídia",
+    "referencia_livro": "Cap. 7 - Seção 7.3.3",
+    "tipo": "conceitual",
+    "enunciado": "Qual é a principal desvantagem teórica da técnica de Interleaving (Entrelaçamento) em aplicações de áudio interativo?",
+    "alternativas": {
+      "A": "Ela exige o dobro de largura de banda da rede.",
+      "B": "Ela só funciona sobre o protocolo TCP.",
+      "C": "Ela impede a compressão do áudio.",
+      "D": "Ela aumenta a latência, pois o receptor precisa aguardar vários pacotes para remontar os blocos originais de áudio."
+    },
+    "resposta_correta": "D",
+    "explicacao": "O entrelaçamento não consome banda extra, mas exige que o remetente acumule unidades antes de enviar e que o receptor aguarde o grupo de pacotes para desentrelaçar, elevando o atraso.",
+    "guia_estudo": {
+      "conceito_geral": "O entrelaçamento não consome banda extra, mas exige que o remetente acumule unidades antes de enviar e que o receptor aguarde o grupo de pacotes para desentrelaçar, elevando o atraso.",
+      "termos_chave": [
+        {
+          "termo": "Intercalação (Interleaving) (Reordenação de Unidades de Mídia)",
+          "definicao": "É uma técnica alternativa à FEC para reduzir o impacto perceptível da perda de pacotes em áudio. Divide o áudio em unidades menores (ex.: 5 ms) e mistura sua ordem antes de montar os pacotes, de modo que trechos vizinhos viajem em pacotes diferentes. Não aumenta a largura de banda, mas aumenta a latência."
         },
         {
-          "termo": "Detecção Baseada em Anomalias",
-          "definicao": "Aprende um perfil estatístico do comportamento 'normal' da rede (ex: volume típico de tráfego ICMP ou varreduras de porta) e sinaliza desvios incomuns. Pode pegar ataques novos, mas gera mais falsos positivos."
+          "termo": "FEC (Forward Error Correction (Correção Antecipada de Erros))",
+          "definicao": "É um conjunto de técnicas para recuperar pacotes perdidos em áudio/vídeo em tempo real sem precisar pedir retransmissão ao remetente. Adiciona dados redundantes ao fluxo (como 1 pacote XOR para cada N pacotes originais, ou anexar uma cópia em baixa qualidade do pacote anterior via piggybacking), consumindo banda extra em troca de resiliência a perdas."
+        },
+        {
+          "termo": "VoIP (Voice over IP (Voz sobre IP))",
+          "definicao": "É a tecnologia que permite realizar chamadas telefônicas e de voz em tempo real pela Internet (redes IP) em vez da rede telefônica fixa tradicional. Digitaliza a voz, divide em pequenos pedaços (ex.: a cada 20 ms), encapsula em pacotes RTP/UDP/IP e transmite em tempo real com tolerância a pequenas perdas, mas exigindo baixa latência (< 150 ms ideal)."
+        }
+      ]
+    }
+  },
+  {
+    "id": 42,
+    "capitulo": "Capítulo 7 - Redes Multimídia",
+    "referencia_livro": "Cap. 7 - Seção 7.4.2",
+    "tipo": "conceitual",
+    "enunciado": "Qual é o papel do protocolo SIP (Session Initiation Protocol) em uma chamada VoIP?",
+    "alternativas": {
+      "A": "Fazer o policiamento de tráfego com Token Bucket nos roteadores.",
+      "B": "Distribuir vídeos sob demanda em servidores de borda.",
+      "C": "Sinalizar a sessão: localizar o destinatário, negociar parâmetros de mídia (via SDP), estabelecer e encerrar a chamada.",
+      "D": "Transportar diretamente os pacotes de voz codificados."
+    },
+    "resposta_correta": "C",
+    "explicacao": "O SIP é um protocolo de sinalização na camada de aplicação (semelhante ao HTTP em sintaxe) que configura e encerra a chamada; o transporte da mídia fica a cargo do RTP.",
+    "guia_estudo": {
+      "conceito_geral": "O SIP é um protocolo de sinalização na camada de aplicação (semelhante ao HTTP em sintaxe) que configura e encerra a chamada; o transporte da mídia fica a cargo do RTP.",
+      "termos_chave": [
+        {
+          "termo": "SIP (Session Initiation Protocol (Protocolo de Iniciação de Sessão))",
+          "definicao": "É um protocolo de sinalização da camada de aplicação (com mensagens em texto parecidas com HTTP) usado para estabelecer, modificar e encerrar chamadas multimídia. Localiza usuários mesmo quando mudam de IP (usando Registrador SIP e Proxy SIP), faz o 'toque' da chamada (INVITE -> 200 OK -> ACK) e encerra a ligação (BYE). O áudio real trafega fora do SIP, via RTP."
+        },
+        {
+          "termo": "SDP (Session Description Protocol (Protocolo de Descrição de Sessão))",
+          "definicao": "É o formato de descrição carregado no corpo das mensagens SIP para anunciar parâmetros técnicos da mídia. Informa o endereço IP, a porta UDP em que o remetente deseja RECEBER a mídia e quais codecs de áudio/vídeo ele suporta (ex.: linha 'm=audio 48753 RTP/AVP 3')."
+        },
+        {
+          "termo": "RTP (Real-Time Transport Protocol (Protocolo de Transporte em Tempo Real))",
+          "definicao": "É o protocolo padrão da Internet que transporta pacotes de áudio e vídeo em tempo real (normalmente rodando sobre UDP). Adiciona um cabeçalho de 12 bytes com número de sequência (detecta perdas), timestamp (remove jitter), Payload Type (indica o codec usado, permitindo trocá-lo no meio da chamada) e SSRC (identifica quem está falando)."
+        }
+      ]
+    }
+  },
+  {
+    "id": 43,
+    "capitulo": "Capítulo 7 - Redes Multimídia",
+    "referencia_livro": "Cap. 7 - Seção 7.4.1",
+    "tipo": "conceitual",
+    "enunciado": "Sobre o protocolo RTCP (RTP Control Protocol), qual afirmação teórica está correta?",
+    "alternativas": {
+      "A": "Ele é responsável apenas por criptografar o áudio.",
+      "B": "Ele envia relatórios periódicos de qualidade (perda, jitter, sincronização) consumindo uma pequena fração fixa da banda da sessão.",
+      "C": "Ele substitui o RTP quando há congestionamento na rede.",
+      "D": "Ele retransmite pacotes RTP perdidos."
+    },
+    "resposta_correta": "B",
+    "explicacao": "O RTCP fornece feedback de qualidade (Sender Reports e Receiver Reports) e sincronização entre fluxos (ex.: áudio e vídeo), limitando seu próprio tráfego a cerca de 5% da banda da sessão.",
+    "guia_estudo": {
+      "conceito_geral": "O RTCP fornece feedback de qualidade (Sender Reports e Receiver Reports) e sincronização entre fluxos (ex.: áudio e vídeo), limitando seu próprio tráfego a cerca de 5% da banda da sessão.",
+      "termos_chave": [
+        {
+          "termo": "RTCP (Real-Time Control Protocol (Protocolo de Controle em Tempo Real))",
+          "definicao": "É o protocolo companheiro do RTP, focado exclusivamente em controle e monitoramento da qualidade da sessão (não carrega áudio nem vídeo). Envia relatórios periódicos de remetente e receptor (taxa de perda de pacotes, jitter e sincronização de relógio entre áudio e vídeo), limitando seu consumo a cerca de 5% da banda total da chamada."
+        },
+        {
+          "termo": "RTP (Real-Time Transport Protocol (Protocolo de Transporte em Tempo Real))",
+          "definicao": "É o protocolo padrão da Internet que transporta pacotes de áudio e vídeo em tempo real (normalmente rodando sobre UDP). Adiciona um cabeçalho de 12 bytes com número de sequência (detecta perdas), timestamp (remove jitter), Payload Type (indica o codec usado, permitindo trocá-lo no meio da chamada) e SSRC (identifica quem está falando)."
+        },
+        {
+          "termo": "Jitter (Variação de Atraso Fim a Fim)",
+          "definicao": "É a diferença irregular no tempo que pacotes consecutivos levam para atravessar a rede até o destino. Embora um pacote saia a cada 20 ms do microfone, filas variáveis nos roteadores fazem com que eles cheguem em intervalos irregulares (ex.: 15 ms, 45 ms, 18 ms). É combatido com timestamps e buffer de reprodução (playout adaptativo)."
+        }
+      ]
+    }
+  },
+  {
+    "id": 44,
+    "capitulo": "Capítulo 7 - Redes Multimídia",
+    "referencia_livro": "Cap. 7 - Seção 7.2.4",
+    "tipo": "conceitual",
+    "enunciado": "Como uma CDN (Content Distribution Network) geralmente redireciona o usuário para o servidor de borda mais próximo ou com melhor desempenho?",
+    "alternativas": {
+      "A": "Usando o protocolo SIP para iniciar a conexão.",
+      "B": "Forçando o cliente a baixar o vídeo de todos os servidores simultaneamente.",
+      "C": "Por meio de resolução DNS inteligente (ou Anycast), que retorna o endereço IP do nó de borda mais adequado à localização do cliente.",
+      "D": "Alterando o endereço MAC do computador do usuário."
+    },
+    "resposta_correta": "C",
+    "explicacao": "A CDN intercepta a consulta DNS (ou usa roteamento Anycast) para direcionar o cliente ao servidor replicado mais próximo, reduzindo saltos, latência e carga no servidor de origem.",
+    "guia_estudo": {
+      "conceito_geral": "A CDN intercepta a consulta DNS (ou usa roteamento Anycast) para direcionar o cliente ao servidor replicado mais próximo, reduzindo saltos, latência e carga no servidor de origem.",
+      "termos_chave": [
+        {
+          "termo": "CDN (Content Distribution Network (Rede de Distribuição de Conteúdo))",
+          "definicao": "É uma rede global de servidores espalhados geograficamente que guardam cópias (réplicas) de vídeos, imagens e sites perto dos usuários. Usa redirecionamento via DNS para conectar o usuário ao servidor mais próximo (estratégias 'Entrar profundamente' nos ISPs ou 'Trazer para dentro de casa' em IXPs), reduzindo latência e evitando sobrecarga no servidor original."
+        },
+        {
+          "termo": "DASH (Dynamic Adaptive Streaming over HTTP)",
+          "definicao": "É o padrão moderno de streaming adaptativo de vídeo sobre HTTP, em que o vídeo é dividido em pequenos trechos (chunks) codificados em várias qualidades diferentes. Permite que o player do cliente meça a velocidade da sua internet em tempo real e peça o próximo trecho em maior qualidade (4K/1080p) quando a conexão está rápida, ou menor qualidade (480p) quando está lenta, sem travar."
+        },
+        {
+          "termo": "Streaming (HTTP vs. UDP) (Transmissão de Fluxo Contínuo)",
+          "definicao": "É a forma de transmitir áudio ou vídeo pela rede permitindo que o usuário comece a assistir/ouvir antes de baixar o arquivo inteiro. Envia a mídia em blocos contínuos. No HTTP Streaming (sobre TCP), atravessa firewalls/NATs facilmente e usa servidores Web comuns; no UDP Streaming, envia na taxa fixa do vídeo, mas pode ser bloqueado por firewalls."
+        }
+      ]
+    }
+  },
+  {
+    "id": 45,
+    "capitulo": "Capítulo 7 - Redes Multimídia",
+    "referencia_livro": "Cap. 7 - Seção 7.3.1",
+    "tipo": "conceitual",
+    "enunciado": "Por que o modelo padrão da Internet, conhecido como Best-Effort (Melhor Esforço), é desafiador para aplicações multimídia em tempo real?",
+    "alternativas": {
+      "A": "Porque ele só permite conexões ponto a ponto sem roteamento.",
+      "B": "Porque ele exige reserva prévia de recursos em todos os roteadores.",
+      "C": "Porque ele bloqueia pacotes UDP por padrão.",
+      "D": "Porque ele não oferece garantias de largura de banda mínima, atraso máximo ou taxa de perda de pacotes."
+    },
+    "resposta_correta": "D",
+    "explicacao": "No serviço Best-Effort, todos os pacotes são tratados igualmente; em momentos de congestionamento, fluxos sensíveis ao tempo sofrem atraso, jitter e perdas.",
+    "guia_estudo": {
+      "conceito_geral": "No serviço Best-Effort, todos os pacotes são tratados igualmente; em momentos de congestionamento, fluxos sensíveis ao tempo sofrem atraso, jitter e perdas.",
+      "termos_chave": [
+        {
+          "termo": "QoS (Quality of Service (Qualidade de Serviço))",
+          "definicao": "É o conjunto de mecanismos em roteadores e redes para dar tratamento diferenciado ou garantias de desempenho (latência, jitter, banda mínima) a certos tipos de tráfego. Evita que tráfegos pesados e elásticos (como downloads grandes) prejudiquem aplicações sensíveis ao tempo (como VoIP e telemedicina), usando marcação, policiamento e escalonamento de filas."
+        },
+        {
+          "termo": "Jitter (Variação de Atraso Fim a Fim)",
+          "definicao": "É a diferença irregular no tempo que pacotes consecutivos levam para atravessar a rede até o destino. Embora um pacote saia a cada 20 ms do microfone, filas variáveis nos roteadores fazem com que eles cheguem em intervalos irregulares (ex.: 15 ms, 45 ms, 18 ms). É combatido com timestamps e buffer de reprodução (playout adaptativo)."
+        },
+        {
+          "termo": "VoIP (Voice over IP (Voz sobre IP))",
+          "definicao": "É a tecnologia que permite realizar chamadas telefônicas e de voz em tempo real pela Internet (redes IP) em vez da rede telefônica fixa tradicional. Digitaliza a voz, divide em pequenos pedaços (ex.: a cada 20 ms), encapsula em pacotes RTP/UDP/IP e transmite em tempo real com tolerância a pequenas perdas, mas exigindo baixa latência (< 150 ms ideal)."
+        }
+      ]
+    }
+  },
+  {
+    "id": 46,
+    "capitulo": "Capítulo 7 - Redes Multimídia",
+    "referencia_livro": "Cap. 7 - Seção 7.5.2",
+    "tipo": "conceitual",
+    "enunciado": "Qual é o objetivo teórico de um mecanismo de policiamento de tráfego como o Token Bucket (Balde de Fichas)?",
+    "alternativas": {
+      "A": "Garantir que um fluxo de tráfego respeite uma taxa média máxima e um tamanho máximo de rajada (burst).",
+      "B": "Eliminar completamente a necessidade de buffers nos roteadores.",
+      "C": "Criptografar pacotes multimídia na camada de rede.",
+      "D": "Converter pacotes UDP em segmentos TCP."
+    },
+    "resposta_correta": "A",
+    "explicacao": "O Token Bucket gera fichas a uma taxa média constante até o limite da capacidade do balde (burst); um pacote só é transmitido em conformidade se houver fichas disponíveis.",
+    "guia_estudo": {
+      "conceito_geral": "O Token Bucket gera fichas a uma taxa média constante até o limite da capacidade do balde (burst); um pacote só é transmitido em conformidade se houver fichas disponíveis.",
+      "termos_chave": [
+        {
+          "termo": "Token Bucket (Balde de Fichas (Policiamento de Tráfego))",
+          "definicao": "É um mecanismo regulador de tráfego definido por dois parâmetros: taxa média de geração de fichas (r) e capacidade máxima do balde/rajada (b). Limita a taxa média de longo prazo de um fluxo a 'r' pacotes/s, mas permite rajadas curtas de até 'b' pacotes acumulados. Um pacote só é liberado se houver uma ficha disponível no balde."
+        },
+        {
+          "termo": "QoS (Quality of Service (Qualidade de Serviço))",
+          "definicao": "É o conjunto de mecanismos em roteadores e redes para dar tratamento diferenciado ou garantias de desempenho (latência, jitter, banda mínima) a certos tipos de tráfego. Evita que tráfegos pesados e elásticos (como downloads grandes) prejudiquem aplicações sensíveis ao tempo (como VoIP e telemedicina), usando marcação, policiamento e escalonamento de filas."
+        },
+        {
+          "termo": "DiffServ / DSCP / PHB (Differentiated Services (Serviços Diferenciados))",
+          "definicao": "É uma arquitetura escalável de QoS que separa funções complexas na borda da rede e encaminhamento simples no núcleo. Roteadores de borda classificam, policiam e marcam 6 bits no cabeçalho IP (campo DSCP). Roteadores do núcleo apenas olham o DSCP e aplicam o comportamento por salto (PHB) correspondente, sem guardar estado de cada fluxo."
+        }
+      ]
+    }
+  },
+  {
+    "id": 47,
+    "capitulo": "Capítulo 7 - Redes Multimídia",
+    "referencia_livro": "Cap. 7 - Seção 7.5.2",
+    "tipo": "conceitual",
+    "enunciado": "No escalonamento de pacotes em roteadores, qual é o principal risco teórico do uso de Filas de Prioridade estrita (Strict Priority Queuing)?",
+    "alternativas": {
+      "A": "Incapacidade de distinguir pacotes de áudio e dados.",
+      "B": "Inanição (starvation) das filas de menor prioridade caso o tráfego de alta prioridade ocupe toda a largura de banda.",
+      "C": "Aumento do jitter para o tráfego de mais alta prioridade.",
+      "D": "Reordenação obrigatória de pacotes dentro da mesma fila."
+    },
+    "resposta_correta": "B",
+    "explicacao": "Na prioridade estrita, pacotes de menor prioridade só são atendidos quando a fila de alta prioridade está vazia, podendo ficar indefinidamente bloqueados sob carga intensa.",
+    "guia_estudo": {
+      "conceito_geral": "Na prioridade estrita, pacotes de menor prioridade só são atendidos quando a fila de alta prioridade está vazia, podendo ficar indefinidamente bloqueados sob carga intensa.",
+      "termos_chave": [
+        {
+          "termo": "QoS (Quality of Service (Qualidade de Serviço))",
+          "definicao": "É o conjunto de mecanismos em roteadores e redes para dar tratamento diferenciado ou garantias de desempenho (latência, jitter, banda mínima) a certos tipos de tráfego. Evita que tráfegos pesados e elásticos (como downloads grandes) prejudiquem aplicações sensíveis ao tempo (como VoIP e telemedicina), usando marcação, policiamento e escalonamento de filas."
+        },
+        {
+          "termo": "WFQ (Weighted Fair Queuing (Enfileiramento Justo Ponderado))",
+          "definicao": "É um algoritmo de escalonamento de pacotes em roteadores que divide a largura de banda de um enlace entre múltiplas classes de serviço conforme pesos definidos. Garante uma fração mínima de banda para cada classe ativa evitando inanição (starvation). Por ser conservador de trabalho, se uma classe estiver sem pacotes, redistribui sua banda proporcionalmente às classes ativas."
+        },
+        {
+          "termo": "Token Bucket (Balde de Fichas (Policiamento de Tráfego))",
+          "definicao": "É um mecanismo regulador de tráfego definido por dois parâmetros: taxa média de geração de fichas (r) e capacidade máxima do balde/rajada (b). Limita a taxa média de longo prazo de um fluxo a 'r' pacotes/s, mas permite rajadas curtas de até 'b' pacotes acumulados. Um pacote só é liberado se houver uma ficha disponível no balde."
+        }
+      ]
+    }
+  },
+  {
+    "id": 48,
+    "capitulo": "Capítulo 7 - Redes Multimídia",
+    "referencia_livro": "Cap. 7 - Seção 7.5.2",
+    "tipo": "conceitual",
+    "enunciado": "Como o algoritmo de escalonamento WFQ (Weighted Fair Queuing) resolve o problema de inanição presente nas Filas de Prioridade estrita?",
+    "alternativas": {
+      "A": "Descartando aleatoriamente pacotes de alta prioridade.",
+      "B": "Limitando o número de conexões TCP a apenas uma por vez.",
+      "C": "Atendendo todos os pacotes estritamente por ordem de chegada (FIFO).",
+      "D": "Atribuindo pesos a cada classe de tráfego e garantindo a cada uma uma fração proporcional mínima da largura de banda do enlace."
+    },
+    "resposta_correta": "D",
+    "explicacao": "O WFQ alterna o atendimento entre as filas de forma proporcional aos seus pesos, garantindo que classes prioritárias tenham mais banda sem impedir o progresso das demais.",
+    "guia_estudo": {
+      "conceito_geral": "O WFQ alterna o atendimento entre as filas de forma proporcional aos seus pesos, garantindo que classes prioritárias tenham mais banda sem impedir o progresso das demais.",
+      "termos_chave": [
+        {
+          "termo": "WFQ (Weighted Fair Queuing (Enfileiramento Justo Ponderado))",
+          "definicao": "É um algoritmo de escalonamento de pacotes em roteadores que divide a largura de banda de um enlace entre múltiplas classes de serviço conforme pesos definidos. Garante uma fração mínima de banda para cada classe ativa evitando inanição (starvation). Por ser conservador de trabalho, se uma classe estiver sem pacotes, redistribui sua banda proporcionalmente às classes ativas."
+        },
+        {
+          "termo": "QoS (Quality of Service (Qualidade de Serviço))",
+          "definicao": "É o conjunto de mecanismos em roteadores e redes para dar tratamento diferenciado ou garantias de desempenho (latência, jitter, banda mínima) a certos tipos de tráfego. Evita que tráfegos pesados e elásticos (como downloads grandes) prejudiquem aplicações sensíveis ao tempo (como VoIP e telemedicina), usando marcação, policiamento e escalonamento de filas."
+        },
+        {
+          "termo": "DiffServ / DSCP / PHB (Differentiated Services (Serviços Diferenciados))",
+          "definicao": "É uma arquitetura escalável de QoS que separa funções complexas na borda da rede e encaminhamento simples no núcleo. Roteadores de borda classificam, policiam e marcam 6 bits no cabeçalho IP (campo DSCP). Roteadores do núcleo apenas olham o DSCP e aplicam o comportamento por salto (PHB) correspondente, sem guardar estado de cada fluxo."
+        }
+      ]
+    }
+  },
+  {
+    "id": 49,
+    "capitulo": "Capítulo 7 - Redes Multimídia",
+    "referencia_livro": "Cap. 7 - Seção 7.5.3",
+    "tipo": "conceitual",
+    "enunciado": "Na arquitetura DiffServ (Differentiated Services), onde ocorre a classificação e marcação dos pacotes (campo DSCP no cabeçalho IP)?",
+    "alternativas": {
+      "A": "Em todos os roteadores do núcleo da Internet.",
+      "B": "Exclusivamente nos switches da camada de enlace.",
+      "C": "Nos roteadores de borda da rede, mantendo os roteadores do núcleo simples e rápidos.",
+      "D": "Apenas no servidor DNS."
+    },
+    "resposta_correta": "C",
+    "explicacao": "O DiffServ empurra a complexidade (classificação, policiamento e marcação) para a borda; no núcleo, os roteadores apenas aplicam o comportamento por salto (PHB) conforme a marcação DSCP.",
+    "guia_estudo": {
+      "conceito_geral": "O DiffServ empurra a complexidade (classificação, policiamento e marcação) para a borda; no núcleo, os roteadores apenas aplicam o comportamento por salto (PHB) conforme a marcação DSCP.",
+      "termos_chave": [
+        {
+          "termo": "DiffServ / DSCP / PHB (Differentiated Services (Serviços Diferenciados))",
+          "definicao": "É uma arquitetura escalável de QoS que separa funções complexas na borda da rede e encaminhamento simples no núcleo. Roteadores de borda classificam, policiam e marcam 6 bits no cabeçalho IP (campo DSCP). Roteadores do núcleo apenas olham o DSCP e aplicam o comportamento por salto (PHB) correspondente, sem guardar estado de cada fluxo."
+        },
+        {
+          "termo": "QoS (Quality of Service (Qualidade de Serviço))",
+          "definicao": "É o conjunto de mecanismos em roteadores e redes para dar tratamento diferenciado ou garantias de desempenho (latência, jitter, banda mínima) a certos tipos de tráfego. Evita que tráfegos pesados e elásticos (como downloads grandes) prejudiquem aplicações sensíveis ao tempo (como VoIP e telemedicina), usando marcação, policiamento e escalonamento de filas."
+        },
+        {
+          "termo": "Token Bucket (Balde de Fichas (Policiamento de Tráfego))",
+          "definicao": "É um mecanismo regulador de tráfego definido por dois parâmetros: taxa média de geração de fichas (r) e capacidade máxima do balde/rajada (b). Limita a taxa média de longo prazo de um fluxo a 'r' pacotes/s, mas permite rajadas curtas de até 'b' pacotes acumulados. Um pacote só é liberado se houver uma ficha disponível no balde."
+        }
+      ]
+    }
+  },
+  {
+    "id": 50,
+    "capitulo": "Capítulo 7 - Redes Multimídia",
+    "referencia_livro": "Cap. 7 - Seção 7.5.4",
+    "tipo": "conceitual",
+    "enunciado": "Por que a arquitetura IntServ (Integrated Services) com o protocolo RSVP não foi adotada em larga escala no núcleo da Internet pública?",
+    "alternativas": {
+      "A": "Porque ela conflita com o uso de criptografia TLS.",
+      "B": "Porque ela não consegue oferecer garantias de QoS.",
+      "C": "Porque exige que cada roteador no caminho mantenha estado e reservas individuais por fluxo, gerando graves problemas de escalabilidade.",
+      "D": "Porque ela funciona apenas para streaming HTTP."
+    },
+    "resposta_correta": "C",
+    "explicacao": "Manter informações de estado e sinalização RSVP para milhões de fluxos simultâneos nos roteadores do núcleo da Internet é inviável em termos de memória e processamento.",
+    "guia_estudo": {
+      "conceito_geral": "Manter informações de estado e sinalização RSVP para milhões de fluxos simultâneos nos roteadores do núcleo da Internet é inviável em termos de memória e processamento.",
+      "termos_chave": [
+        {
+          "termo": "IntServ e RSVP (Integrated Services e Resource Reservation Protocol)",
+          "definicao": "É uma arquitetura de QoS orientada a fluxos individuais que busca garantias rígidas de banda e atraso ponta a ponta. Usa o protocolo de sinalização RSVP para reservar recursos em cada roteador do caminho e aplica controle de admissão (call admission), rejeitando novas chamadas se o enlace estiver cheio. Não escalou para a Internet pública."
+        },
+        {
+          "termo": "DiffServ / DSCP / PHB (Differentiated Services (Serviços Diferenciados))",
+          "definicao": "É uma arquitetura escalável de QoS que separa funções complexas na borda da rede e encaminhamento simples no núcleo. Roteadores de borda classificam, policiam e marcam 6 bits no cabeçalho IP (campo DSCP). Roteadores do núcleo apenas olham o DSCP e aplicam o comportamento por salto (PHB) correspondente, sem guardar estado de cada fluxo."
+        },
+        {
+          "termo": "QoS (Quality of Service (Qualidade de Serviço))",
+          "definicao": "É o conjunto de mecanismos em roteadores e redes para dar tratamento diferenciado ou garantias de desempenho (latência, jitter, banda mínima) a certos tipos de tráfego. Evita que tráfegos pesados e elásticos (como downloads grandes) prejudiquem aplicações sensíveis ao tempo (como VoIP e telemedicina), usando marcação, policiamento e escalonamento de filas."
+        }
+      ]
+    }
+  },
+  {
+    "id": 51,
+    "capitulo": "Capítulo 7 - Redes Multimídia",
+    "referencia_livro": "Cap. 7 - Seção 7.5.4",
+    "tipo": "conceitual",
+    "enunciado": "Qual é a função do Controle de Admissão de Chamadas (Call Admission Control) em uma arquitetura de QoS com garantias rígidas (como IntServ)?",
+    "alternativas": {
+      "A": "Avaliar se a rede possui recursos disponíveis para atender aos requisitos de um novo fluxo sem degradar os fluxos já existentes, podendo recusar a nova sessão.",
+      "B": "Comprimir o vídeo automaticamente para 360p.",
+      "C": "Redirecionar o usuário para a CDN mais próxima.",
+      "D": "Autenticar a senha do usuário no servidor SIP."
+    },
+    "resposta_correta": "A",
+    "explicacao": "Para garantir QoS rígida, a rede precisa verificar se há banda e capacidade suficientes antes de aceitar um novo fluxo; se não houver, a chamada é bloqueada para proteger as sessões ativas.",
+    "guia_estudo": {
+      "conceito_geral": "Para garantir QoS rígida, a rede precisa verificar se há banda e capacidade suficientes antes de aceitar um novo fluxo; se não houver, a chamada é bloqueada para proteger as sessões ativas.",
+      "termos_chave": [
+        {
+          "termo": "IntServ e RSVP (Integrated Services e Resource Reservation Protocol)",
+          "definicao": "É uma arquitetura de QoS orientada a fluxos individuais que busca garantias rígidas de banda e atraso ponta a ponta. Usa o protocolo de sinalização RSVP para reservar recursos em cada roteador do caminho e aplica controle de admissão (call admission), rejeitando novas chamadas se o enlace estiver cheio. Não escalou para a Internet pública."
+        },
+        {
+          "termo": "QoS (Quality of Service (Qualidade de Serviço))",
+          "definicao": "É o conjunto de mecanismos em roteadores e redes para dar tratamento diferenciado ou garantias de desempenho (latência, jitter, banda mínima) a certos tipos de tráfego. Evita que tráfegos pesados e elásticos (como downloads grandes) prejudiquem aplicações sensíveis ao tempo (como VoIP e telemedicina), usando marcação, policiamento e escalonamento de filas."
+        },
+        {
+          "termo": "SIP (Session Initiation Protocol (Protocolo de Iniciação de Sessão))",
+          "definicao": "É um protocolo de sinalização da camada de aplicação (com mensagens em texto parecidas com HTTP) usado para estabelecer, modificar e encerrar chamadas multimídia. Localiza usuários mesmo quando mudam de IP (usando Registrador SIP e Proxy SIP), faz o 'toque' da chamada (INVITE -> 200 OK -> ACK) e encerra a ligação (BYE). O áudio real trafega fora do SIP, via RTP."
         }
       ]
     }
